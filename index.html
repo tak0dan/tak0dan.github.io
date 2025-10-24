@@ -95,4 +95,52 @@
     .practice:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(0,0,0,0.45)}
 
     .practice a{color:var(--text);text-decoration:none;font-weight:600}
-    .practice small{color:va
+    .practice small{color:var(--muted);font-size:12px}
+
+    footer{margin-top:12px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
+
+    /* Accessibility: focus styles */
+    a:focus{outline:3px solid rgba(122,209,162,0.18);outline-offset:3px}
+
+    @media (max-width:520px){
+      body{padding:18px}
+      .logo{width:52px;height:52px}
+      h1{font-size:18px}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <div class="brand">
+        <div class="logo">PH</div>
+        <div>
+          <h1>Mis prácticas</h1>
+          <p class="lead">A small hub to collect your practice pages and links.</p>
+        </div>
+      </div>
+      <nav>
+        <!-- keep this for future actions like adding new prácticas -->
+        <a class="create-link" href="#">+ Add practice</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="practices" aria-label="List of prácticas">
+        <!-- Example item: duplicate and edit for each practice -->
+        <article class="practice">
+          <a href="./Practicas/index.html" title="Practica 1">Practica 1 — Introduction</a>
+          <small>Local file: ./Practicas/index.html</small>
+        </article>
+
+        <!-- Add more practice cards here -->
+      </section>
+    </main>
+
+    <footer>
+      <div>Made with minimal CSS — edit <code>leafy.png</code> or the CSS vars to change look.</div>
+      <div>© PracticasHub</div>
+    </footer>
+  </div>
+</body>
+</html>
