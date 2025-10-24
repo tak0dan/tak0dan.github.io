@@ -1,146 +1,229 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PracticasHub — Mis prácticas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg-image: url('leafy.png');
-      --glass: rgba(255,255,255,0.06);
-      --accent: #7ad1a2;
-      --accent-2: #4aa98f;
-      --text: #e9f0ef;
-      --muted: rgba(233,240,239,0.7);
-      --radius: 14px;
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PracticasHub — Mis prácticas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    /* Reset-ish */
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      color:var(--text);
-      background-image: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45)), var(--bg-image);
-      background-size: cover;
-      background-position: center;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:32px;
-    }
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.06);
+            --accent: #7ad1a2;
+            --accent-2: #4aa98f;
+            --text: #e9f0ef;
+            --muted: rgba(233, 240, 239, 0.7);
+            --radius: 14px;
+        }
 
-    .card{
-      width:100%;
-      max-width:920px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius:var(--radius);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-      backdrop-filter: blur(8px) saturate(120%);
-      padding:28px;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:18px;
-    }
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
 
-    .brand{
-      display:flex;align-items:center;gap:14px
-    }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('leafy.png') center/cover no-repeat;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+        }
 
-    .logo{
-      width:60px;height:60px;border-radius:12px;flex:0 0 60px;
-      background: linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:grid;place-items:center;font-weight:700;color:#04221a;font-size:20px;
-      box-shadow: 0 6px 18px rgba(74,169,143,0.18);
-    }
+        .card {
+            width: 100%;
+            max-width: 920px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px) saturate(120%);
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
 
-    h1{font-size:20px;margin:0}
-    p.lead{margin:0;color:var(--muted);font-size:13px}
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
 
-    nav a.create-link{
-      background:transparent;
-      border:1px dashed rgba(255,255,255,0.06);
-      color:var(--text);
-      padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px;
-    }
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
 
-    main{
-      display:grid;gap:18px;grid-template-columns:1fr;align-items:start;
-    }
 
-    /* Practices grid */
-    .practices{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-      gap:14px;
-    }
+        /* LOGO */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 
-    .practice{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);
-      display:flex;flex-direction:column;gap:8px;min-height:84px;justify-content:center;
-      transition:transform .16s ease, box-shadow .16s ease;
-    }
-    .practice:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(0,0,0,0.45)}
+            width: fit-content;
+            max-width: none;
 
-    .practice a{color:var(--text);text-decoration:none;font-weight:600}
-    .practice small{color:var(--muted);font-size:12px}
+            /* GLASS EFFECT */
+            background: rgba(255, 255, 255, 0.06);
+            /* semi-transparent */
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
 
-    footer{margin-top:12px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
 
-    /* Accessibility: focus styles */
-    a:focus{outline:3px solid rgba(122,209,162,0.18);outline-offset:3px}
 
-    @media (max-width:520px){
-      body{padding:18px}
-      .logo{width:52px;height:52px}
-      h1{font-size:18px}
-    }
-  </style>
+        .logo-text {
+            background: rgba(0, 0, 0, 0.25);
+            /* semi-transparent black */
+            color: #fff;
+            padding: 0.6rem 1rem;
+            letter-spacing: 0.5px;
+            flex: none;
+        }
+
+        .logo-hub {
+            background: linear-gradient(135deg, rgba(255, 154, 61, 0.8), rgba(255, 106, 0, 0.8));
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0 14px 14px 0;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+            letter-spacing: 0.8px;
+            flex: none;
+        }
+
+
+
+
+
+        h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        main {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: 1fr;
+            align-items: start;
+        }
+
+        /* Practices grid */
+        .practices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .practice {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 84px;
+            justify-content: center;
+            transition: transform .16s ease, box-shadow .16s ease;
+        }
+
+        .practice:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+        }
+
+        .practice a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .practice small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        footer {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a:focus {
+            outline: 3px solid rgba(122, 209, 162, 0.18);
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 18px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="card">
-    <header>
-      <div class="brand">
-  <div class="logo">
-    <span class="logo-text">Practicas</span>
-    <span class="logo-hub">HUB</span>
-  </div>
-  <div>
-    <h1>Mis prácticas</h1>
-    <p class="lead">A small hub to collect your practice pages and links.</p>
-  </div>
-</div>
+    <div class="card">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-label="PracticasHub">
+                    <div class="logo-text">Practicas</div>
+                    <div class="logo-hub">HUB</div>
+                </div>
+                <div class="title">
+                    <h1>Mis prácticas</h1>
+                    <p class="lead">A small hub to collect your practice pages and links.</p>
+                </div>
+            </div>
+        </header>
 
-    </header>
 
-    <main>
-      <section class="practices" aria-label="List of prácticas">
-        <!-- Example item: duplicate and edit for each practice -->
-        <article class="practice">
-          <a href="./Practicas/index.html" title="Practica 2(Practica 1 + imagen + lista)">Practica 2(Practica 1 + imagen + lista) — Introduction</a>
-          <small>Local file: ./Practicas/index.html</small>
-        </article>
+        <main>
+            <section class="practices" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/index.html" title="Practica 2(Practica 1 + imagen + lista)">
+                        Practica 2 (Practica 1 + imagen + lista) — Introduction
+                    </a>
+                    <small>Local file: ./Practicas/index.html</small>
+                </article>
+            </section>
+        </main>
 
-        <!-- Add more practice cards here -->
-      </section>
-    </main>
-
-    <footer>
-      
-      <div>© Tak0dan</div>
-    </footer>
-  </div>
+        <footer>
+            <div>© Tak0dan</div>
+        </footer>
+    </div>
 </body>
+
 </html>
