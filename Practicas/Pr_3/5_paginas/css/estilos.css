@@ -1,20 +1,52 @@
 body {
-
+    margin: 0 auto;
+    background-image: url('fondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+    width: 80%;
+    font-family: Arial, sans-serif;
 }
 
 h1 {
-
+    background-color: #8B4513;
+    color: white;
+    border-left: 5px solid #D2691E;
+    padding: 10px;
+    margin: 20px 0;
 }
 
 img {
-
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px gray;
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px;
 }
 
 ul {
-
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
 }
 
 li {
-
+    border: 1px solid #8B4513;
+    display: inline;
+    padding: 8px 15px;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
+a {
+    text-decoration: none;
+    color: #8B4513;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #D2691E;
+}
