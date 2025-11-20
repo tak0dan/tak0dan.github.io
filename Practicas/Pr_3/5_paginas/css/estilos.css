@@ -34,7 +34,7 @@ ul {
 }
 
 li {
-    border: 1px solid #8B4513;
+    border: 1px solid #74cf1e;
     display: inline;
     padding: 8px 15px;
     margin: 0 5px;
@@ -43,10 +43,10 @@ li {
 
 a {
     text-decoration: none;
-    color: #8B4513;
+    color: #138b6d;
     font-weight: bold;
 }
 
 a:hover {
-    color: #D2691E;
+    color: #00d9ff;
 }
