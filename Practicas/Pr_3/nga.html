@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+
+<html  dir="ltr" lang="ca" xml:lang="ca">
+<head>
+    <title>Programació-1CFSD   1757061754: Entrega Examen de Bucles | AULES</title>
+    <link rel="shortcut icon" href="https://aules.edu.gva.es/fp/pluginfile.php/1/theme_aules/favicon/1763637000/favicon_redondo.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="google" content="notranslate" />
+<meta name="keywords" content="moodle, Programació-1CFSD   1757061754: Entrega Examen de Bucles | AULES" />
+<link rel="stylesheet" type="text/css" href="https://aules.edu.gva.es/fp/theme/yui_combo.php?rollup/3.18.1/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://aules.edu.gva.es/fp/theme/styles.php/aules/1763637000_1763016019/all" />
+<link rel="stylesheet" type="text/css" href="https://aules.edu.gva.es/fp/course/format/onetopic/styles.php" />
+<link rel="stylesheet" type="text/css" href="https://aules.edu.gva.es/fp/local/gva_color/css/styles.css" />
+<script>
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/aules.edu.gva.es\/fp","apibase":"https:\/\/aules.edu.gva.es\/fp\/r.php\/api","homeurl":{},"sesskey":"NUQLOjwJNb","sessiontimeout":"14400","sessiontimeoutwarning":"1200","themerev":"1763637000","slasharguments":1,"theme":"aules","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1763618479","admin":"admin","svgicons":true,"usertimezone":"Europa\/Madrid","language":"ca_valencia","courseId":174415,"courseContextId":10677788,"contextid":12489792,"contextInstanceId":9647734,"langrev":1763618479,"templaterev":"1763618479","siteId":1,"userId":501891};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":false,"base":"https:\/\/aules.edu.gva.es\/fp\/lib\/yuilib\/3.18.1\/","comboBase":"https:\/\/aules.edu.gva.es\/fp\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/aules.edu.gva.es\/fp\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/aules.edu.gva.es\/fp\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/aules.edu.gva.es\/fp\/theme\/yui_combo.php?m\/1763618479\/","combine":true,"comboBase":"https:\/\/aules.edu.gva.es\/fp\/theme\/yui_combo.php?","ext":false,"root":"m\/1763618479\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_language-form":{"requires":["base","node","event","node-event-simulate","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_stash-form":{"requires":["base","node","event","handlebars","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_attendance-groupfilter":{"requires":["base","node"]},"moodle-mod_dialogue-clickredirector":{"requires":["base","node","json-parse","clickredirector","clickredirector-filters","clickredirector-highlighters","event","event-key"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form","datatype-date-format"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_scheduler-studentlist":{"requires":["base","node","event","io"]},"moodle-mod_scheduler-saveseen":{"requires":["base","node","event"]},"moodle-mod_scheduler-delselected":{"requires":["base","node","event"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-block_xp-filters":{"requires":["base","node","moodle-core-dragdrop","moodle-core-notification-confirm","moodle-block_xp-rulepicker"]},"moodle-block_xp-rulepicker":{"requires":["base","node","handlebars","moodle-core-notification-dialogue"]},"moodle-block_xp-notification":{"requires":["base","node","handlebars","button-plugin","moodle-core-notification-dialogue"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-qbank_editquestion-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emojipicker-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_fullscreen-button":{"requires":["event-resize","moodle-editor_atto-plugin"]},"moodle-atto_h5p-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_html-beautify":{},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_multilang2-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_teamsmeeting-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/aules.edu.gva.es\/fp\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/aules.edu.gva.es\/fp\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1763618479\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/aules.edu.gva.es\/fp\/lib\/javascript.php\/1763618479\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/aules.edu.gva.es\/fp\/lib\/javascript.php\/1763618479\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]}},"logInclude":[],"logExclude":[],"logLevel":null};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+
+<meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body  id="page-mod-assign-view" class="format-tiles limitedwidth  path-mod path-mod-assign gecko dir-ltr lang-ca_valencia yui-skin-sam yui3-skin-sam aules-edu-gva-es--fp pagelayout-incourse course-174415 context-12489792 cmid-9647734 cm-type-assign category-10704 theme uses-drawers has-alert-aules">
+<div class="toast-wrapper mx-auto py-0 fixed-top" role="status" aria-live="polite"></div>
+<div id="page-wrapper" class="d-print-block">
+
+    <div>
+    <a class="sr-only sr-only-focusable" href="#maincontent">Vés al contingut principal</a>
+</div><script src="https://aules.edu.gva.es/fp/lib/javascript.php/1763618479/lib/polyfills/polyfill.js"></script>
+<script src="https://aules.edu.gva.es/fp/theme/yui_combo.php?rollup/3.18.1/yui-moodlesimple-min.js"></script><script src="https://aules.edu.gva.es/fp/lib/javascript.php/1763618479/lib/javascript-static.js"></script>
+<script>
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+
+<div class="alertlabel-aules" id="id-alertlabel-aules">
+    <div class="alert alert-aules alert-info  alert-block fade in ">
+    <i class="icono-alert-aules fa fa-exclamation-triangle"></i>
+    <div class="no-overflow"><p>El proper dimarts, 25 de novembre, entre les 7 i les 8 hores del matí, Aules podrà NO estar disponible per tasques de manteniment. Disculpeu les molèsties. </p></div>
+    <i class="fa fa-x close cerrar-alerta" id="btn-cerrar-alerta"></i>
+</div>
+</div>
+
+<div class="responsiveheadergva" id="headercolorgva">
+    <div class="logos position-relative">
+        <a href="https://www.gva.es/va/inicio/presentacion" class="" target="_blank">
+                <img src="//aules.edu.gva.es/fp/pluginfile.php/1/theme_aules/logogeneralitat/1763637000/gv_distintiu_horitzontal_negre_400x169.png" class="logo mr-4" alt="Logo GVA">
+        </a>
+
+        <a href="https://aules.edu.gva.es/fp" class="" target="_blank">
+                <img src="//aules.edu.gva.es/fp/pluginfile.php/1/theme_aules/logoaules/1763637000/IMAGEN_LOGO2.jpg" class="logo mr-1" alt="AULES">
+        </a>
+        <span class="text-right position-absolute" style="right:0px;">
+        <div class="d-flex align-items-stretch usermenu-container" data-region="patatamenu"    >
+            <div>
+                <div class="dropdown">
+                    <a href="#" role="button" id="patata-menu-toggle" data-toggle="dropdown" aria-label="Menú de usuario" aria-haspopup="true" aria-controls="mblhead-action-menu" class="btn toggle-menu" aria-expanded="true">
+                        ☰
+                    </a>
+                    <div id="mblhead-action-menu" class="dropdown-menu dropdown-menu-right"  style="z-index:1050; position: absolute;top:50px">
+                        <div class="simplesearchform extra-form-searh-aules">
+    <form autocomplete="off" action="https://aules.edu.gva.es/fp/course/search.php" method="get" accept-charset="utf-8" class="mform d-flex flex-wrap align-items-center simplesearchform">
+        <input type="hidden" name="searchaules" value="core_course-course">
+    <div class="input-group">
+        <label for="searchinput-691f5bfb4b6a1691f5bfb486db2">
+            <span class="sr-only">Busca...</span>
+        </label>
+        <input type="text"
+           id="searchinput-691f5bfb4b6a1691f5bfb486db2"
+           class="form-control"
+           placeholder="Busca..."
+           aria-label="Busca..."
+           name="q"
+           data-region="input"
+           autocomplete="off"
+           value=""
+        >
+        <div class="input-group-append">
+            <button type="submit"
+                class="btn  btn-seach-aules search-icon"
+                
+            >
+                <i class="icon fa fa-magnifying-glass fa-fw " aria-hidden="true"  ></i>
+                <span class="sr-only">Busca...</span>
+            </button>
+        </div>
+
+    </div>
+    </form>
+</div>
+                        <hr>
+                        <div class="idiomas">
+                                    <a href="#" class="dropdown-item pl-5" role="menuitem" aria-current="true"
+                                            lang="Valencià" >
+                                        Valencià
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=es" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="Castellano" >
+                                        Castellano
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=en" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="English" >
+                                        English
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=fr" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="Français" >
+                                        Français
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=it" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="Italiano" >
+                                        Italiano
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=de" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="Deutsch" >
+                                        Deutsch
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=pt" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="Português" >
+                                        Português
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=uk" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="українська" >
+                                        українська
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=ro" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="Română" >
+                                        Română
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=ar" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="عربي" >
+                                        عربي
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=zh_cn" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="简体中文" >
+                                        简体中文
+                                    </a>
+                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=ru" class="dropdown-item pl-5" role="menuitem" 
+                                            lang="Русский" >
+                                        Русский
+                                    </a>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        </span>
+    </div>
+    <div class="enlaces">
+            <span class="titulo"><div class="no-overflow">Conselleria d'Educació, Cultura, Universitats i Ocupació</div></span>
+
+        <div class="cont-search-idiomas">
+            <div class="simplesearchform extra-form-searh-aules">
+    <form autocomplete="off" action="https://aules.edu.gva.es/fp/course/search.php" method="get" accept-charset="utf-8" class="mform d-flex flex-wrap align-items-center simplesearchform">
+        <input type="hidden" name="searchaules" value="core_course-course">
+    <div class="input-group">
+        <label for="searchinput-691f5bfb4be7e691f5bfb486db3">
+            <span class="sr-only">Busca...</span>
+        </label>
+        <input type="text"
+           id="searchinput-691f5bfb4be7e691f5bfb486db3"
+           class="form-control"
+           placeholder="Busca..."
+           aria-label="Busca..."
+           name="q"
+           data-region="input"
+           autocomplete="off"
+           value=""
+        >
+        <div class="input-group-append">
+            <button type="submit"
+                class="btn  btn-seach-aules search-icon"
+                
+            >
+                <i class="icon fa fa-magnifying-glass fa-fw " aria-hidden="true"  ></i>
+                <span class="sr-only">Busca...</span>
+            </button>
+        </div>
+
+    </div>
+    </form>
+</div>
+
+            <div class="social">
+                    <a href="https://t.me/itedugva" target="_blank" class="telegram btn btn-link btn-rounded" title="telegram">
+                        <i class="fa fa-telegram"></i>
+                    </a>
+                    <a href="https://x.com/itedugva" target="_blank" class="twitter btn btn-link btn-rounded" title="twitterx">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icono-svg" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+                            <path
+                                fill="currentColor"
+                                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                            />
+                        </svg>
+                        
+                    </a>
+                    <a href="https://www.youtube.com/@ITedugva" target="_blank" class="youtube btn btn-link btn-rounded" title="youtube">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="navbar navbar-menu-aules fixed-top z1000 navbar-light bg-white navbar-expand" aria-label="Navegació pel lloc">
+    
+        <button class="navbar-toggler aabtn d-block d-md-none px-1 my-1 border-0" data-toggler="drawers" data-action="toggle" data-target="theme_boost-drawers-primary">
+            <span class="navbar-toggler-icon"></span>
+            <span class="sr-only">Panell lateral</span>
+        </button>
+        <div class="sabor">
+            <span class="nombre"><div class="no-overflow">FP</div></span>
+        </div>
+            <div class="primary-navigation">
+                <nav class="moremenu navigation">
+                    <ul id="moremenu-691f5bfb430e5-navbar-nav" role="menubar" class="nav more-nav navbar-nav">
+                                <li data-key="myhome" class="nav-item" role="none" data-forceintomoremenu="false">
+                                            <a role="menuitem" class="nav-link  "
+                                                href="https://aules.edu.gva.es/fp/my/"
+                                                
+                                                
+                                                tabindex="-1"
+                                            >
+                                                Tauler
+                                            </a>
+                                </li>
+                                <li class="dropdown nav-item" role="none" data-forceintomoremenu="false">
+                                    <a class="dropdown-toggle nav-link  " id="drop-down-691f5bfb42560" role="menuitem" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" href="#" aria-controls="drop-down-menu-691f5bfb42560"
+                                        
+                                        
+                                        tabindex="-1"
+                                    >
+                                        Ajuda
+                                    </a>
+                                    <div class="dropdown-menu" role="menu" id="drop-down-menu-691f5bfb42560" aria-labelledby="drop-down-691f5bfb42560">
+                                                    <a target="_blank" class="dropdown-item" role="menuitem" href="https://gvasai.edu.gva.es/"  tabindex="-1"
+                                                        
+                                                    >
+                                                         Assistència i Suport Informàtic GVASAI
+                                                    </a>
+                                                    <a target="_blank" class="dropdown-item" role="menuitem" href="https://portal.edu.gva.es/aules/va/formacio/"  tabindex="-1"
+                                                        
+                                                    >
+                                                         Formació per a docents
+                                                    </a>
+                                    </div>
+                                </li>
+                        <li role="none" class="nav-item dropdown dropdownmoremenu d-none" data-region="morebutton">
+                            <a class="dropdown-toggle nav-link " href="#" id="moremenu-dropdown-691f5bfb430e5" role="menuitem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="-1">
+                                Més
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-left" data-region="moredropdown" aria-labelledby="moremenu-dropdown-691f5bfb430e5" role="menu">
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+    
+        <!--<ul class="navbar-nav d-none d-md-flex my-1 px-1">-->
+        <ul class="navbar-nav d-none">
+            <!-- page_heading_menu -->
+            
+        </ul>
+    
+        <div id="usernavigation" class="navbar-nav">
+            <!-- Eliminado segundo menú de idiomas para usuarios no logueados
+            -->
+            <div class="popover-region collapsed popover-region-notifications"
+    id="nav-notification-popover-container" data-userid="501891"
+    data-region="popover-region">
+    <div class="popover-region-toggle nav-link icon-no-margin"
+        data-region="popover-region-toggle"
+        aria-controls="popover-region-container-691f5bfb5408a691f5bfb486db4"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-label="  Mostra la finestra de notificacions amb 1 notificacions noves  "
+        title="  Mostra la finestra de notificacions amb 1 notificacions noves  "
+        tabindex="0"
+        role="button">
+                <i class="icon fa fa-bell fa-fw " aria-hidden="true"  ></i>
+        <div
+            class="count-container "
+            data-region="count-container"
+            aria-hidden=true
+        >
+            1
+        </div>
+
+    </div>
+    <div 
+        id="popover-region-container-691f5bfb5408a691f5bfb486db4"
+        class="popover-region-container"
+        data-region="popover-region-container"
+        aria-hidden="true"
+        aria-label="Finestra de notificacions"
+        role="region">
+        <div class="popover-region-header-container">
+            <h3 class="popover-region-header-text" data-region="popover-region-header-text">Notificacions</h3>
+            <div class="popover-region-header-actions" data-region="popover-region-header-actions">        <a class="mark-all-read-button"
+           href="#"
+           title="Marca-ho tot com a llegit"
+           data-action="mark-all-read"
+           role="button"
+           aria-label="Marca-ho tot com a llegit">
+            <span class="normal-icon"><i class="icon fa fa-check fa-fw " aria-hidden="true"  ></i></span>
+            <span class="loading-icon icon-no-margin"><i class="icon fa fa-spinner fa-spin fa-fw "  title="S&#039;està carregant" role="img" aria-label="S&#039;està carregant"></i></span>
+        </a>
+            <a href="https://aules.edu.gva.es/fp/message/notificationpreferences.php"
+               title="Preferències de les notificacions"
+               aria-label="Preferències de les notificacions">
+                <i class="icon fa fa-gear fa-fw " aria-hidden="true"  ></i></a>
+</div>
+        </div>
+        <div class="popover-region-content-container" data-region="popover-region-content-container">
+            <div class="popover-region-content" data-region="popover-region-content">
+                        <div class="all-notifications"
+            data-region="all-notifications"
+            role="log"
+            aria-busy="false"
+            aria-atomic="false"
+            aria-relevant="additions"></div>
+        <div class="empty-message" tabindex="0" data-region="empty-message">No teniu cap notificació</div>
+
+            </div>
+            <span class="loading-icon icon-no-margin"><i class="icon fa fa-spinner fa-spin fa-fw "  title="S&#039;està carregant" role="img" aria-label="S&#039;està carregant"></i></span>
+        </div>
+                <a class="see-all-link"
+                    href="https://aules.edu.gva.es/fp/message/output/popup/notifications.php">
+                    <div class="popover-region-footer-container">
+                        <div class="popover-region-seeall-text">Mostra-ho tot</div>
+                    </div>
+                </a>
+    </div>
+</div>
+            <div class="d-flex align-items-stretch usermenu-container" data-region="usermenu">
+                    <div class="usermenu">
+                            <div class="dropdown show">
+                                <a href="#" role="button" id="user-menu-toggle" data-toggle="dropdown" aria-label="Menú d'usuari"
+                                   aria-haspopup="true" aria-controls="user-action-menu" class="btn dropdown-toggle">
+                                    <span class="userbutton">
+                                        <span class="avatars">
+                                                <span class="avatar current">
+                                                    <span class="userinitials size-35" title="NIKITA TROSHKO" aria-label="NIKITA TROSHKO" role="img">NT</span>
+                                                </span>
+                                        </span>
+                                    </span>
+                                </a>
+                                <div id="user-action-menu" class="dropdown-menu dropdown-menu-right">
+                                    <div id="usermenu-carousel" class="carousel slide" data-touch="false" data-interval="false" data-keyboard="false">
+                                        <div class="carousel-inner">
+                                            <div id="carousel-item-main" class="carousel-item active" role="menu" tabindex="-1" aria-label="Usuari">
+                                                        <a href="https://aules.edu.gva.es/fp/user/profile.php" class="dropdown-item" role="menuitem" tabindex="-1">
+                                                                
+                                                            Perfil
+                                                        </a>
+                                                    
+                                                        <a href="https://aules.edu.gva.es/fp/grade/report/overview/index.php" class="dropdown-item" role="menuitem" tabindex="-1">
+                                                                
+                                                            Qualificacions
+                                                        </a>
+                                                    
+                                                        <a href="https://aules.edu.gva.es/fp/reportbuilder/index.php" class="dropdown-item" role="menuitem" tabindex="-1">
+                                                                
+                                                            Informes
+                                                        </a>
+                                                    
+                                                        <a href="https://aules.edu.gva.es/fp/admin/tool/userdebug/adhocdebug.php?returnpath=https%3A%2F%2Faules.edu.gva.es%2Ffp%2Fmod%2Fassign%2Fview.php%3Fid%3D9647734%26amp%3Brownum%3D0%26amp%3Buseridlistid%3D691f5bfb0554f036941842%26amp%3Baction" class="dropdown-item" role="menuitem" tabindex="-1">
+                                                                
+                                                            Depuració ad hoc (off)
+                                                        </a>
+                                                    
+                                                    <div class="dropdown-divider"></div>
+                                                        <a href="https://aules.edu.gva.es/fp/user/preferences.php" class="dropdown-item" role="menuitem" tabindex="-1">
+                                                                
+                                                            Preferències
+                                                        </a>
+                                                    
+                                                        <a href="#" class="carousel-navigation-link dropdown-item" role="menuitem" tabindex="-1" data-carousel-target-id="carousel-item-691f5bfb44b7b">
+                                                                
+                                                            Idioma
+                                                        </a>
+                                                    <div class="dropdown-divider"></div>
+                                                        <a href="https://aules.edu.gva.es/fp/login/logout.php?sesskey=NUQLOjwJNb" class="dropdown-item" role="menuitem" tabindex="-1">
+                                                                
+                                                            Tanca la sessió
+                                                        </a>
+                                                    
+                                            </div>
+                                                <div id="carousel-item-691f5bfb44b7b" role="menu" class="carousel-item submenu" tabindex="-1" aria-label="Selector d&#039;idioma">
+                                                    <div class="d-flex flex-column h-100">
+                                                        <div class="header">
+                                                            <button type="button" class="btn btn-icon carousel-navigation-link text-decoration-none text-body" data-carousel-target-id="carousel-item-main" aria-label="Torna al menú d'usuari">
+                                                                <span class="dir-rtl-hide"><img class="icon " alt="" aria-hidden="true" src="https://aules.edu.gva.es/fp/theme/image.php/aules/core/1763637000/i/arrow-left" /></span>
+                                                                <span class="dir-ltr-hide"><img class="icon " alt="" aria-hidden="true" src="https://aules.edu.gva.es/fp/theme/image.php/aules/core/1763637000/i/arrow-right" /></span>
+                                                            </button>
+                                                            <span class="ps-2" id="carousel-item-title-691f5bfb44b7b">Selector d&#039;idioma</span>
+                                                        </div>
+                                                        <div class="dropdown-divider"></div>
+                                                        <div class="items h-100 overflow-auto" role="menu" aria-labelledby="carousel-item-title-691f5bfb44b7b">
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=de" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="de" >
+                                                                        Deutsch
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=en" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="en" >
+                                                                        English
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=es" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="es" >
+                                                                        Castellano
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=fr" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="fr" >
+                                                                        Français
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=it" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="it" >
+                                                                        Italiano
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=pt" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="pt" >
+                                                                        Português
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=ro" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="ro" >
+                                                                        Română
+                                                                    </a>
+                                                                    <a href="#" class="dropdown-item ps-5" role="menuitem" tabindex="-1" aria-current="true"
+                                                                        >
+                                                                        Valencià
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=ru" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="ru" >
+                                                                        Русский
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=uk" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="uk" >
+                                                                        українська
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=ar" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="ar" >
+                                                                        عربي
+                                                                    </a>
+                                                                    <a href="https://aules.edu.gva.es/fp/mod/assign/view.php?id=9647734&amp;rownum=0&amp;useridlistid=691f5bfb0554f036941842&amp;action&amp;lang=zh_cn" class="dropdown-item ps-5" role="menuitem" tabindex="-1" 
+                                                                        lang="zh" >
+                                                                        简体中文
+                                                                    </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+            </div>
+            
+        </div>
+    </nav>
+    
+    
+
+<div  class="drawer drawer-left drawer-primary d-print-none not-initialized" data-region="fixed-drawer" id="theme_boost-drawers-primary" data-preference="" data-state="show-drawer-primary" data-forceopen="0" data-close-on-resize="1">
+    <div class="drawerheader">
+        <button
+            class="btn drawertoggle icon-no-margin hidden"
+            data-toggler="drawers"
+            data-action="closedrawer"
+            data-target="theme_boost-drawers-primary"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Tanca el calaix"
+        >
+            <i class="icon fa fa-xmark fa-fw " aria-hidden="true"  ></i>
+        </button>
+        <a
+            href="https://aules.edu.gva.es/fp/my/"
+            title="AULES"
+            data-region="site-home-link"
+            class="aabtn text-reset d-flex align-items-center py-1 h-100 d-md-none"
+        >
+                        <img src="https://aules.edu.gva.es/fp/pluginfile.php/1/core_admin/logocompact/300x300/1763637000/logo_aulesnew.png" class="logo py-1 h-100" alt="AULES">
+
+        </a>
+        <div class="drawerheadercontent hidden">
+            
+        </div>
+    </div>
+    <div class="drawercontent drag-container" data-usertour="scroller">
+                <div class="list-group">
+                <a href="https://aules.edu.gva.es/fp/my/" class="list-group-item list-group-item-action  " >
+                    Tauler
+                </a>
+                <a id="drop-down-1" href="#" class="list-group-item list-group-item-action icons-collapse-expand collapsed d-flex" data-toggle="collapse" data-target="#drop-down-menu-1" aria-expanded="false" aria-controls="drop-down-menu-1">
+                    Ajuda
+                    <span class="ms-auto expanded-icon icon-no-margin mx-2">
+                        <i class="icon fa fa-chevron-down fa-fw " aria-hidden="true"  ></i>
+                        <span class="sr-only">
+                            Reduïx
+                        </span>
+                    </span>
+                    <span class="ms-auto collapsed-icon icon-no-margin mx-2">
+                        <i class="icon fa fa-chevron-right fa-fw " aria-hidden="true"  ></i>
+                        <span class="sr-only">
+                            Amplia
+                        </span>
+                    </span>
+                </a>
+                <div class="collapse list-group-item p-0 border-0" role="menu" id="drop-down-menu-1" aria-labelledby="drop-down-1">
+                             <a href="https://gvasai.edu.gva.es/" class="ps-5 bg-light list-group-item list-group-item-action"> Assistència i Suport Informàtic GVASAI</a>
+                             <a href="https://portal.edu.gva.es/aules/va/formacio/" class="ps-5 bg-light list-group-item list-group-item-action"> Formació per a docents</a>
+                </div>
+        </div>
+
+    </div>
+</div>
+        <div  class="drawer drawer-left  d-print-none not-initialized" data-region="fixed-drawer" id="theme_boost-drawers-courseindex" data-preference="drawer-open-index" data-state="show-drawer-left" data-forceopen="0" data-close-on-resize="0">
+    <div class="drawerheader">
+        <button
+            class="btn drawertoggle icon-no-margin hidden"
+            data-toggler="drawers"
+            data-action="closedrawer"
+            data-target="theme_boost-drawers-courseindex"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Tanca l'índex del curs"
+        >
+            <i class="icon fa fa-xmark fa-fw " aria-hidden="true"  ></i>
+        </button>
+        <a
+            href="https://aules.edu.gva.es/fp/my/"
+            title="AULES"
+            data-region="site-home-link"
+            class="aabtn text-reset d-flex align-items-center py-1 h-100 d-md-none"
+        >
+            
+        </a>
+        <div class="drawerheadercontent hidden">
+                            <div id="courseindexdrawercontrols" class="dropdown">
+                    <button class="btn btn-icon rounded-circle mx-2"
+                            type="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            title="Opcions de l'índex del curs"
+                    >
+                        <i class="icon fa fa-ellipsis-v fa-fw m-0" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item"
+                           href="#"
+                           data-action="expandallcourseindexsections"
+                        >
+                            <i class="icon fa fa-angles-down fa-fw " aria-hidden="true"  ></i>
+                            Amplia-ho tot
+                        </a>
+                        <a class="dropdown-item"
+                           href="#"
+                           data-action="collapseallcourseindexsections"
+                        >
+                            <span class="dir-rtl-hide"><i class="icon fa fa-angles-right fa-fw " aria-hidden="true"  ></i></span>
+                            <span class="dir-ltr-hide"><i class="icon fa fa-angles-left fa-fw " aria-hidden="true"  ></i></span>
+                            Reduïx-ho tot
+                        </a>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    <div class="drawercontent drag-container" data-usertour="scroller">
+                        <nav id="courseindex" class="courseindex">
+    <div id="courseindex-content">
+        <div data-region="loading-placeholder-content" aria-hidden="true" id="course-index-placeholder">
+            <ul class="placeholders list-unstyled px-5">
+                <li>
+                    <div class="col-md-6 p-0 d-flex align-items-center">
+                        <div class="bg-pulse-grey rounded-circle me-2"></div>
+                        <div class="bg-pulse-grey w-100"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-6 p-0 d-flex align-items-center">
+                        <div class="bg-pulse-grey rounded-circle me-2"></div>
+                        <div class="bg-pulse-grey w-100"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-6 p-0 d-flex align-items-center">
+                        <div class="bg-pulse-grey rounded-circle me-2"></div>
+                        <div class="bg-pulse-grey w-100"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-6 p-0 d-flex align-items-center">
+                        <div class="bg-pulse-grey rounded-circle me-2"></div>
+                        <div class="bg-pulse-grey w-100"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    </div>
+</div>
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers   drag-container">
+        <div id="topofscroll" class="main-inner">
+            <section class="miga-pan-content"><ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                    <a href="https://aules.edu.gva.es/fp/my/" data-test="2"    title="Tauler">
+                        <i class="icon fa fa-home fa-fw icono-home" aria-hidden="true"></i>
+                        Tauler
+                    </a>
+            </li>
+            <i class="icon fa fa-chevron-right fa-fw icono-separador" aria-hidden="true"></i>
+            <li class="breadcrumb-item">
+                    <a href="https://aules.edu.gva.es/fp/my/courses.php?id=174415" data-test="2"    title="Els meus cursos">
+                        <i class="icon fa fa-home fa-fw icono-home" aria-hidden="true"></i>
+                        Els meus cursos
+                    </a>
+            </li>
+            <i class="icon fa fa-chevron-right fa-fw icono-separador" aria-hidden="true"></i>
+            <li class="breadcrumb-item">
+                    <a href="https://aules.edu.gva.es/fp/course/view.php?id=174415" data-test="2"    title="Programación -1º DAW">
+                        <i class="icon fa fa-home fa-fw icono-home" aria-hidden="true"></i>
+                        Programación -1º DAW
+                    </a>
+            </li>
+            <i class="icon fa fa-chevron-right fa-fw icono-separador" aria-hidden="true"></i>
+            <li class="breadcrumb-item">
+                    <a href="https://aules.edu.gva.es/fp/course/section.php?id=1404121" data-test="2"    title="Tema 3. Estructuras Condicionales">
+                        <i class="icon fa fa-home fa-fw icono-home" aria-hidden="true"></i>
+                        Tema 3. Estructuras Condicionales
+                    </a>
+            </li>
+            <i class="icon fa fa-chevron-right fa-fw icono-separador" aria-hidden="true"></i>
+            <li data-test="3" class="breadcrumb-item item-active"><span>Entrega Examen de Bucles</span></li>
+</ol></section>
+            <div class="drawer-toggles d-flex">
+                    <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">
+                        <button
+                            class="btn icon-no-margin"
+                            data-toggler="drawers"
+                            data-action="toggle"
+                            data-target="theme_boost-drawers-courseindex"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="Obre l'índex del curs"
+                        >
+                            <span class="sr-only">Obre l'índex del curs</span>
+                            <i class="icon fa fa-list fa-fw " aria-hidden="true"  ></i>
+                        </button>
+                    </div>
+            </div>
+            <header id="page-header" class="header-maxwidth d-print-none">
+    <div class="w-100">
+        <div class="d-flex flex-wrap">
+            <div id="page-navbar">
+                <nav aria-label="Barra de navegació">
+    <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="https://aules.edu.gva.es/fp/course/view.php?id=174415"
+                        
+                        title="Programación -1º DAW"
+                        
+                    >
+                        Programación -1º DAW
+                    </a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://aules.edu.gva.es/fp/course/view.php?id=174415&amp;section=3"
+                        
+                        
+                        data-section-name-for="1404121" 
+                    >
+                        Tema 3. Estructuras Condicionales
+                    </a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <span >
+                        Entrega Examen de Bucles
+                    </span>
+                </li>
+        </ol>
+</nav>
+            </div>
+            <div class="ms-auto d-flex">
+                
+            </div>
+            <div id="course-header">
+                
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+                    <div class="me-auto">
+                        <div class="page-context-header d-flex align-items-center mb-2">
+    <div class="page-header-image">
+        <div class="assessment activityiconcontainer icon-size-6 modicon_assign"><img class="icon activityicon " aria-hidden="true" src="https://aules.edu.gva.es/fp/theme/image.php/aules/assign/1763637000/monologo?filtericon=1" alt="" /></div>
+    </div>
+    <div class="page-header-headings">
+        <h1 class="h2 mb-0">Entrega Examen de Bucles</h1>
+    </div>
+</div>
+                    </div>
+            <div class="header-actions-container ms-auto" data-region="header-actions-container">
+            </div>
+        </div>
+    </div>
+</header>
+            <div id="page-content" class="pb-3 d-print-block">
+                <div id="region-main-box">
+                    <section id="region-main" aria-label="Contingut">
+
+                        <span class="notifications" id="user-notifications"></span>
+                            <span id="maincontent"></span>
+                                <h2>Entrega Examen de Bucles</h2>
+                            <div class="activity-header" data-for="page-activity-header">
+                                    <span class="sr-only">Requisits de compleció</span>
+                                    <div data-region="activity-information" data-activityname="Entrega Examen de Bucles" class="activity-information">
+
+
+    <div data-region="activity-dates" class="activity-dates">
+            <div>
+                <strong>S&#039;obri el:</strong> Friday, 21 November 2025, 8:20 AM
+            </div>
+            <div>
+                <strong>Venciment:</strong> Friday, 21 November 2025, 10:45 AM
+            </div>
+    </div>
+</div>
+                                    <div class="activity-description" id="intro">
+                                        <div class="box py-3 generalbox boxaligncenter"></div>
+                                    </div>
+                                </div>
+                        <div role="main"><div class="container-fluid mb-4">
+    <div class="row">
+    </div>
+</div><div class="submissionstatustable"><h3>Estat de la tramesa</h3><div class="box py-3 boxaligncenter submissionsummarytable"><div class="table-responsive"><table class="generaltable table-bordered">
+<tbody><tr class="">
+<th class="cell c0" style="" scope="row">Estat de la tramesa</th>
+<td class="cell c1 lastcol" style="">Encara no s'ha fet cap tramesa</td>
+</tr>
+<tr class="">
+<th class="cell c0" style="" scope="row">Estat de la qualificació</th>
+<td class="submissionnotgraded cell c1 lastcol" style="">Sense qualificar</td>
+</tr>
+<tr class="lastrow">
+<th class="cell c0" style="" scope="row">Temps restant</th>
+<td class="timeremaining cell c1 lastcol" style="">15 hores 24 minuts restant</td>
+</tr>
+</tbody>
+</table>
+</div></div></div><div id="gva-color-icon" class="footer-popover-btn" title="Accessibilitat"><i class="icon_gva"></i></div><div id="format-tiles-js-config"  data-modalAllowedModNames="[&quot;page&quot;,&quot;pdf&quot;,&quot;url&quot;,&quot;html&quot;]" data-modalAllowedCmids="[9135155,9255967,9498018,9498758,9636668]" data-defaultcourseicon="pie-chart"></div></div>
+                        <div class="mt-5 mb-1 activity-navigation activity-navigation-aules container-fluid">
+<div class="row">
+    <div class="col-md-4">        <div class="float-left">
+                <a href="https://aules.edu.gva.es/fp/mod/folder/view.php?id=9629469&forceview=1" id="prev-activity-link" class="btn btn-link" ><i class="fa fa-chevron-left left-aules" aria-hidden="true"></i>Exámenes años anteriores</a>
+
+        </div>
+</div>
+    <div class="col-md-4">        <div class="mdl-align">
+            <div class="urlselect">
+    <form method="post" action="https://aules.edu.gva.es/fp/course/jumpto.php" class="d-flex flex-wrap align-items-center" id="url_select_f691f5bfb486db5">
+        <input type="hidden" name="sesskey" value="NUQLOjwJNb">
+            <label for="jump-to-activity" class="sr-only">
+                Salta a...
+            </label>
+        <select  id="jump-to-activity" class="custom-select urlselect" name="jump"
+                 >
+                    <option value="" selected >Salta a...</option>
+                    <option value="/mod/forum/view.php?id=8140322&amp;forceview=1"  >Anuncis</option>
+                    <option value="/mod/resource/view.php?id=8203660&amp;forceview=1"  >Presentación del módulo</option>
+                    <option value="/mod/assign/view.php?id=8804606&amp;forceview=1"  >Tarea 1.1</option>
+                    <option value="/mod/resource/view.php?id=8341756&amp;forceview=1"  >Tema 1. Algoritmos y Programas. Power</option>
+                    <option value="/mod/resource/view.php?id=8895176&amp;forceview=1"  >Tema 2. Empezando con Java</option>
+                    <option value="/mod/assign/view.php?id=9131460&amp;forceview=1"  >Tarea 2.2. Pidiendo datos por teclado</option>
+                    <option value="/mod/assign/view.php?id=9131539&amp;forceview=1"  >Tarea 2.1</option>
+                    <option value="/mod/assign/view.php?id=9256857&amp;forceview=1"  >Tarea 2.3. Strings</option>
+                    <option value="/mod/page/view.php?id=9135155&amp;forceview=1"  >Ejercicios Extra del tema 2</option>
+                    <option value="/mod/resource/view.php?id=9255967&amp;forceview=1"  >Chuleta - Métodos de la clase String</option>
+                    <option value="/mod/assign/view.php?id=9520171&amp;forceview=1"  >Examen temas 1, 2 y 3 (sin bucles)</option>
+                    <option value="/mod/resource/view.php?id=9270760&amp;forceview=1"  >Tema 3. Parte de Condicionales</option>
+                    <option value="/mod/assign/view.php?id=9381817&amp;forceview=1"  >Tarea 3.1. Estructuras Condicionales</option>
+                    <option value="/mod/assign/view.php?id=9381842&amp;forceview=1"  >Tarea 3.1. Operador Ternario</option>
+                    <option value="/mod/page/view.php?id=9498758&amp;forceview=1"  >Contenido para el examen del viernes - falta revisar</option>
+                    <option value="/mod/resource/view.php?id=9342632&amp;forceview=1"  >Tema 3. Parte bucles</option>
+                    <option value="/mod/assign/view.php?id=9443181&amp;forceview=1"  >Tarea 3.2. Entendiendo bucles</option>
+                    <option value="/mod/assign/view.php?id=9443907&amp;forceview=1"  >Tarea 3.3. Practicando con el for</option>
+                    <option value="/mod/assign/view.php?id=9473217&amp;forceview=1"  >Tarea 3.4. Resolviendo problemas con bucles</option>
+                    <option value="/mod/page/view.php?id=9498018&amp;forceview=1"  >Ejercicios Extra de Bucles</option>
+                    <option value="/mod/assign/view.php?id=9542627&amp;forceview=1"  >Tarea 3.5. Ejercicios "reales" de bucles</option>
+                    <option value="/mod/resource/view.php?id=9612626&amp;forceview=1"  >Ejercicios y preguntas para preparar el examen de bucles</option>
+                    <option value="/mod/folder/view.php?id=9629469&amp;forceview=1"  >Exámenes años anteriores</option>
+                    <option value="/mod/resource/view.php?id=9568910&amp;forceview=1"  >Tema 4. Arrays</option>
+                    <option value="/mod/assign/view.php?id=9595781&amp;forceview=1"  >Tarea 4.1. Empezando con Arrays</option>
+                    <option value="/mod/resource/view.php?id=9611314&amp;forceview=1"  >Tarea 4.2. Problemas con arrays</option>
+                    <option value="/mod/page/view.php?id=9636668&amp;forceview=1"  >Main para cronometrar Bubblesort</option>
+        </select>
+            <noscript>
+                <input type="submit" class="btn btn-secondary ms-1" value="Endavant">
+            </noscript>
+    </form>
+</div>
+
+        </div>
+</div>
+    <div class="col-md-4">        <div class="float-right">
+                <a href="https://aules.edu.gva.es/fp/mod/resource/view.php?id=9568910&forceview=1" id="next-activity-link" class="btn btn-link" >Tema 4. Arrays<i class="fa fa-chevron-right right-aules" aria-hidden="true"></i></a>
+
+        </div>
+</div>
+</div>
+</div>
+                        
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="page-footer" class="footer-popover bg-white">
+        <div class="social-mbl-footer">
+                    <a href="https://t.me/itedugva" target="_blank" class="telegram btn btn-link btn-rounded" title="telegram">
+                        <i class="fa fa-telegram"></i>
+                    </a>
+                    <a href="https://x.com/itedugva" target="_blank" class="twitter btn btn-link btn-rounded" title="twitterx">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icono-svg" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+                            <path
+                                fill="currentColor"
+                                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                            />
+                        </svg>
+                        
+                    </a>
+                    <a href="https://www.youtube.com/@ITedugva" target="_blank" class="youtube btn btn-link btn-rounded" title="youtube">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+        </div>
+        <div data-region="footer-container-popover">
+            <button class="btn btn-icon bg-secondary icon-no-margin btn-footer-popover" data-action="footer-popover" aria-label="Mostra el peu de pàgina">
+                <i class="icon fa fa-question fa-fw " aria-hidden="true"  ></i>
+            </button>
+        </div>
+        <div class="footer-content-popover container" data-region="footer-content-popover">
+                <div class="footer-section p-3 border-bottom">
+    
+    
+                        <div class="footer-support-link"><a href="https://aules.edu.gva.es/fp/user/contactsitesupport.php"><i class="icon fa-regular fa-envelope fa-fw " aria-hidden="true"  ></i>Contacteu amb el suport del lloc</a></div>
+                </div>
+            <div class="footer-section p-3 border-bottom">
+                <div class="logininfo">
+                    <div class="logininfo">Heu iniciat sessió com a <a href="https://aules.edu.gva.es/fp/user/profile.php?id=501891" title="Mostra el perfil">NIKITA TROSHKO</a> (<a href="https://aules.edu.gva.es/fp/login/logout.php?sesskey=NUQLOjwJNb">Tanca la sessió</a>)</div>
+                </div>
+                <div class="tool_usertours-resettourcontainer">
+                </div>
+    
+                <div><a class="mobilelink" href="https://download.moodle.org/mobile?version=2024100704&amp;lang=ca_valencia&amp;androidappid=com.moodle.moodlemobile">Obteniu l’aplicació mòbil</a></div>
+                <script>
+//<![CDATA[
+var require = {
+    baseUrl : 'https://aules.edu.gva.es/fp/lib/requirejs.php/1763618479/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://aules.edu.gva.es/fp/lib/javascript.php/1763618479/lib/jquery/jquery-3.7.1.min',
+        jqueryui: 'https://aules.edu.gva.es/fp/lib/javascript.php/1763618479/lib/jquery/ui-1.13.2/jquery-ui.min',
+        jqueryprivate: 'https://aules.edu.gva.es/fp/lib/javascript.php/1763618479/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script src="https://aules.edu.gva.es/fp/lib/javascript.php/1763618479/lib/requirejs/require.min.js"></script>
+<script>
+//<![CDATA[
+M.util.js_pending("core/first");
+require(['core/first'], function() {
+require(['core/prefetch'])
+;
+M.util.js_pending('filter_mathjaxloader/loader'); require(['filter_mathjaxloader/loader'], function(amd) {amd.configure({"mathjaxconfig":"\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\"\n});\n","lang":"ca"}); M.util.js_complete('filter_mathjaxloader/loader');});;
+M.util.js_pending('filter_glossary/autolinker'); require(['filter_glossary/autolinker'], function(amd) {amd.init(); M.util.js_complete('filter_glossary/autolinker');});;
+M.util.js_pending('core_courseformat/courseeditor'); require(['core_courseformat/courseeditor'], function(amd) {amd.setViewFormat("174415", {"editing":false,"supportscomponents":true,"statekey":"1763660372_1763662843","overriddenStrings":[]}); M.util.js_complete('core_courseformat/courseeditor');});;
+
+require(['core_courseformat/local/courseindex/placeholder'], function(component) {
+    component.init('course-index-placeholder');
+});
+;
+
+require(['core_courseformat/local/courseindex/drawer'], function(component) {
+    component.init('courseindex');
+});
+;
+M.util.js_pending('core_courseformat/local/content/activity_header'); require(['core_courseformat/local/content/activity_header'], function(amd) {amd.init(); M.util.js_complete('core_courseformat/local/content/activity_header');});;
+M.util.js_pending('theme_aules/hidehead'); require(['theme_aules/hidehead'], function(amd) {amd.init(); M.util.js_complete('theme_aules/hidehead');});;
+M.util.js_pending('local_gva_color/modal'); require(['local_gva_color/modal'], function(amd) {amd.init(); M.util.js_complete('local_gva_color/modal');});;
+
+    require(['jquery', 'core/ajax'], function($, Ajax) {
+        $('#btn-cerrar-alerta').click(function() {
+            $('body').removeClass("has-alert-aules");
+
+            let request = Ajax.call([{
+                methodname: 'theme_aules_closealert',
+                args: {}
+            }]);
+
+            request[0].done(function() {
+                console.log('Preferencia de alerta cerrada guardada:');
+            }).fail(function(error) {
+                console.error('Error al guardar la preferencia de alerta cerrada:', error);
+            }.bind(this));
+        });
+    });
+;
+
+    require(['core/moremenu'], function(moremenu) {
+        moremenu(document.querySelector('#moremenu-691f5bfb430e5-navbar-nav'));
+    });
+;
+
+require(['jquery', 'message_popup/notification_popover_controller'], function($, Controller) {
+    var container = $('#nav-notification-popover-container');
+    var controller = new Controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
+});
+;
+
+    require(['core/usermenu'], function(UserMenu) {
+        UserMenu.init();
+    });
+;
+
+M.util.js_pending('theme_boost/drawers:load');
+require(['theme_boost/drawers'], function() {
+    M.util.js_complete('theme_boost/drawers:load');
+});
+;
+
+    require(['theme_boost/courseindexdrawercontrols'], function(component) {
+    component.init('courseindexdrawercontrols');
+    });
+;
+
+M.util.js_pending('theme_boost/drawers:load');
+require(['theme_boost/drawers'], function() {
+    M.util.js_complete('theme_boost/drawers:load');
+});
+;
+
+        require(['jquery', 'core/custom_interaction_events'], function($, CustomEvents) {
+            CustomEvents.define('#jump-to-activity', [CustomEvents.events.accessibleChange]);
+            $('#jump-to-activity').on(CustomEvents.events.accessibleChange, function() {
+                if ($(this).val()) {
+                    $('#url_select_f691f5bfb486db5').submit();
+                }
+            });
+        });
+    ;
+
+require(['theme_boost/footer-popover'], function(FooterPopover) {
+    FooterPopover.init();
+});
+require(['theme_aules/atto_patch'], function(atto_patch) {
+    atto_patch.init();
+});
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        var $btnscrollup = $ ('#btn-scroll-up');
+        var $btnscrolldown = $ ('#btn-scroll-down');
+        $btnscrollup.click (function () {
+            $("html, body").animate({ scrollTop: 0 }, 600);
+        });
+        $btnscrolldown.click (function () {
+            $("html, body").animate( { scrollTop: $(document).height() } , 600);
+        });
+
+        var hasVScroll = document.body.scrollHeight > document.body.clientHeight;
+
+        if(!hasVScroll){
+            $btnscrolldown.css ('display', 'none');
+        }
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){ 
+                $btnscrollup.css ('display', 'flex');
+                $btnscrolldown.css ('display', 'none');
+            }else{
+                if(hasVScroll){
+                    $btnscrollup.css ('display', 'none');
+                    $btnscrolldown.css ('display', 'flex');
+                }
+            }
+        };
+    });
+});
+
+;
+
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+    Drawer.init();
+    M.util.js_complete('theme_boost/loader');
+});
+;
+M.util.js_pending('format_tiles/course_mod_modal'); require(['format_tiles/course_mod_modal'], function(amd) {amd.init("174415", false, "mod-assign-view", null, true); M.util.js_complete('format_tiles/course_mod_modal');});;
+M.util.js_pending('core/notification'); require(['core/notification'], function(amd) {amd.init(12489792, []); M.util.js_complete('core/notification');});;
+M.util.js_pending('core/log'); require(['core/log'], function(amd) {amd.setConfig({"level":"warn"}); M.util.js_complete('core/log');});;
+M.util.js_pending('core/page_global'); require(['core/page_global'], function(amd) {amd.init(); M.util.js_complete('core/page_global');});;
+M.util.js_pending('core/utility'); require(['core/utility'], function(amd) {M.util.js_complete('core/utility');});;
+M.util.js_pending('core/storage_validation'); require(['core/storage_validation'], function(amd) {amd.init(1763662156); M.util.js_complete('core/storage_validation');});
+    M.util.js_complete("core/first");
+});
+//]]>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?delayStartupUntil=configured"></script>
+<script>
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"\u00daltima modificaci\u00f3","name":"Nom","error":"Error","info":"Informaci\u00f3","yes":"S\u00ed","no":"No","cancel":"Cancel\u00b7la","confirm":"Confirma","areyousure":"De segur?","closebuttontitle":"Tanca","unknownerror":"Error desconegut","file":"Fitxer","url":"URL","collapseall":"Redu\u00efx-ho tot","expandall":"Amplia-ho tot"},"repository":{"type":"Tipus","size":"Mida","invalidjson":"Cadena JSON inv\u00e0lida","nofilesattached":"No s'ha adjuntat cap fitxer","filepicker":"Selector de fitxers","logout":"Tanca la sessi\u00f3","nofilesavailable":"No hi ha fitxers disponible","norepositoriesavailable":"Cap dels vostres repositoris actuals pot retornar fitxers en el format requerit.","fileexistsdialogheader":"El fitxer existix","fileexistsdialog_editor":"Ja s'ha adjuntat un fitxer amb este nom al text que esteu editant.","fileexistsdialog_filemanager":"Ja s'ha adjuntat un fitxer amb este nom","renameto":"Canvia el nom a \"{$a}\"","referencesexist":"Hi ha {$a} enlla\u00e7os a este fitxer","select":"Selecciona"},"admin":{"confirmdeletecomments":"De segur que voleu suprimir els comentaris seleccionats?","confirmation":"Confirmaci\u00f3"},"debug":{"debuginfo":"Informaci\u00f3 de depuraci\u00f3","line":"L\u00ednia","stacktrace":"Stack trace"},"langconfig":{"labelsep":":"}};
+//]]>
+</script>
+<script>
+//<![CDATA[
+(function() {M.util.help_popups.setup(Y);
+ M.util.js_pending('random691f5bfb486db6'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random691f5bfb486db6'); });
+})();
+//]]>
+</script>
+
+            </div>
+            <div class="footer-section p-3">
+                <div>Funciona amb <a href="https://moodle.com">Moodle</a></div>
+            </div>
+        </div>
+    
+        <div class="footer-content-debugging footer-dark bg-dark text-light">
+            <div class="container-fluid footer-dark-inner">
+                
+            </div>
+        </div>
+            <div class="footer-content-aules container" data-region="footer-content-aules">
+                <div class="no-overflow"><p style="text-align: center; font-style: normal;">© 2025 Generalitat</p>
+<p><span class="multilang-begin mceNonEditable" lang="es" xml:lang="es"></span></p>
+<p><span class="multilang-begin mceNonEditable" lang="ca_valencia" xml:lang="ca_valencia"></span></p>
+<p style="text-align: center; font-style: normal;">Conselleria d'Educació, Cultura, Universitats i Ocupació</p>
+<p style="text-align: center;"><span style="text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><a href="https://portal.edu.gva.es/aules/avis-legal/" target="_blank" rel="noopener">Avís legal |</a> <a title="Política de Privacitat" href="https://portal.edu.gva.es/aules/politica-de-privacitat-2/" target="_blank" rel="noopener">Política de Privacitat</a> | <a href="https://portal.edu.gva.es/aules/politica-de-cookies/" target="_blank" rel="noopener">Política de Cookies</a> | </span><span style="text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><a href="https://portal.edu.gva.es/aules/contacte-amb-aules/" target="_blank" rel="noopener">Contacte</a></span> | <a href="https://portal.edu.gva.es/aules/declaracio-daccessibilitat/" target="_blank" rel="noopener">Accessibilitat</a></p>
+<p style="text-align: center; font-style: normal;"><img class="img-responsive atto_image_button_text-bottom" style="font-size: 14.44px;" role="presentation" src="https://portal.edu.gva.es/portal/wp-content/uploads/sites/16/2019/09/bandera_union_europea_ca_ES.png" width="200" height="37"></p>
+<p><span class="multilang-end mceNonEditable"></span></p>
+<p></span></p></div>
+            </div>
+                <!-- Matomo Tag Manager -->
+<script>
+    var _mtm = window._mtm = window._mtm || [];
+    _mtm.push({
+        "mtm.startTime": (new Date().getTime()),
+        "event": "mtm.Start"
+    });
+    var d = document
+      , g = d.createElement("script")
+      , s = d.getElementsByTagName("script")[0];
+    g.async = true;
+    g.src = "https://matomo.gva.es/js/container_rytVdCMR.js";
+    s.parentNode.insertBefore(g, s);
+</script>
+<span style="display:none" id="GVASiteID" translate="no">1</span>
+<span style="display:none" id="GVAUserID" translate="no">12936434</span>
+<span style="display:none" id="GVACentroId" translate="no">46012963</span>
+<span style="display:none" id="GVASabor" translate="no">fp</span>
+<span style="display:none" id="GVACourseIdnumber" translate="no">CEE_46012963_2025_264724</span>
+<span style="display:none" id="GVAUserRol" translate="no">student</span>
+<span style="display:none" id="GVAFrontal" translate="no">p2saphp213.srv.gva.es</span>
+<!-- End Matomo Code -->
+<noscript><p><img src="//https://matomo.gva.es/js/container_rytVdCMR.js/matomo.php?idsite=1 style="border:0;"/></p></noscript>
+
+        <button id="btn-scroll-up" type="button" class="btn" title="Subir">
+            <i class="fa fa-arrow-up"></i>
+        </button>
+        <button id="btn-scroll-down" type="button" class="btn" title="Bajar">
+            <i class="fa fa-arrow-down"></i>
+        </button>
+    </footer>
+    
+</div>
+
+
+</body></html>
