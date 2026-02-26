@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  min-height: 100vh;
+  background: url('../images/fondo.jpg') center / cover no-repeat;
+  font-family: 'Indie Flower', cursive;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+
+#menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #097054;
+  text-align: center;
+  z-index: 1000;
+}
+
+#menu li {
+  display: inline;
+}
+
+#menu a {
+  color: white;
+  padding: 0.5em;
+  text-decoration: none;
+}
+
+
+.page {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden; 
+}
+
+.hero {
+  height: 20vh;
+}
+
+
+.content {
+  float: left;
+  width: 88%;
+  height: 60vh;
+}
+
+.sidebar {
+  float: right;
+  width: 10%;
+  height: 60vh;
+  background: #444;
+  text-align: center;
+}
+
+.sidebar img {
+  display: block;
+  margin: 1em auto;
+  width: 40px;
+}
+
+
+.text-block {
+  height: 50%;
+  background: #444;
+  color: white;
+  position: relative;
+}
+
+.text-block::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+.image {
+  height: 100%;
+  overflow: hidden;
+}
+
+.image img {
+  height: 100%;
+  width: auto;
+}
+
+
+.image-right .image {
+  float: right;
+}
+
+.image-left .image {
+  float: left;
+}
+
+
+
+
+.text {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1em 2em;
+  text-align: justify;
+}
+
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: #097054;
+  color: white;
+  text-align: center;
+  line-height: 60px;
+}
+
+
+@media (max-width: 700px) {
+
+  .content,
+  .sidebar {
+    float: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .text-block {
+    height: auto;
+  }
+
+  .text {
+    height: auto;
+    overflow: visible;
+  }
+
+  .image {
+    float: none;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
