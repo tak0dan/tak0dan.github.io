@@ -4,7 +4,7 @@ let boton=document.getElementById("run")
 
 
 boton.addEventListener("click", (e) => {
-    console.log("Me han pulsado: " +num1.value)
+    console.log("Me han pulsado: "+num1.value)
 })
 
 
