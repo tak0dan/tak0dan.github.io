@@ -30,7 +30,8 @@
                 <li><a href="#formularios">4. Formularios HTML</a></li>
                 <li><a href="#graficos">5. Gráficos y Visualización de Datos</a></li>
                 <li><a href="#material-extendido">6. Material Extendido (ZIP + Examen)</a></li>
-                <li><a href="#referencias">7. Referencias a tus Proyectos</a></li>
+                <li><a href="#errores-sutiles">7. Errores Sutiles y Estructura</a></li>
+                <li><a href="#referencias">8. Referencias a tus Proyectos</a></li>
             </ul>
         </div>
 
@@ -1035,9 +1036,336 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
                         </ul>
                 </section>
 
+                <!-- Errores Sutiles -->
+                <section id="errores-sutiles">
+                        <h2>🕵️ 7. Errores Sutiles y Estructura</h2>
+
+                        <p>Esta seccion esta pensada para ejercicios de examen donde la solucion parece minima, pero exige comprension profunda de estructura HTML, cascada CSS y flujo de layout. Muchos de estos ejercicios se resuelven cambiando una sola etiqueta o una sola regla.</p>
+
+                        <h3>7.1. Metodo forense para depurar rapido</h3>
+                        <ol>
+                                <li>Verifica estructura base: <code>doctype</code>, <code>html</code>, <code>head</code>, <code>body</code>.</li>
+                                <li>Comprueba jerarquia de contenedores: wrappers, columnas, bloques principales.</li>
+                                <li>Inspecciona selectores que no aplican: clase mal escrita, id incorrecto, combinador equivocado.</li>
+                                <li>Revisa flujo de layout: block/inline/flex/grid/float y sus ejes.</li>
+                                <li>Analiza especificidad y orden en cascada antes de tocar <code>!important</code>.</li>
+                                <li>Solo despues corrige visualmente espaciados y colores.</li>
+                        </ol>
+
+                        <div class="warning-box">
+                                <strong>Regla de oro:</strong> si algo "se ve mal", primero asume un error estructural, no decorativo.
+                        </div>
+
+                        <h3>7.2. Caso clasico: formulario que debe quedar EXACTO</h3>
+                        <p>En estos ejercicios, la estructura manda. Un formulario puede romperse por detalles aparentemente pequenos:</p>
+                        <ul>
+                                <li>Un <code>label</code> sin <code>for</code> correcto.</li>
+                                <li>Un <code>input</code> fuera de su <code>fieldset</code>.</li>
+                                <li>Orden incorrecto de bloques (primero datos personales, luego opciones).</li>
+                                <li>Falta de <code>name</code> en radios (rompe exclusividad).</li>
+                        </ul>
+                        <pre><code>&lt;fieldset&gt;
+    &lt;legend&gt;Datos personales&lt;/legend&gt;
+    &lt;label for="nombre"&gt;Nombre&lt;/label&gt;
+    &lt;input id="nombre" name="nombre" type="text" required&gt;
+&lt;/fieldset&gt;
+
+&lt;fieldset&gt;
+    &lt;legend&gt;Idioma&lt;/legend&gt;
+    &lt;input type="radio" id="ingles1" name="ingles" value="1"&gt;
+    &lt;label for="ingles1"&gt;Ingles nivel 1&lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+
+                        <h3>7.3. Caso clasico: HTML pequeno + CSS enorme e ilegible</h3>
+                        <p>Cuando hay miles de lineas de CSS, un solo <code>div</code> faltante rompe toda la maqueta. El patron tipico:</p>
+                        <pre><code>&lt;div class="page"&gt;
+    &lt;div class="layout"&gt;
+        &lt;main class="content"&gt;...&lt;/main&gt;
+        &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <p>Si falta <code>.layout</code>, los selectores como <code>.layout &gt; .content</code> o reglas flex/grid no aplican. Resultado: todo "parece" roto aunque el CSS este bien.</p>
+
+                        <h3>7.4. Caso clasico: lineas rojas entre items del menu</h3>
+                        <p>Objetivo: separadores rojos entre items sin linea al final.</p>
+                        <pre><code>.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    padding: 0 12px;
+    border-right: 2px solid red;
+}
+
+.menu li:last-child {
+    border-right: none;
+}</code></pre>
+                        <p>Error sutil comun: aplicar el borde al <code>a</code> en vez del <code>li</code> y luego pelear con alturas/line-height.</p>
+
+                        <h3>7.5. Caso clasico: "el CSS rehace todo el HTML"</h3>
+                        <p>Un mismo HTML puede parecer totalmente distinto segun el modo de layout:</p>
+                        <ul>
+                                <li><strong>Normal flow:</strong> bloques uno debajo de otro.</li>
+                                <li><strong>Flex:</strong> distribucion en un eje, alineacion y reordenado visual.</li>
+                                <li><strong>Grid:</strong> malla 2D que puede cambiar orden visual y areas.</li>
+                                <li><strong>Position:</strong> elementos sacados de flujo para overlays y badges.</li>
+                        </ul>
+                        <pre><code>/* Mismo HTML, 3 versiones visuales */
+.wrapper.normal { display: block; }
+.wrapper.flex { display: flex; gap: 12px; }
+.wrapper.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }</code></pre>
+
+                        <h3>7.6. Errores sutiles de alto impacto (checklist de examen)</h3>
+                        <ul>
+                                <li><strong>Unidades olvidadas:</strong> <code>width: 100</code> en vez de <code>100px</code>.</li>
+                                <li><strong>Clase mal escrita:</strong> <code>.contenedor</code> vs <code>.container</code>.</li>
+                                <li><strong>Descendencia incorrecta:</strong> <code>.menu li a</code> no coincide con HTML real.</li>
+                                <li><strong>Radio sin name comun:</strong> se pueden marcar varios.</li>
+                                <li><strong>Altura 100% sin contexto:</strong> el padre no tiene altura definida.</li>
+                                <li><strong>Float sin clear:</strong> pie de pagina sube y se monta.</li>
+                                <li><strong>Overflow accidental:</strong> ancho fijo + padding + border sin <code>box-sizing: border-box</code>.</li>
+                                <li><strong>Especificidad bloqueando cambios:</strong> un selector con id pisa todo.</li>
+                                <li><strong>Cierre de etiqueta ausente:</strong> rompe el DOM y cascada posterior.</li>
+                        </ul>
+
+                        <h3>7.7. Estructura minima recomendada para tareas largas</h3>
+                        <pre><code>&lt;body&gt;
+    &lt;div class="page"&gt;
+        &lt;header class="site-header"&gt;...&lt;/header&gt;
+
+        &lt;nav class="site-nav"&gt;
+            &lt;ul class="menu"&gt;...&lt;/ul&gt;
+        &lt;/nav&gt;
+
+        &lt;main class="layout"&gt;
+            &lt;section class="content"&gt;...&lt;/section&gt;
+            &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+        &lt;/main&gt;
+
+        &lt;footer class="site-footer"&gt;...&lt;/footer&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+                        <p>Esta base evita el 80% de errores estructurales en practicas donde el CSS es pesado.</p>
+
+                        <h3>7.8. Estrategia de practica (para ejercicios de horas)</h3>
+                        <ol>
+                                <li>Replica estructura HTML sin estilo hasta que el orden semantico sea correcto.</li>
+                                <li>Activa layout principal (flex o grid) antes de colores y tipografia.</li>
+                                <li>Resuelve cada bug con una hipotesis: "esta regla no aplica por X".</li>
+                                <li>Valida estados: hover, focus, mobile y contenido largo.</li>
+                                <li>Al final, limpia selectores redundantes y baja especificidad.</li>
+                        </ol>
+
+                                                <h3>7.9. Mini Exam Lab (5 bugs sutiles)</h3>
+                                                <p>Intenta resolver cada caso sin ver la solucion. Luego abre el bloque de respuesta y compara tu razonamiento.</p>
+
+                                                <h4>Lab 1: menu con separadores rojos</h4>
+                                                <pre><code>/* BUG */
+.menu a {
+    border-right: 2px solid red;
+    padding: 0 12px;
+}
+
+/* Resultado: separadores desalineados y dificil quitar el ultimo */</code></pre>
+                                                <details>
+                                                        <summary>Ver solucion</summary>
+                                                        <pre><code>.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    border-right: 2px solid red;
+    padding: 0 12px;
+}
+
+.menu li:last-child {
+    border-right: none;
+}</code></pre>
+                                                        <p>El separador debe vivir en <code>li</code>, que representa cada item estructural.</p>
+                                                </details>
+
+                                                <h4>Lab 2: formulario que "no valida bien"</h4>
+                                                <pre><code>&lt;label&gt;Email&lt;/label&gt;
+&lt;input id="correo" type="email"&gt;
+
+&lt;input type="radio" name="ingles1" value="1"&gt;
+&lt;input type="radio" name="ingles2" value="2"&gt;</code></pre>
+                                                <details>
+                                                        <summary>Ver solucion</summary>
+                                                        <pre><code>&lt;label for="correo"&gt;Email&lt;/label&gt;
+&lt;input id="correo" name="correo" type="email" required&gt;
+
+&lt;input type="radio" name="ingles" value="1"&gt;
+&lt;input type="radio" name="ingles" value="2"&gt;</code></pre>
+                                                        <p>El <code>for</code> conecta label-input y los radios deben compartir <code>name</code> para exclusividad.</p>
+                                                </details>
+
+                                                <h4>Lab 3: un div faltante rompe toda la maqueta</h4>
+                                                <pre><code>&lt;div class="page"&gt;
+    &lt;main class="content"&gt;...&lt;/main&gt;
+    &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+&lt;/div&gt;
+
+/* CSS esperado */
+.layout { display: flex; }
+.layout &gt; .content { flex: 1; }</code></pre>
+                                                <details>
+                                                        <summary>Ver solucion</summary>
+                                                        <pre><code>&lt;div class="page"&gt;
+    &lt;div class="layout"&gt;
+        &lt;main class="content"&gt;...&lt;/main&gt;
+        &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                                        <p>Faltaba el contenedor <code>.layout</code>, por eso los selectores y el flex no se aplicaban.</p>
+                                                </details>
+
+                                                <h4>Lab 4: absolute fuera de sitio</h4>
+                                                <pre><code>.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}</code></pre>
+                                                <details>
+                                                        <summary>Ver solucion</summary>
+                                                        <pre><code>.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}</code></pre>
+                                                        <p>Sin padre posicionado, <code>absolute</code> toma como referencia el viewport o ancestro incorrecto.</p>
+                                                </details>
+
+                                                <h4>Lab 5: overflow fantasma en columnas 50/50</h4>
+                                                <pre><code>.col {
+    width: 50%;
+    padding: 16px;
+    border: 1px solid #000;
+    float: left;
+}</code></pre>
+                                                <details>
+                                                        <summary>Ver solucion</summary>
+                                                        <pre><code>* {
+    box-sizing: border-box;
+}
+
+.col {
+    width: 50%;
+    padding: 16px;
+    border: 1px solid #000;
+    float: left;
+}</code></pre>
+                                                        <p>Sin <code>border-box</code>, padding y border se suman al 50% y causan desborde.</p>
+                                                </details>
+
+                                                                                                <h3>7.10. Hard Mode Lab (5 trampas de examen)</h3>
+                                                                                                <p>Estos casos son mas traicioneros: el bug suele estar en especificidad, contexto de apilamiento, o en reglas que parecen correctas pero no aplican por estructura.</p>
+
+                                                                                                <h4>Hard 1: guerra de especificidad</h4>
+                                                                                                <pre><code>/* BUG: no cambia color aunque editas .btn */
+.btn { color: white; }
+#panel .toolbar .btn { color: yellow; }
+
+/* HTML real */
+&lt;div id="panel"&gt;
+    &lt;div class="toolbar"&gt;
+        &lt;a class="btn" style="color: red"&gt;Click&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                                                                                <details>
+                                                                                                                <summary>Ver solucion</summary>
+                                                                                                                <pre><code>/* Quita el inline style del HTML (preferido) */
+&lt;a class="btn"&gt;Click&lt;/a&gt;
+
+/* o define una regla de estado/control sin depender de inline */
+#panel .toolbar .btn { color: yellow; }</code></pre>
+                                                                                                                <p>La trampa es el <code>style="..."</code> inline (especificidad superior). No era un problema de la clase base.</p>
+                                                                                                </details>
+
+                                                                                                <h4>Hard 2: pseudo-selector en elemento equivocado</h4>
+                                                                                                <pre><code>/* BUG: la raya roja sale mal o no sale */
+.menu a:not(:last-child) {
+    border-right: 2px solid red;
+}</code></pre>
+                                                                                                <details>
+                                                                                                                <summary>Ver solucion</summary>
+                                                                                                                <pre><code>.menu li:not(:last-child) {
+    border-right: 2px solid red;
+}
+
+.menu li a {
+    display: block;
+    padding: 0 12px;
+}</code></pre>
+                                                                                                                <p><code>:last-child</code> debe evaluarse sobre los <code>li</code>, no sobre los <code>a</code> internos.</p>
+                                                                                                </details>
+
+                                                                                                <h4>Hard 3: clearfix correcto pero contenedor sigue roto</h4>
+                                                                                                <pre><code>.wrapper::after {
+    content: "";
+    clear: both;
+}
+
+.col { float: left; width: 50%; }</code></pre>
+                                                                                                <details>
+                                                                                                                <summary>Ver solucion</summary>
+                                                                                                                <pre><code>.wrapper::after {
+    content: "";
+    display: table; /* o display:block */
+    clear: both;
+}</code></pre>
+                                                                                                                <p>Sin <code>display</code>, el pseudo-elemento puede no participar como esperas y el clear no hace efecto util.</p>
+                                                                                                </details>
+
+                                                                                                <h4>Hard 4: media query "correcta" que nunca dispara</h4>
+                                                                                                <pre><code>/* BUG */
+@media (max-width: 768) {
+    .layout { grid-template-columns: 1fr; }
+}</code></pre>
+                                                                                                <details>
+                                                                                                                <summary>Ver solucion</summary>
+                                                                                                                <pre><code>@media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+}</code></pre>
+                                                                                                                <p>Faltaba la unidad <code>px</code>. Es un error minimo que invalida la condicion.</p>
+                                                                                                </details>
+
+                                                                                                <h4>Hard 5: z-index no funciona (stacking context)</h4>
+                                                                                                <pre><code>.modal {
+    z-index: 9999;
+}
+
+.card {
+    transform: translateZ(0);
+}</code></pre>
+                                                                                                <details>
+                                                                                                                <summary>Ver solucion</summary>
+                                                                                                                <pre><code>.modal {
+    position: fixed; /* o absolute/relative segun caso */
+    z-index: 9999;
+}
+
+/* Evitar stacking contexts innecesarios en ancestros */
+.card {
+    transform: none;
+}</code></pre>
+                                                                                                                <p><code>z-index</code> solo opera en elementos posicionados y puede quedar encerrado por contextos de apilamiento creados por <code>transform</code>, <code>opacity</code>, etc.</p>
+                                                                                                </details>
+                </section>
+
         <!-- Referencias -->
         <section id="referencias">
-                        <h2>🔗 7. Referencias a Tus Proyectos</h2>
+                                                <h2>🔗 8. Referencias a Tus Proyectos</h2>
 
             <h3>index.html (Principal)</h3>
             <p>Tu página principal usa:</p>
