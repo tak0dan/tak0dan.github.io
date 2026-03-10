@@ -1,0 +1,42 @@
+
+#flex-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 400px;
+    margin: 2em auto;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px darkgray;
+
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+input[type="range"] {
+    width: 100%;
+}
+
+#frase {
+    padding: 10px;
+}
+#solucion {
+    padding: 10px;
+    background-color: lightgray;
+    margin-bottom: 20px;
+}
+
+#run{
+    display: inline-block;
+    padding: 0.8em 1.2em;
+    background-color: darkcyan;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+}
+#run:hover{
+    background-color: #4bacac;
+}

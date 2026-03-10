@@ -1,0 +1,119 @@
+/*
+    CSS para el examen
+
+    colores:
+
+    fondo: #333333;
+    fondo: cajas: #424242;
+    linea: lightgray;
+    boton: #007BFF;
+    boton seleccionado: #0056b3;
+*/
+
+body {
+    /* 1- color de fondo */
+    /* 2- ancho 90% */
+    /* 3- centrar */
+}
+
+.container {
+    text-align: center;
+}
+
+.youtuber, .footer, .header {
+    /* 4- color de fondo */
+    border: 1px solid lightgray;
+    /* 5- redondear el borde */
+    /* 6- sombra */
+    margin: 10px auto;
+    padding: 20px;
+    text-align: center;    
+}
+.footer {
+    padding: 0px;
+    color: white;
+}
+
+.imageHome{
+    border:black 4px solid;
+    border-radius: 3%;
+    /* 7- tamanyo */
+    /* Se utiliza en imágenes y videos 
+    para asegurarse de que siempre llenen 
+    completamente el contenedor, manteniendo
+    su relación de aspecto*/
+    object-fit: cover; 
+}
+
+.youtuber .images {
+
+    /* 8- redondear la imagen*/
+    width: 150px;
+    height: 150px;    
+    /* Se utiliza en imágenes y videos 
+    para asegurarse de que siempre llenen 
+    completamente el contenedor, manteniendo 
+    su relación de aspecto*/
+    object-fit: cover; 
+}
+
+.youtuber h2 {    
+    color: white;
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.youtuber p {
+    color: white;
+    font-size: 1em;
+}
+
+#menu {
+    /* 9- quita los puntos */
+}
+
+li {
+    /* 10- haz que los li no sean de tipo bloque */
+    /* 11- borde izquierdo rojo */
+    border-left: 4px red solid;
+    /* 12- separa el borde de la izquierda */
+    padding-left: 5px;
+}
+
+#menu a {
+    /* 13- enlaces blancos */
+    /* 14- sin subrayado */
+}
+
+#menu a:hover {
+    /* 15- cambia el color al subrayado*/
+}
+
+
+.button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    /* animacion en css, para cambiar el color del boton, no visto en clase 
+    pero yo te lo regalo ;) */
+    transition: background-color 0.3s ease;
+}
+.button:hover {
+    /* 16- cambia el color al boton*/
+}
+
+@media all and (max-width: 700px) {
+    .youtuber, .footer {
+        /* 17- cambia el color al BORDE*/
+    }
+    .button {
+        /* 18- cambia el color al boton*/        
+    }
+    .button:hover {
+        /* 19- cambia el color al boton*/
+    }    
+}

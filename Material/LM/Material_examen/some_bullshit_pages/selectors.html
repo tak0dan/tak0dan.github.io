@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!-- ===============================================================
+FILE: selectors.html
+PURPOSE: A hyper‑detailed, beginner-friendly AND exam-level-correct
+         HTML document demonstrating EVERY major CSS selector category.
+
+This file pairs with selectors.css and uses structure.js for interactivity.
+
+STYLE OF THIS DOCUMENT:
+  • EXPLAINS every tag and purpose like talking to a 5-year-old.
+  • Includes interactive reveal buttons powered by JS.
+  • Includes hover-based data-explain tooltips.
+
+IMPORTANT:
+  This file intentionally contains MANY repeated patterns because the
+  student must SEE how selectors apply in slightly different contexts.
+
+=============================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selectors Demo — The Full CSS Selector Playground</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="selectors.css" />
+
+  <!-- JavaScript reused from structure.js -->
+  <script src="structure.js" defer></script>
+</head>
+<body>
+  <!-- =============================================================
+       HEADER AREA
+       ============================================================= -->
+  <header class="sel-header" data-explain="This is a HEADER. We give it a class so selectors.css can target it.">
+    <h1>CSS SELECTORS — COMPLETE VISUAL PLAYGROUND</h1>
+    <p class="subtitle">Every selector. Every trick. Fully explained.</p>
+  </header>
+
+  <main class="sel-main">
+
+    <!-- =============================================================
+         SECTION 1 — TYPE SELECTORS (element selectors)
+         ============================================================= -->
+    <section class="block" id="types">
+      <h2 data-explain="Type selectors target elements by their tag name, like p, div, ul.">1) Type Selectors</h2>
+      <p>Type selectors match HTML elements directly: <code>p</code>, <code>h1</code>, <code>li</code>, etc.</p>
+
+      <!-- Demo -->
+      <div class="demo-box">
+        <p class="type-demo">This paragraph is styled by the P selector.</p>
+        <p class="type-demo">Another paragraph also styled by the P selector.</p>
+
+        <button class="reveal-btn" data-target="code-type">Show explanation</button>
+        <div class="reveal-panel" id="code-type">
+<pre>
+/* selectors.css */
+p {
+  color: blue;
+  font-weight: bold;
+}
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         SECTION 2 — CLASS SELECTORS
+         ============================================================= -->
+    <section class="block" id="classes">
+      <h2 data-explain="A class is like giving an element a nickname so CSS can find it.">2) Class Selectors</h2>
+      <p>Class selectors start with a dot: <code>.example</code>. They’re reusable and low specificity.</p>
+
+      <div class="demo-box">
+        <div class="card demo-class">I am targeted by <code>.demo-class</code></div>
+        <div class="card demo-class">Me too — same class, same style.</div>
+
+        <button class="reveal-btn" data-target="code-class">Show explanation</button>
+        <div class="reveal-panel" id="code-class">
+<pre>
+/* selectors.css */
+.demo-class {
+  background: #e0f0ff;
+  border-left: 4px solid #4a90e2;
+}
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         SECTION 3 — ID SELECTORS
+         ============================================================= -->
+    <section class="block" id="ids">
+      <h2 data-explain="IDs are unique. One per page. They are strong (specificity 100).">3) ID Selectors</h2>
+      <p>IDs begin with <code>#</code> and should be UNIQUE per page. Very high specificity.</p>
+
+      <div class="demo-box">
+        <p id="important-message" class="id-demo">This element uses an ID selector.</p>
+
+        <button class="reveal-btn" data-target="code-id">Show explanation</button>
+        <div class="reveal-panel" id="code-id">
+<pre>
+/* selectors.css */
+#important-message {
+  color: white;
+  background: #4a90e2;
+  padding: 10px;
+}
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         SECTION 4 — ATTRIBUTE SELECTORS
+         ============================================================= -->
+    <section class="block" id="attributes">
+      <h2 data-explain="Attribute selectors look inside HTML tags for attributes.">4) Attribute Selectors</h2>
+      <p>Match elements by attributes: <code>[data-kind]</code>, <code>[type="email"]</code>, etc.</p>
+
+      <div class="demo-box">
+        <p data-kind="note" class="attr-demo">This has data-kind="note"</p>
+        <p data-kind="warning" class="attr-demo">This has data-kind="warning"</p>
+        <input type="email" placeholder="Email field" class="attr-demo" />
+
+        <button class="reveal-btn" data-target="code-attr">Show explanation</button>
+        <div class="reveal-panel" id="code-attr">
+<pre>
+/* selectors.css */
+[data-kind] {
+  padding: 6px;
+}
+[data-kind="note"] {
+  background: #fffbd1;
+}
+[data-kind="warning"] {
+  background: #ffe2e2;
+}
+input[type="email"] {
+  border: 2px solid #4a90e2;
+}
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         SECTION 5 — COMBINATORS
+         ============================================================= -->
+    <section class="block" id="combinators">
+      <h2 data-explain="Combinators describe relationships: parent-child-sibling.">5) Combinators</h2>
+
+      <p>Examples: <code>div p</code> descendant, <code>div > p</code> direct child,<code>h2 + p</code> adjacent sibling, <code>h2 ~ p</code> general sibling.</p>
+
+      <div class="demo-box combi-box">
+        <div class="parent-box">
+          <p class="child">I am a CHILD (div > p)</p>
+          <div>
+            <p class="descendant">I am a DESCENDANT (div p)</p>
+          </div>
+        </div>
+
+        <h3 class="title">Heading</h3>
+        <p class="adjacent">I appear right after heading (h3 + p)</p>
+        <p class="general">I also follow the heading but not immediately (h3 ~ p)</p>
+
+        <button class="reveal-btn" data-target="code-combi">Show explanation</button>
+        <div class="reveal-panel" id="code-combi">
+<pre>
+/* selectors.css */
+.parent-box > p.child { background: #d4ebff; }
+.parent-box p.descendant { background: #e9f5ff; }
+h3 + p.adjacent { border-left: 3px solid #4a90e2; }
+h3 ~ p.general { opacity: 0.7; }
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         SECTION 6 — PSEUDO-CLASSES
+         ============================================================= -->
+    <section class="block" id="pseudo-classes">
+      <h2 data-explain=":hover is a pseudo-class. :focus, :first-child, etc.">6) Pseudo-classes</h2>
+
+      <div class="demo-box">
+        <button class="hover-btn">Hover me</button>
+        <p class="nth-demo">I am the FIRST child</p>
+        <p class="nth-demo">I am the SECOND child</p>
+        <p class="nth-demo">I am the THIRD child</p>
+
+        <button class="reveal-btn" data-target="code-pseudo">Show explanation</button>
+        <div class="reveal-panel" id="code-pseudo">
+<pre>
+/* selectors.css */
+.hover-btn:hover {
+  background: #4a90e2;
+  color: white;
+}
+.nth-demo:first-child {
+  border-left: 4px solid #4a90e2;
+}
+.nth-demo:nth-child(2) {
+  background: #e9f2ff;
+}
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         SECTION 7 — PSEUDO-ELEMENTS
+         ============================================================= -->
+    <section class="block" id="pseudo-elements">
+      <h2 data-explain="Pseudo-elements create or style imaginary parts of an element.">7) Pseudo-elements</h2>
+
+      <div class="demo-box">
+        <p class="before-after-demo">This paragraph uses ::before and ::after.</p>
+
+        <button class="reveal-btn" data-target="code-pelem">Show explanation</button>
+        <div class="reveal-panel" id="code-pelem">
+<pre>
+/* selectors.css */
+.before-after-demo::before {
+  content: "→ BEFORE ";
+  color: red;
+}
+.before-after-demo::after {
+  content: " AFTER →";
+  color: green;
+}
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         SECTION 8 — SPECIFICITY WARS
+         ============================================================= -->
+    <section class="block" id="specificity">
+      <h2 data-explain="Specificity decides which selector wins when two conflict.">8) Specificity Battles</h2>
+
+      <div class="demo-box">
+        <p class="spec battle" id="battle-target">Who will style me?</p>
+
+        <button class="reveal-btn" data-target="code-spec">Show explanation</button>
+        <div class="reveal-panel" id="code-spec">
+<pre>
+/* selectors.css */
+.spec { color: blue; }
+#battle-target { color: red; }
+.battle { color: green !important; }
+</pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="sel-footer" data-explain="Footer: end of document.">
+    End of Selectors Playground — open selectors.css for detailed styling.
+  </footer>
+
+</body>
+</html>

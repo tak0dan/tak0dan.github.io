@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- meta: essential for accessibility, charset, viewport for responsive -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Comprehensive HTML + CSS reference and practice page." />
+
+  <title>HTML & CSS Comprehensive Reference — Practical Demos</title>
+
+  <!-- Link a stylesheet. Demonstrates external CSS link, media attribute. -->
+  <link rel="stylesheet" href="styles.css" media="all" />
+
+  <!-- Example of @import inside a <style> (rare in production: slower) -->
+  <style>
+    /* @import can be used at the top of a stylesheet to bring another stylesheet.
+       Put at the beginning of the CSS file; here only to show syntax. */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  </style>
+
+  <!-- Inline critical CSS example (small amount) -->
+  <style>
+    :root{
+      --accent: #0b84ff;
+      --muted: #6b7280;
+      --bg: #0f172a;
+      --card: #0b1220;
+      --maxw: 1100px;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071428 0%,#071a2a 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    /* minimal page shell */
+    .wrap{
+      max-width:var(--maxw);
+      margin:24px auto;
+      padding:20px;
+    }
+    header.site{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    header.site h1{margin:0;font-size:1.25rem}
+    nav.site-nav a{color:var(--accent); text-decoration:none; margin-right:10px}
+  </style>
+</head>
+<body>
+  <div class="wrap" role="document">
+    <header class="site" role="banner" aria-label="Main header">
+      <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48'>
+          <rect width='100%' height='100%' fill='%230B84FF'/>
+          <text x='50%' y='55%' font-size='18' fill='white' font-family='Arial' text-anchor='middle'>CSS</text>
+        </svg>" alt="" aria-hidden="true" width="48" height="48">
+      <div>
+        <h1>HTML &amp; CSS — Comprehensive Reference</h1>
+        <p style="margin:2px 0 0;color:var(--muted);font-size:0.95rem">
+          Annotated examples of elements, attributes, selectors and layout techniques.
+        </p>
+      </div>
+      <nav class="site-nav" style="margin-left:auto" role="navigation" aria-label="Main navigation">
+        <a href="#semantics">Semantics</a>
+        <a href="#selectors">Selectors</a>
+        <a href="#layout">Layout Lab</a>
+        <a href="#forms">Forms</a>
+      </nav>
+    </header>
+
+    <main role="main" id="content">
+      <!-- ======= SEMANTIC HTML: structure and elements ======= -->
+      <section id="semantics" aria-labelledby="semantics-title">
+        <h2 id="semantics-title">Semantics & Common Elements</h2>
+        <p>
+          Semantic HTML communicates meaning to browsers, crawlers and assistive tech.
+          Use the right element for the job.
+        </p>
+
+        <article aria-labelledby="article-title">
+          <h3 id="article-title">Document Components</h3>
+          <dl>
+            <dt><code>&lt;header&gt;</code></dt>
+            <dd>Header for a section, typically contains heading, logo, navigation.</dd>
+
+            <dt><code>&lt;nav&gt;</code></dt>
+            <dd>Navigation landmarks. Put a single set of main links for screen readers.</dd>
+
+            <dt><code>&lt;main&gt;</code></dt>
+            <dd>Main content of the document; only one per page.</dd>
+
+            <dt><code>&lt;article&gt;</code></dt>
+            <dd>Self-contained composition — could be syndicated (blog post, news item).</dd>
+
+            <dt><code>&lt;section&gt;</code></dt>
+            <dd>Logical grouping of content with a heading.</dd>
+
+            <dt><code>&lt;aside&gt;</code></dt>
+            <dd>Related tangential content (sidebars, callouts).</dd>
+
+            <dt><code>&lt;footer&gt;</code></dt>
+            <dd>Footer of a section or document.</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Text-level semantic tags</h3>
+          <p>
+            Use <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> for meaning, not styling.
+            Use <code>&lt;mark&gt;</code> for highlight, <code>&lt;time&gt;</code> for dates, <code>&lt;code&gt;</code> for code.
+          </p>
+
+          <p>
+            Example:
+            <strong>Important:</strong>
+            <em>the <code>em</code> emphasizes speech stress</em>.
+            A timestamp: <time datetime="2025-12-09">December 9, 2025</time>.
+            Inline code sample: <code>SELECT * FROM users;</code>.
+          </p>
+        </article>
+
+        <article>
+          <h3>Embedded content</h3>
+          <figure>
+            <!-- picture + responsive sources -->
+            <picture>
+              <!-- Web-friendly: modern formats first -->
+              <source srcset="example.webp" type="image/webp">
+              <source srcset="example.jpg" type="image/jpeg">
+              <img src="example.jpg" alt="Example decorative image demonstrating picture element" style="max-width:100%;height:auto">
+            </picture>
+            <figcaption>Use <code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> for images that have meaning.</figcaption>
+          </figure>
+        </article>
+      </section>
+
+      <!-- ======= SELECTORS, PSEUDO-CLASSES, PSEUDO-ELEMENTS ======= -->
+      <section id="selectors" aria-labelledby="selectors-title" style="margin-top:28px">
+        <h2 id="selectors-title">Selectors, Specificity & Pseudo stuff</h2>
+
+        <div class="card">
+          <h4>Selector types — examples</h4>
+          <ul>
+            <li><code>*</code> (universal)</li>
+            <li><code>div</code> (type selector)</li>
+            <li><code>.class</code> (class selector)</li>
+            <li><code>#id</code> (id selector)</li>
+            <li><code>[attr]</code> and <code>[attr="value"]</code> (attribute selectors)</li>
+            <li><code>div > p</code> (child selector), <code>div p</code> (descendant)</li>
+            <li><code>h2 + p</code> (adjacent sibling), <code>h2 ~ p</code> (general sibling)</li>
+            <li>Pseudo-classes: <code>:hover</code>, <code>:focus</code>, <code>:nth-child(2n)</code></li>
+            <li>Pseudo-elements: <code>::before</code>, <code>::after</code>, <code>::first-letter</code></li>
+          </ul>
+          <p style="color:var(--muted)">Specificity quick rule: inline style (1000) &gt; id (100) &gt; class/attribute/pseudo-class (10) &gt; element/pseudo-element (1). Add !important to force override (use sparingly).</p>
+        </div>
+
+        <div class="demo-grid" style="display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:12px">
+          <div>
+            <h4>Practical: Specificity override demo</h4>
+            <div class="spec-demo" style="padding:12px;border-radius:8px;background:rgba(255,255,255,0.03)">
+              <p class="spec-demo__text">This text is styled by multiple rules; see the CSS to understand which wins.</p>
+            </div>
+
+            <pre style="margin-top:8px;background:#071426;color:#bcd; padding:8px;border-radius:6px;overflow:auto;font-size:0.9rem">
+/* order in CSS file */
+.spec-demo__text { color: #ddd; }        /* element+class (specificity 11) */
+#unique .spec-demo__text { color: #0b84ff;} /* id + class (specificity 111) */
+.spec-demo__text:hover { color: #ffb000;} /* pseudo-class (specificity 11) */
+div .spec-demo__text { color: #f8f8f8;}  /* descendant (specificity 11) */
+/* inline style would beat the above */
+            </pre>
+          </div>
+
+          <aside id="unique" style="padding:12px;border-radius:8px;background:linear-gradient(180deg,#07132a,#082236)">
+            <h5 style="margin:0 0 6px 0">Notes</h5>
+            <p style="margin:0;color:var(--muted);font-size:0.95rem">Specificity examples: an ID wrapper will often win over class selectors. Use classes to keep specificity low and predictable.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ======= LAYOUT: block/inline/inline-block/flex/grid/floats/positioning ======= -->
+      <section id="layout" aria-labelledby="layout-title" style="margin-top:28px">
+        <h2 id="layout-title">Layout: block / inline / inline-block / float / flex / grid / positioning</h2>
+
+        <p>Below are interactive examples. Each box contains the render and an explanation of which CSS rules cause the result.</p>
+
+        <!-- layout lab summary (compact links) -->
+        <nav aria-label="Layout quick links" style="margin-bottom:12px">
+          <a href="#float-lab">Float</a> •
+          <a href="#inline-block-lab">Inline-block</a> •
+          <a href="#flex-lab">Flexbox</a> •
+          <a href="#grid-lab">Grid</a> •
+          <a href="#position-lab">Positioning</a>
+        </nav>
+
+        <!-- 1) FLOAT example -->
+        <section id="float-lab" style="margin-top:10px">
+          <h3>Float lab (old-school)</h3>
+          <div class="lab" style="display:flex;gap:16px">
+            <div style="flex:1;background:linear-gradient(90deg,#061020,#072033);padding:14px;border-radius:8px">
+              <h4 style="margin-top:0">Float approach</h4>
+              <div class="float-wrap" style="background:#071425;padding:10px;border-radius:6px">
+                <img src="https://via.placeholder.com/140" alt="thumbnail" class="float-img" style="float:right;margin:0 0 8px 8px;width:140px;height:auto;border-radius:4px">
+                <p><strong>Problem scenario:</strong> naive inline image placement can push text under the image on narrower viewports.</p>
+                <p>Floats remove the element from the normal flow horizontally while letting text wrap. The container must be cleared to avoid collapse.</p>
+                <p><em>CSS used:</em></p>
+                <pre style="background:#071426;color:#bcd;padding:6px;border-radius:6px">
+.float-img { float:right; width:140px; margin-left:12px; }
+.float-wrap::after { content:""; display:block; clear:both; }
+                </pre>
+                <p style="margin-top:6px">Outcome: good wrapping on wide screens. On narrow screens the image may still push content; use media queries to switch layout.</p>
+              </div>
+            </div>
+
+            <div style="width:320px;background:linear-gradient(90deg,#081020,#0b2033);padding:12px;border-radius:8px">
+              <h4 style="margin:0 0 6px 0">Key points</h4>
+              <ul style="margin:0;color:var(--muted)">
+                <li>Floats are great for text wrap, but require clearfix or <code>overflow:auto</code> on the container.</li>
+                <li>Floats are not ideal for complex responsive layouts.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2) inline-block -->
+        <section id="inline-block-lab" style="margin-top:16px">
+          <h3>Inline-block approach</h3>
+          <div class="lab" style="display:flex;gap:16px">
+            <div style="flex:1;background:#071425;padding:12px;border-radius:8px">
+              <div style="display:inline-block;vertical-align:top;width:40%;">
+                <img src="https://via.placeholder.com/220" alt="" style="width:100%;height:auto;display:block;border-radius:6px">
+              </div>
+              <div style="display:inline-block;vertical-align:top;width:58%;margin-left:2%">
+                <p>This uses <code>display:inline-block</code> on both sides. Text will align to baseline unless vertical-align is changed.</p>
+                <p>Inline-block respects widths but is sensitive to whitespace in HTML (you may see small gaps).</p>
+              </div>
+            </div>
+
+            <div style="width:320px;background:linear-gradient(90deg,#081020,#0b2033);padding:12px;border-radius:8px">
+              <h4 style="margin:0 0 6px 0">Key points</h4>
+              <ul style="margin:0;color:var(--muted)">
+                <li>Good for simple side-by-side content without flexbox.</li>
+                <li>Watch for white-space gaps and baseline alignment.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3) FLEX -->
+        <section id="flex-lab" style="margin-top:16px">
+          <h3>Flexbox approach (recommended for 1D layout)</h3>
+          <div style="background:#071425;padding:12px;border-radius:8px">
+            <div class="flex-demo" style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+              <div style="flex:0 0 220px">
+                <img src="https://via.placeholder.com/220x140" alt="" style="width:100%;height:auto;border-radius:6px;display:block">
+              </div>
+              <div style="flex:1">
+                <p><strong>Use flex when:</strong> you want reliable horizontal alignment and predictable wrapping. Flex can reorder items (order property) and align them vertically (align-items).</p>
+                <p><em>CSS used:</em></p>
+                <pre style="background:#071426;color:#bcd;padding:6px;border-radius:6px">
+.container{ display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;}
+.container img{ max-width:100%; height:auto; }
+                </pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4) GRID -->
+        <section id="grid-lab" style="margin-top:16px">
+          <h3>Grid approach (recommended for 2D layout)</h3>
+          <div style="background:#071425;padding:12px;border-radius:8px">
+            <div style="display:grid;grid-template-columns:220px 1fr;gap:12px;align-items:start">
+              <img src="https://via.placeholder.com/220x140" alt="" style="width:220px;height:auto;border-radius:6px">
+              <div>
+                <p>CSS Grid lets you define explicit rows and columns. Great for complex responsive layouts.</p>
+                <pre style="background:#071426;color:#bcd;padding:6px;border-radius:6px">
+.grid { display:grid; grid-template-columns: 220px 1fr; gap:12px; }
+@media (max-width:700px) { .grid { grid-template-columns: 1fr; } }
+                </pre>
+                <p>Switch to a single column on small screens using media queries.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5) POSITIONING -->
+        <section id="position-lab" style="margin-top:16px">
+          <h3>Positioning: static, relative, absolute, fixed, sticky</h3>
+          <div style="background:#071425;padding:12px;border-radius:8px">
+            <p><strong>static</strong> (default) — normal flow. <strong>relative</strong> — offsets the element without removing it from flow. <strong>absolute</strong> — removed from flow, positioned relative to nearest positioned ancestor. <strong>fixed</strong> — relative to viewport. <strong>sticky</strong> — behaves like relative until scroll threshold, then fixed.</p>
+
+            <div style="position:relative; background:#04121b;padding:14px;border-radius:6px;margin-top:12px">
+              <div style="position:absolute;right:10px;top:10px;background:var(--accent);color:#001; padding:6px 8px;border-radius:6px">Absolute badge</div>
+              <p style="margin:0">This is the positioning example. Absolute child positioned relative to this container (because container has <code>position:relative</code>).</p>
+            </div>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- ======= FORMS & INTERACTIVITY (no JS) ======= -->
+      <section id="forms" aria-labelledby="forms-title" style="margin-top:28px">
+        <h2 id="forms-title">Forms & Accessible Inputs</h2>
+
+        <form style="background:#071425;padding:12px;border-radius:8px">
+          <fieldset>
+            <legend>Example form (semantic + accessible)</legend>
+
+            <label for="name">Name</label><br>
+            <input id="name" name="name" type="text" placeholder="Your full name" style="width:100%;padding:8px;margin-top:6px;margin-bottom:10px">
+
+            <label for="email">Email</label><br>
+            <input id="email" name="email" type="email" placeholder="you@example.com" style="width:100%;padding:8px;margin-top:6px;margin-bottom:10px">
+
+            <label>Choose a role</label><br>
+            <select name="role" aria-label="Role" style="padding:8px;margin-top:6px;margin-bottom:10px;width:100%">
+              <option value="">— select —</option>
+              <option>Student</option>
+              <option>Developer</option>
+              <option>Designer</option>
+            </select>
+
+            <label for="bio">Bio</label><br>
+            <textarea id="bio" name="bio" rows="4" style="width:100%;padding:8px;margin-top:6px;margin-bottom:10px"></textarea>
+
+            <label for="agree">
+              <input id="agree" name="agree" type="checkbox"> I agree to the rules
+            </label>
+
+            <div style="margin-top:12px">
+              <button type="submit" style="background:var(--accent);border:0;padding:10px 14px;border-radius:8px;color:#001">Submit</button>
+              <button type="reset" style="margin-left:8px;padding:10px 14px;border-radius:8px;background:#12293b;color:#cde">Reset</button>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+
+      <footer style="margin-top:28px;color:var(--muted);font-size:0.9rem">
+        <p>End of reference. Use the demo page for alignment training: <a href="demo.html" style="color:var(--accent)">Open alignment lab</a>.</p>
+        <p style="color: white;">Additional pages with some info:<br><a style="color: yellow;" href="structure.html">Structure</a><br><a style="color: yellow;" href="selectors.html">Selectors</a><br><a style="color: yellow;" href="layout.html">Layout</a></p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Final, minimal CSS inlined for demo display -->
+  <style>
+    /* Some demo helper styles referenced above (kept minimal). */
+    .card{background:linear-gradient(180deg,#06121f,#07162a);padding:14px;border-radius:10px}
+    .lab img{border:1px solid rgba(255,255,255,0.04)}
+    .spec-demo__text{color:#ddd;padding:8px;background:linear-gradient(0deg,#02101b,#041a28);border-radius:6px}
+  </style>
+</body>
+</html>

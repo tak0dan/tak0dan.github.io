@@ -1,0 +1,13 @@
+@import url('style.css');
+.padre{
+    position:relative;
+}
+
+
+.especial {
+    position:absolute;
+    display: inline-block;    
+}
+.normal {
+    display: inline-block;    
+}

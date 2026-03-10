@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLEXBOX</title>
+    <link rel="stylesheet" type="text/css" href="css/flexwrap.css" />
+</head>
+
+<body>
+    <div class="container" id="flexContainer">  
+        <div class="especial" id="especial">Texto del 1</div>
+        <div class="normal" id="normal1">Texto del 2</div>
+        <div class="normal" id="normal2">Texto del 3</div>
+        <div class="normal" id="normal3">Texto del 4</div> 
+    </div>
+
+    <div class="estilosCss">
+        <div>
+            <pre>
+            <b>CONTENEDOR PADRE:</b>
+            .container {            
+                <span id="containerLayer">display: flex;
+                flex-wrap: nowrap;";</span>
+                /* Decoración */
+                margin: 10px auto;
+                background-color: darkgray;
+                border: 2px white solid;
+                width: 90%;
+                height: 45%;
+                border-radius: 20px;
+                box-shadow: 4px 4px 15px black;
+                overflow: auto;
+            }
+            </pre>
+        </div>
+        <div>
+            <pre>
+            <b>TEXTO DEL 1:</b>    
+            .especial {
+                /* Decoración */
+                background-color: red;
+                border: 2px solid black;  
+                <span class="cambio">width: 700px;</span>
+                height: 200px;
+                text-align: center;
+                line-height: 200px;
+                font-size: 1.5em;
+                color:white;
+            }
+            </pre>
+        </div>
+        <div>            
+            <pre>
+            <b>TEXTO DEL 2, 3 y 4:</b>
+            .normal {
+                /* Decoración */
+                border: 2px solid black;  
+                background-color: green;
+                <span class="cambio">width: 700px;</span>
+                height: 200px;
+                text-align: center;
+                line-height: 200px;
+                font-size: 1.5em;
+                color:white;
+            }
+            <pre>
+        </div>        
+    </div>
+
+    <script src="js/myFunctions.js"></script>
+    <ul class="menu">
+        <li>
+            <span class="containers">
+                <a href="index.html">Flex</a>
+                <a href="inline-Flex.html" >Inline-Flex</a>
+                <a href="flex-Direction.html" >Flex-Direction</a>
+                <a href="flex-Wrap.html" class="active" >Flex-Wrap</a>
+                <a href="gap.html" >Gap</a>
+                <a href="justify-Content.html" >Justify-Content</a>
+                <a href="align-Items.html" >Align-Items</a>
+                <a href="align-Content.html" >Align-Content</a>
+            </span>
+            <span class="items">
+                <a href="align-Self.html" >Align-Self</a>
+                <a href="order.html" >Order</a>
+                <a href="flex-Basis.html" >Flex-Basis</a>
+                <a href="flex-Grow.html" >Flex-Grow</a>
+                <a href="flex-Shrink.html" >Flex-Shrink</a>
+                <a href="flex-Atajo.html" >Flex-Atajo</a>
+                <a href="animar.html">Animar</a>
+            </span>
+        </li>
+    </ul>
+    <div class="footer">
+            <b>Flex-Wrap.</b> En multilinea como deben comportarse los hijos. 
+            <div class="buttons">
+                <button onclick="changeFlexWrap('nowrap')" class="active-button">nowrap</button>
+                <button onclick="changeFlexWrap('wrap')">wrap</button>
+                <button onclick="changeFlexWrap('wrap-reverse')">wrap-reverse</button>
+            </div>
+    </div>
+
+</body>
+</html>

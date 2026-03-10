@@ -1,0 +1,10 @@
+@import url('style.css');
+
+
+.especial {
+    position:absolute;
+    display: inline-block;    
+}
+.normal {
+    display: inline-block;    
+}

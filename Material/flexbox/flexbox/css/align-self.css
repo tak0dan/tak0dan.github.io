@@ -1,0 +1,33 @@
+/* importo lo comun */
+@import url('style.css');
+
+
+.container {
+    display: flex;
+    width: 90%;
+    transition: all 1s ease;
+    flex-wrap: wrap;
+    /* height: 60vh; espacio vertical suficente */
+    /* gap: 10px; */
+}
+.estilosCss {
+    display: flex;
+    /* flex-direction: row; */
+}
+.especial {
+    height: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-self: flex-start;
+}
+.normal {    
+    /* height: unset; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.especial, .normal {
+    min-height: 100px; /* Ajusta según tus necesidades */
+}

@@ -1,0 +1,21 @@
+/* importo lo comun */
+@import url('style.css');
+
+
+.container {
+    display: flex;
+    width: 90%;
+    transition: all 1s ease;
+}
+.estilosCss {
+    display: flex;
+    /* flex-direction: row; */
+}
+.especial {
+    width: 700px; 
+    height: 200px;
+}
+.normal {    
+    width: 700px; 
+    height: 200px;
+}

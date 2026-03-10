@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSITION</title>
+    <link rel="stylesheet" type="text/css" href="css/overflow.css" />
+</head>
+
+<body>
+    <div class="principal">  
+        <span class="izquierda">Atrás</span>
+        <span class="derecha">Adelante</span>
+    </div>
+
+    <div class="estilosCss">
+        <pre>
+            .principal
+            {
+                overflow: auto; <------
+                border: 5px black solid;
+            }
+            .izquierda {
+                float: left; 
+                background-color: lightgray;
+            }
+            
+            .derecha {
+                float: right;
+                background-color: lightgray;
+            }
+        </pre>
+    </div>
+
+    <ul class="menu">
+        <li>
+            <a href="index.html">Normal - block</a>
+            <a href="NInline.html">Normal - inline</a>
+            <a href="NInlineBlock.html">Normal - inline-block</a>                        
+            <a href="relativo.html">Relativo</a>
+            <a href="absoluto.html">Absoluto</a>
+            <a href="absolutoPadre.html">Absoluto Padre</a>                        
+            <a href="fijo.html">Fijo</a>
+            <a href="floatLeft.html">Float.Left</a>
+            <a href="floatRight.html">Float.Right</a>
+            <a href="floatLeftClear.html">Float.Left.Clear</a>
+            <a href="overflow.html" class="active">Overflow</a>
+        </li>
+    </ul>
+    <div class="footer">
+        <b>OVERFLOW: auto.</b> Si en la clase padre no lo ponemos el ancho es cero y el contenido se desborda.
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+/* Importamos fuente */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+/* Estilos generales */
+
+h1 {
+
+color: blue
+
+
+}
+body {
+    margin: 0;
+    background-color: #f7f7f7;
+    font-family: 'Poppins', sans-serif;
+}
+
+header, section, footer {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Menú */
+nav {
+    background: #1a1a1a;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 15px;
+    justify-content: center;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.menu a:hover {
+    color: #4db8ff;
+}
+
+/* Contenedor general */
+.caja {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 1);
+}
+
+/* TABLA responsive */
+.tabla-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 12px;
+}
+
+th {
+    background: #0077cc;
+    color: white;
+}
+
+/* FORMULARIO moderno */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    
+}
+
+
+
+
+fieldset {
+    border: 2px solid #0077cc;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    align-items: left;
+}
+
+input {
+    width: 99%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    background: #0077cc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    
+}
+
+button:hover {
+    background: #005fa3;
+}
+
+/* ======================
+   TABLAS ESPECIALES
+   ====================== */
+
+/* Tabla con bordes sólidos */
+.table-example-title {
+    margin-top: 40px;
+}
+
+table.tabla-solid,
+table.tabla-solid th,
+table.tabla-solid td {
+    border: 2px solid #333;
+}
+
+table.tabla-solid {
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+    background: white;
+}
+
+/* Tabla con bordes dashed */
+table.tabla-dashed,
+table.tabla-dashed th,
+table.tabla-dashed td {
+    border: 2px dashed #0077cc;
+}
+
+table.tabla-dashed {
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+    background: #f9fcff;
+}
+
+/* Tabla con bordes dotted */
+table.tabla-dotted,
+table.tabla-dotted th,
+table.tabla-dotted td {
+    border: 2px dotted #ff6600;
+}
+
+table.tabla-dotted {
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+    background: #fffaf2;
+}
+
+/* Tabla con sombreado alterno */
+table.tabla-sombreada {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background: white;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+table.tabla-sombreada tr:nth-child(even) {
+    background-color: #f0f8ff;
+}
+
+table.tabla-sombreada th,
+table.tabla-sombreada td {
+    border: 1px solid #ccc;
+    padding: 12px;
+}
+
+/* ======================
+   IMAGEN CON SOMBRA
+   ====================== */
+
+.img-container {
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.img-container img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+/* ===========================
+      MEDIA QUERIES RESPONSIVE
+   =========================== */
+
+/* Tablet */
+@media (max-width: 900px) {
+    header, section, footer {
+        padding: 15px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+    }
+}
+
+/* Móviles */
+@media (max-width: 600px) {
+    body {
+        background: #eef;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    nav .menu {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    form input {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+
+/*Aplica los estilos dentro de este bloque SOLO cuando la pantalla tenga un ancho máximo de 700 píxeles.”
+Es decir, afecta a móviles y tablets pequeñas. */

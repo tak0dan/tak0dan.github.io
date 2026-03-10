@@ -1,0 +1,18 @@
+@import url('style.css');
+.flota {
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+.limpia {
+    clear: both;
+}
+
+.especial {
+    position: relative;
+    display: inline-block;    
+}
+.normal {
+    position: normal;
+    display: inline-block;    
+}

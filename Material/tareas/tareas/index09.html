@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>    
+</head>
+<body>
+    <h1>Tareas 0.5. Muestro/Añado/Completo/Borro las tareas con estilos</h1>
+    <div id="Tareas">aquí irán las taraes en la versión 0.6</div>
+
+    <form id="formTarea">
+        <fieldset>
+            <legend>Nueva tarea</legend>
+
+            <label for="tareaDescripcion">Descripción</label>
+            <input id="tareaDescripcion" name="descripcion" type="text" minlength="1" maxlength="200" required/>
+
+            <label for="tareaFechaLimite">Fecha límite</label>
+            <input id="tareaFechaLimite" name="fechaLimite" type="date" required />
+
+            <label for="tareaPrioridad">Prioridad</label>
+            <select id="tareaPrioridad" name="prioridad" required>
+                <option value="">Elige una…</option>
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+            </select>
+
+            <button type="submit">Crear tarea</button>
+            <button type="reset">Limpiar</button>
+        </fieldset>
+        </form>
+    <script src="js/tareas06.js"></script>
+</body>
+</html>

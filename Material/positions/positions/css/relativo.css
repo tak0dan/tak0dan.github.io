@@ -1,0 +1,11 @@
+@import url('style.css');
+  .especial {
+      position: relative;
+      top: 20px;
+      left: 500px;
+      display: inline-block;    
+  }
+  .normal {
+      position: normal;
+      display: inline-block;    
+  }

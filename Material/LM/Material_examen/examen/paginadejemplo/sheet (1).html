@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Completo HTML + CSS</title>
+    <!-- Enlazamos el archivo CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav>
+        <ul class="menu">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#contenido">Contenido</a></li>
+            <li><a href="#tabla">Tabla</a></li>
+            <li><a href="#formulario">Formulario</a></li>
+        </ul>
+    </nav>
+
+    <!-- Encabezado -->
+    <header id="inicio">
+          <h1>Diseño Responsive Moderno</h1>
+        <p>Este diseño se adapta a cualquier pantalla.</p>
+    </header>
+
+    <!-- Contenido principal -->
+    <section id="contenido">
+         <h2>Contenido</h2>
+        <div class="caja">
+            <p>Un contenedor adaptable con listas y texto.</p>
+
+            <h3>Lista Ordenada</h3>
+            <ol>
+                <li>Elemento uno</li>
+                <li>Elemento dos</li>
+                <li>Elemento tres</li>
+            </ol>
+
+            <h3>Lista Desordenada</h3>
+            <ul>
+                <li>Manzana</li>
+                <li>Banana</li>
+                <li>Naranja</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Tabla -->
+    <h2>Tabla Responsive</h2>
+
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>País</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ana</td>
+                        <td>25</td>
+                        <td>España</td>
+                    </tr>
+                    <tr>
+                        <td>Luis</td>
+                        <td>30</td>
+                        <td>México</td>
+                    </tr>
+                    <tr>
+                        <td>Carla</td>
+                        <td>22</td>
+                        <td>Argentina</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <br>
+    <!-- NUEVAS TABLAS CON ESTILOS ESPECIALES -->
+<section id="tablas-especiales">
+    <h2>Ejemplos de Tablas con Bordes y Sombreado</h2>
+
+    <h3>Tabla con borde SOLID</h3>
+    <table class="tabla-solid">
+        <tr><th>Producto</th><th>Precio</th></tr>
+        <tr><td>Chocolate</td><td>2€</td></tr>
+        <tr><td>Pan</td><td>1€</td></tr>
+    </table>
+
+    <h3>Tabla con borde DASHED</h3>
+    <table class="tabla-dashed">
+        <tr><th>Ciudad</th><th>Población</th></tr>
+        <tr><td>Madrid</td><td>3M</td></tr>
+        <tr><td>Roma</td><td>2.8M</td></tr>
+    </table>
+
+    <h3>Tabla con borde DOTTED</h3>
+    <table class="tabla-dotted">
+        <tr><th>Nombre</th><th>Nota</th></tr>
+        <tr><td>Lucía</td><td>9</td></tr>
+        <tr><td>Mario</td><td>7</td></tr>
+    </table>
+
+    <h3>Tabla con sombreado alterno + sombra</h3>
+    <table class="tabla-sombreada">
+        <tr><th>Día</th><th>Temperatura</th></tr>
+        <tr><td>Lunes</td><td>20°C</td></tr>
+        <tr><td>Martes</td><td>22°C</td></tr>
+        <tr><td>Miércoles</td><td>19°C</td></tr>
+    </table>
+</section>
+
+<!-- IMAGEN CON SOMBRA -->
+<section id="imagen-sombreada">
+    <h2>Imagen con Sombra</h2>
+
+    <div class="img-container">
+        <img src="https://via.placeholder.com/400x250" alt="Imagen de ejemplo">
+    </div>
+</section>
+
+    <!-- Formulario -->
+     <section id="formulario">
+        <h2>Formulario Moderno</h2>
+
+        <form>
+            <fieldset>
+                <legend>Información Personal</legend>
+
+                <label>Nombre:
+                    <input type="text" name="nombre">
+                </label>
+               
+                <label>Email:
+                    <input type="email" name="email">
+                </label>
+
+                <label>Edad:
+                    <input type="number" name="edad">
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Preferencias</legend>
+
+                <label>
+                    <input type="checkbox" name="boletin"> Recibir boletín
+                </label>
+
+                <label>
+                    <input type="radio" name="color" value="rojo"> Rojo
+                </label>
+
+                <label>
+                    <input type="radio" name="color" value="azul"> Azul
+                </label>
+            </fieldset>
+        </form>
+
+    <footer>
+        <p>© 2025 - Ejemplo HTML + CSS</p>
+    </footer>
+
+
+
+
+    <br>
+
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejemplo de enlaces</title>
+<style>
+  /* Estado normal del enlace */
+  a:link {
+    color: blue;
+    text-decoration: none;
+  }
+
+  /* Enlace que ya fue visitado */
+  a:visited {
+    color: purple;
+    text-decoration: none;
+  }
+
+  /* Cuando el cursor pasa sobre el enlace */
+  a:hover {
+    color: red;
+    text-decoration: underline;
+  }
+
+  /* Cuando se hace clic en el enlace */
+  a:active {
+    color: orange;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+  <p>Enlace normal: <a href="https://www.ejemplo.com">Visitar ejemplo.com</a></p>
+</body>
+</html>
+
+
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+@import url('style.css');
+.especial {
+    position: normal;
+    display: inline-block;    
+}
+.normal {
+    display: inline-block;    
+}

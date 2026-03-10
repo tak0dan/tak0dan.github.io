@@ -1,0 +1,252 @@
+/* ======================================================================
+   FILE: selectors.css
+   PURPOSE: Hyper-detailed stylesheet for selectors.html ONLY.
+            Teaches EVERY selector type with child-level clarity.
+            Includes hover demos, before/after visuals, specificity notes.
+
+   LEGEND:
+     HTML = body
+     CSS = clothes
+     JS  = movement
+
+     This file is basically the CSS Bible for your exam.
+   ====================================================================== */
+
+/* ======================================================================
+   GLOBAL STYLE RESET — makes browsers consistent
+   ====================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box; /* Without this, padding expands total width unpredictably */
+}
+
+body {
+  margin: 0;
+  background: #f1f5fc; /* Soft learning-friendly background */
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* ======================================================================
+   HEADER STYLING — simple, clean, visual separation
+   ====================================================================== */
+.sel-header {
+  background: #4a90e2;
+  color: white;
+  padding: 20px;
+  border-bottom: 5px solid #356bb1;
+  text-align: center;
+  transition: background 0.4s ease;
+}
+
+.sel-header:hover {
+  background: #3b78bf; /* On hover, student SEES color transition */
+}
+
+.subtitle {
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+/* ======================================================================
+   MAIN LAYOUT — blocks, panels, cards
+   ====================================================================== */
+.sel-main {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.block {
+  background: white;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.block:hover {
+  transform: translateY(-4px); /* Visual lifted effect */
+}
+
+.demo-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f7faff;
+  border: 1px solid #d9e6f8;
+  border-radius: 6px;
+}
+
+.card {
+  background: #edf5ff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+/* ======================================================================
+   REVEAL PANELS — JS toggles these
+   ====================================================================== */
+.reveal-panel {
+  max-height: 0;
+  overflow: hidden;
+  background: #e8f1ff;
+  border-radius: 6px;
+  margin-top: 10px;
+  padding: 0 10px;
+  transition: max-height 0.4s ease;
+}
+
+.reveal-panel.open-panel {
+  padding: 10px;
+  max-height: 500px;
+}
+
+.reveal-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  background: #4a90e2;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.reveal-btn:hover {
+  background: #366eb1;
+}
+
+/* ======================================================================
+   SECTION 1 — TYPE SELECTORS (p, h1, etc.)
+   ====================================================================== */
+p.type-demo {
+  color: #1b4a8f; /* Blue text */
+  font-weight: bold;
+  transition: letter-spacing 0.3s;
+}
+p.type-demo:hover {
+  letter-spacing: 1px; /* SHOWS effect visually */
+}
+
+/* ======================================================================
+   SECTION 2 — CLASS SELECTORS (.demo-class)
+   ====================================================================== */
+.demo-class {
+  background: #e0f0ff;
+  border-left: 4px solid #4a90e2;
+}
+.demo-class:hover {
+  background: #d4e9ff;
+}
+
+/* ======================================================================
+   SECTION 3 — ID SELECTORS (#important-message)
+   ====================================================================== */
+#important-message {
+  background: #4a90e2;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* ======================================================================
+   SECTION 4 — ATTRIBUTE SELECTORS
+   ====================================================================== */
+[data-kind] {
+  padding: 6px;
+  border-radius: 4px;
+}
+[data-kind="note"] {
+  background: #fffbd1;
+}
+[data-kind="warning"] {
+  background: #ffe2e2;
+}
+input[type="email"] {
+  border: 2px solid #4a90e2;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+/* ======================================================================
+   SECTION 5 — COMBINATORS
+   ====================================================================== */
+.parent-box > p.child {
+  background: #d4ebff; /* Direct child only */
+}
+
+.parent-box p.descendant {
+  background: #e9f5ff; /* ANY descendant */
+}
+
+h3 + p.adjacent {
+  border-left: 3px solid #4a90e2; /* Adjacent sibling */
+  padding-left: 6px;
+}
+
+h3 ~ p.general {
+  opacity: 0.7; /* General sibling */
+}
+
+/* ======================================================================
+   SECTION 6 — PSEUDO-CLASSES
+   ====================================================================== */
+.hover-btn {
+  padding: 10px 15px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+.hover-btn:hover {
+  background: #4a90e2;
+  color: white;
+}
+
+.nth-demo:first-child {
+  border-left: 4px solid #4a90e2;
+  padding-left: 6px;
+}
+
+.nth-demo:nth-child(2) {
+  background: #e9f2ff;
+}
+
+/* ======================================================================
+   SECTION 7 — PSEUDO-ELEMENTS
+   ====================================================================== */
+.before-after-demo::before {
+  content: "→ BEFORE ";
+  color: red;
+}
+.before-after-demo::after {
+  content: " AFTER →";
+  color: green;
+}
+
+/* ======================================================================
+   SECTION 8 — SPECIFICITY BATTLES
+   ====================================================================== */
+.spec {
+  color: blue;
+}
+#battle-target {
+  color: red; /* IDs override classes */
+}
+.battle {
+  color: green !important; /* !important beats everything */
+}
+
+/* ======================================================================
+   FOOTER
+   ====================================================================== */
+.sel-footer {
+  background: #4a90e2;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+/* End of selectors.css */

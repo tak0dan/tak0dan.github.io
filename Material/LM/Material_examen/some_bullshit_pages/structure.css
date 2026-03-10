@@ -1,0 +1,171 @@
+/* ===============================================================
+   FILE: structure.css
+   PURPOSE: Provide ultra-clear, beginner-friendly, heavily commented CSS
+            for structure.html. Includes hover animations showing "before vs after"
+            effects to teach what each property does.
+
+   RULE: HTML = the body, CSS = the clothes.
+   Every rule here explains:
+     • What it does
+     • Why it is here
+     • What would happen WITHOUT it
+     • Alternative ways to achieve the same effect
+
+   =============================================================== */
+
+/* ---------------------------------------------------------------
+   GLOBAL RESET — makes browsers behave consistently.
+   --------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box; /* Ensures padding + border do NOT increase element width unexpectedly */
+}
+
+body {
+  margin: 0; /* Removes default browser margin */
+  background: #eef6ff; /* A friendly soft background for readability */
+  font-family: Arial, Helvetica, sans-serif; /* Simple readable font */
+  color: #222; /* Dark text for high contrast */
+  line-height: 1.6; /* Makes paragraphs easier to read */
+  transition: background 0.4s ease; /* For hover-demo later */
+}
+
+/* Hover to reveal BEFORE/AFTER effect: background darkens slightly */
+body:hover {
+  background: #dde7f7;
+}
+
+/* ---------------------------------------------------------------
+   HEADER STYLES — styling the top of the webpage
+   --------------------------------------------------------------- */
+.site-header {
+  background: #4a90e2; /* A friendly blue to separate header visually */
+  color: white;
+  padding: 20px;
+  border-bottom: 5px solid #2f6bb2; /* Gives "weight" to header */
+  transition: padding 0.3s ease;
+}
+
+/* Demonstration: Hover to see how padding affects layout */
+.site-header:hover {
+  padding: 30px; /* grows larger so student SEES effect */
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Makes text readable on blue */
+}
+
+.tagline {
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+/* ---------------------------------------------------------------
+   NAVIGATION — turning a boring list into a menu
+   --------------------------------------------------------------- */
+.main-nav ul {
+  padding: 0;
+  margin: 10px 0 0 0;
+  list-style: none; /* Removes bullet points */
+  display: flex; /* Makes items sit next to each other */
+  gap: 15px; /* Space between items */
+}
+
+.main-nav a {
+  text-decoration: none; /* Removes underline */
+  color: white;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background 0.3s; /* Smooth hover effect */
+}
+
+.main-nav a:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* ---------------------------------------------------------------
+   MAIN CONTENT AREA — readable, pleasant, structured
+   --------------------------------------------------------------- */
+.main-area {
+  padding: 20px;
+}
+
+.intro-section, .content-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  background: white; /* White cards on blue background */
+  border-radius: 8px; /* Soft corners */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Hover demo: cards lift when hovered to show "state change" */
+.intro-section:hover, .content-section:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------------------- Paragraph styling ---------------------- */
+p {
+  font-size: 1rem;
+  color: #333;
+  margin: 10px 0;
+  transition: letter-spacing 0.3s ease;
+}
+
+/* Hover shows how letter-spacing works */
+p:hover {
+  letter-spacing: 1px;
+}
+
+/* ---------------------------------------------------------------
+   ARTICLE — a standalone content piece
+   --------------------------------------------------------------- */
+.sample-article {
+  border-left: 4px solid #4a90e2; /* Visual emphasis for this box */
+  padding-left: 10px;
+  margin-top: 15px;
+  transition: border-color 0.4s ease;
+}
+
+.sample-article:hover {
+  border-color: #2f6bb2; /* Slight darker blue to show interaction */
+}
+
+/* ---------------------------------------------------------------
+   ASIDE — side content visually separated
+   --------------------------------------------------------------- */
+.sidebar-note {
+  background: #fff7d6; /* Soft yellow note-like color */
+  border-left: 4px solid #e2b400; /* Makes it look like a sticky-note */
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.sidebar-note:hover {
+  background: #ffefb0;
+}
+
+/* ---------------------------------------------------------------
+   FOOTER — the end of the page
+   --------------------------------------------------------------- */
+.site-footer {
+  background: #2f6bb2;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+  transition: background 0.4s ease;
+}
+
+/* Hover effect: subtle teaching tool */
+.site-footer:hover {
+  background: #244f82;
+}
+
+/* ===============================================================
+   END OF structure.css
+   =============================================================== */

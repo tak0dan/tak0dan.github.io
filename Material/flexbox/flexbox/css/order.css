@@ -1,0 +1,41 @@
+/* importo lo comun */
+@import url('style.css');
+
+
+.container {
+    display: flex;
+    width: 90%;
+    transition: all 1s ease;
+    flex-wrap: wrap;
+    height: 60vh; /* espacio vertical suficente */
+    /* gap: 10px; */
+}
+.estilosCss {
+    display: flex;
+    /* flex-direction: row; */
+}
+.especial {
+    order:0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.normal {    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#normal1 { order: 10; }
+#normal2 { order: 20; }
+#normal3 { order: 30; }
+
+/* .normal:nth-child(1) { order: 2; }
+.normal:nth-child(2) { order: 3; }
+.normal:nth-child(3) { order: 4; } */
+
+.especial, .normal {
+    min-height: 100px; /* Ajusta según tus necesidades */
+}

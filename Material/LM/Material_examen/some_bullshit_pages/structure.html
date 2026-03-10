@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+  ===============================================================
+  FILE: structure.html
+  PURPOSE: Teach the absolute fundamentals of HTML structure in a way so clear
+           that even a 5‑year‑old could understand it.
+
+  This document:
+   • Uses ONLY HTML (no CSS; CSS lives in structure.css).
+   • Contains extremely detailed comments explaining what every tag does,
+     why it exists, and when NOT to use it.
+   • Shows the skeleton of a real HTML5 document.
+   • Will later be visually styled by structure.css.
+
+  HOW TO USE THIS FILE:
+   1. Read comments before each tag.
+   2. Open structure.css beside this file to see how styles attach to elements.
+   3. Modify anything and refresh your browser to see changes.
+
+  Tiny human‑friendly explanation:
+   Think of HTML as LEGO blocks. They describe WHAT exists.
+   CSS is the paint, colors, clothing, decorations.
+   HTML = structure. CSS = style. JavaScript = brains.
+  ===============================================================
+-->
+<html lang="en">
+<head>
+  <!--
+    The <head> is invisible on the page. It's like the brain of the website.
+    It contains information ABOUT the page, not the page content itself.
+  -->
+
+  <!-- UTF‑8 means the page understands almost every language and symbol. -->
+  <meta charset="UTF-8">
+
+  <!-- Makes mobile screens not zoom weirdly. Standard modern rule. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The page title. Appears on browser tabs. -->
+  <title>Structure Demo — Learning HTML Skeleton</title>
+
+  <!-- This is how we load the CSS file. DO NOT style inside HTML if you can avoid it.
+       Using external files is clean and professional. -->
+  <link rel="stylesheet" href="structure.css">
+</head>
+
+<!-- The BODY is everything you actually see. -->
+<body>
+  <!--
+    ===============================================================
+      SECTION 1 — HEADER OF WEBSITE
+    ===============================================================
+    <header> is used for the top area of a page or a section.
+    It usually contains:
+      • Logo
+      • Site name
+      • Navigation menu
+    You can have multiple headers on a page, but only where appropriate.
+  -->
+  <header class="site-header">
+    <!-- <h1> = biggest heading. Only ONE main H1 per page. It tells:
+         "What this page is about." -->
+    <h1>Website Structure: Understanding the Building Blocks</h1>
+
+    <!-- Short line under the heading. Soon CSS will style it nicely. -->
+    <p class="tagline">This page teaches how websites are built, brick by brick.</p>
+
+    <!-- Navigation: This is like a map telling users where they can go.
+         Without CSS it looks plain. With CSS it becomes a menu bar. -->
+    <nav class="main-nav">
+      <ul>
+        <!-- <li> = list item. Navigation menus are usually lists. -->
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#content">Main Content</a></li>
+        <li><a href="#footer">Footer</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!--
+    ===============================================================
+      SECTION 2 — MAIN AREA OF PAGE
+    ===============================================================
+    <main> is where the real content lives.
+    There MUST be only ONE <main> per page.
+    Screen readers jump to it immediately.
+  -->
+  <main id="intro" class="main-area">
+    <!--
+      <section> represents a logical group of content.
+      THINK: If the content needs a title, it probably should be a <section>.
+    -->
+    <section class="intro-section">
+      <h2>What Is HTML Structure?</h2>
+
+      <!--
+        <p> is a paragraph. It holds plain text.
+        It is the bread‑and‑butter of content.
+      -->
+      <p>
+        HTML gives the page its shape. Without it, a browser would have no
+        idea what is a title, what is a button, what is a list, or what is a picture.
+        With structure, everything has meaning.
+      </p>
+
+      <!-- Strong (important), Emphasis (voice stress), and Code display. -->
+      <p>
+        For example, <strong>this text is important</strong>,
+        <em>this text is emphasized</em>, and
+        <code>&lt;this looks like code&gt;</code>.
+      </p>
+    </section>
+
+    <!-- Second major content area -->
+    <section id="content" class="content-section">
+      <h2>Important HTML Structural Elements</h2>
+
+      <!-- A list explaining tags like a children's book -->
+      <ul>
+        <li><strong>&lt;header&gt;</strong> — The top banner. Like the cover of a book.</li>
+        <li><strong>&lt;main&gt;</strong> — The main body. This is where the story happens.</li>
+        <li><strong>&lt;section&gt;</strong> — Chapters inside the book.</li>
+        <li><strong>&lt;article&gt;</strong> — Something that can stand alone, like a blog post.</li>
+        <li><strong>&lt;aside&gt;</strong> — Side notes, fun facts, footnotes.</li>
+        <li><strong>&lt;footer&gt;</strong> — The ending: credits, copyright, contact.</li>
+      </ul>
+
+      <!-- Example of grouping content inside an article -->
+      <article class="sample-article">
+        <h3>An Example Article</h3>
+        <p>
+          An article is like a mini‑webpage inside another page.
+          It has its own heading, its own content, and makes sense by itself.
+        </p>
+      </article>
+
+      <!-- Aside = extra information that is connected but not part of main flow -->
+      <aside class="sidebar-note">
+        <h4>Fun Fact</h4>
+        <p>
+          The word “HTML” stands for <em>HyperText Markup Language</em>, which sounds complicated,
+          but really means “a way to mark text so computers know what it is.”
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <!--
+    ===============================================================
+      SECTION 3 — PAGE FOOTER
+    ===============================================================
+    The <footer> is the "bottom" of a page.
+    It usually contains:
+      • Legal info
+      • Contact links
+      • Credits
+    But it SHOULD NOT contain navigation for headings or big menus.
+  -->
+  <footer id="footer" class="site-footer">
+    <p>Website created as part of an educational HTML structure demo.</p>
+    <p>Now open <strong>structure.css</strong> to see how we decorate all of this!</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+/* importo lo comun */
+@import url('style.css');
+
+
+.container {
+    display: flex;
+    /* flex-direction: row; */
+    width: 90%;
+    transition: all 1s ease;
+}
+.estilosCss {
+    display: flex;
+    /* flex-direction: row; */
+}
+.especial {
+    flex-basis: 200px;
+    transition: all 1s;
+}
+.normal {
+    flex-basis: 200px;
+    transition: all 1s;   
+    
+}
+
+.especial:hover, .normal:hover {
+    flex-basis: 400px;
+}

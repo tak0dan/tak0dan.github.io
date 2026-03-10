@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alignment Lab — Float / Inline-block / Flex / Grid</title>
+  <style>
+    :root{
+      --bg:#061223;--card:#071425;--muted:#8da0b6;--accent:#0b84ff;
+    }
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto; background:linear-gradient(180deg,#04101a,#081726);color:#dbeafe}
+    .wrap{max-width:980px;margin:20px auto;padding:18px}
+    h1{margin:0 0 12px 0}
+    .lab{background:linear-gradient(180deg,#05131f,#07192b);padding:12px;border-radius:10px;margin-bottom:18px}
+    .demo{
+      background:linear-gradient(90deg,#071425,#071c2b);
+      padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);
+      margin-top:8px;
+    }
+
+    /* ---------- float approach ---------- */
+    .float-wrap{background:#071425;padding:12px;border-radius:6px}
+    .float-wrap img{float:right;margin-left:12px;width:240px;max-width:40%;height:auto;border-radius:6px}
+    .float-wrap::after{content:"";display:block;clear:both} /* clearfix */
+
+    /* ---------- inline-block approach ---------- */
+    .ib-left{display:inline-block;vertical-align:top;width:46%}
+    .ib-right{display:inline-block;vertical-align:top;width:52%;margin-left:2%}
+    /* remove small whitespace in HTML if needed or set font-size:0 on parent */
+    .ib-parent{font-size:0} /* workaround to remove inline-block gap */
+    .ib-parent *{font-size:inherit} /* restore children font-size */
+
+    /* ---------- flex approach ---------- */
+    .flex-container{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+    .flex-container .thumb{flex:0 0 240px;max-width:40%}
+    .flex-container .content{flex:1;min-width:220px}
+
+    /* ---------- grid approach ---------- */
+    .grid{display:grid;grid-template-columns:240px 1fr;gap:12px;align-items:start}
+    @media (max-width:780px){
+      .grid{grid-template-columns:1fr} /* stack image on top on small screens */
+      .flex-container .thumb{flex:1 0 100%} /* flex fallback for small screens */
+      .float-wrap img{float:none;display:block;margin:0 0 12px 0;max-width:100%} /* float -> block on small screens */
+      .ib-left,.ib-right{display:block;width:auto;margin:0}
+    }
+
+    /* Utility */
+    .explain{background:linear-gradient(180deg,#041026,#05122b);padding:10px;border-radius:6px;margin-top:10px;color:var(--muted);font-size:0.95rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header><h1>Alignment Lab — fix that image-on-right, text-below bug</h1>
+      <p style="color:var(--muted)">Four approaches, with pitfalls and fixes. Resize your browser to test.</p>
+    </header>
+
+    <!-- FLOAT -->
+    <section class="lab">
+      <h2>1) Float</h2>
+      <div class="demo float-wrap">
+        <img src="https://via.placeholder.com/240x140" alt="Example" width="240" height="140">
+        <p><strong>What happens:</strong> Text wraps around the floated image on wide screens; on narrow screens the image may be wider than the text column and the text drops below the image.</p>
+        <p><strong>Why it goes wrong:</strong> float removes element from flow horizontally but not vertically; if the image width is larger than available inline space, block-level text will break under it.</p>
+        <p><strong>How to fix:</strong> use percentage widths or media queries to switch to stacked layout; apply clearfix (done above) or set <code>overflow:auto</code> on wrapper to contain floats.</p>
+      </div>
+
+      <div class="explain">
+        <p><strong>CSS used:</strong> <code>float:right;</code> and a clearfix <code>::after{clear:both}</code>. Responsive fix: on <code>@media</code> remove float (<code>float:none;display:block;</code>).</p>
+      </div>
+    </section>
+
+    <!-- INLINE-BLOCK -->
+    <section class="lab">
+      <h2>2) Inline-block</h2>
+      <div class="demo ib-parent">
+        <div class="ib-left">
+          <img src="https://via.placeholder.com/320x200" alt="Example" style="width:100%;height:auto;border-radius:6px">
+        </div>
+        <div class="ib-right">
+          <p><strong>What happens:</strong> Inline-block keeps elements in flow and side-by-side if there's space; on narrow screens the second block wraps below. Small whitespace in HTML can introduce gaps between inline-block elements.</p>
+          <p><strong>Why it goes wrong:</strong> If your widths add up to >100% (or include margins), the second element wraps and appears below the first.</p>
+          <p><strong>How to fix:</strong> reduce widths, remove whitespace between inline-block nodes, or use <code>font-size:0</code> on the parent then restore font-size for children; but modern answer: use flex or grid.</p>
+        </div>
+      </div>
+
+      <div class="explain">
+        <p>Inline-block is simple but fragile — spacing, baseline alignment and width calculation bite you. For robust responsive layouts use flex or grid.</p>
+      </div>
+    </section>
+
+    <!-- FLEX -->
+    <section class="lab">
+      <h2>3) Flexbox (recommended)</h2>
+      <div class="demo">
+        <div class="flex-container">
+          <div class="thumb"><img src="https://via.placeholder.com/240x140" alt="" style="width:100%;height:auto;border-radius:6px"></div>
+          <div class="content">
+            <p><strong>What happens:</strong> Flex distributes space. The image stays at its basis width; content takes remaining space. On small screens, <code>flex-wrap</code> allows content to wrap under the image or the image to shrink if allowed.</p>
+            <p><strong>Why it fails:</strong> If you set a fixed image width and the container is narrower than image+text minimums, content will wrap under the image. Use <code>min-width</code>, <code>flex-basis</code> and media queries appropriately.</p>
+            <p><strong>How to fix:</strong> set <code>min-width</code> on content or allow image to shrink <code>flex:1 1 200px</code>, or switch to column direction on small screens with media query.</p>
+          </div>
+        </div>
+      </div>
+      <div class="explain">
+        <p>Flex is the practical choice for 1-dimensional layouts: row or column. Use <code>flex-wrap</code>, <code>min-width</code>, and media queries for robust responsive behavior.</p>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="lab">
+      <h2>4) CSS Grid (recommended for complex layouts)</h2>
+      <div class="demo grid">
+        <img src="https://via.placeholder.com/240x140" alt="Example">
+        <div>
+          <p><strong>What happens:</strong> Grid gives explicit control: you map the image to a column and the text to another column. If the grid column sizes exceed container width, items stack when you change grid-template with media queries.</p>
+          <p><strong>Why it fails:</strong> Forgetting to change grid-template on small screens will keep image and content cramped or cause text to overflow. Grid does not auto-wrap like flex unless you define it.</p>
+          <p><strong>How to fix:</strong> Use <code>grid-template-columns: 240px 1fr;</code> and a media query to switch to <code>1fr</code> (one column) under a breakpoint.</p>
+        </div>
+      </div>
+      <div class="explain">
+        <p>Grid is best when layout is 2-dimensional. It’s explicit, powerful and predictable — perfect for exam answers.</p>
+      </div>
+    </section>
+
+    <footer style="color:var(--muted)">Pro tip: the correct answer often expected in exams: <em>use flex or grid with media queries to switch to stacked layout</em>. Floats are acceptable historically, but mention their pitfalls and the necessary clearfix.</footer>
+  </div>
+</body>
+</html>

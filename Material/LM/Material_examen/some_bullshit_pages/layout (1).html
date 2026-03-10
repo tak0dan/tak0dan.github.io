@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!--
+  FILE: layout.html
+  PURPOSE: Ultra-detailed layout lab demonstrating Block/Inline/Inline-block,
+           Floats & clearing, BFC, Positioning (static/relative/absolute/fixed/sticky),
+           Flexbox (basics + advanced), CSS Grid (explicit & implicit),
+           Responsive techniques, centering & alignment tricks, overflow issues,
+           and modern helpers (flow-root, display:contents, aspect-ratio).
+
+  STYLE: Exhaustive comments (child-level clarity) + interactive reveal buttons
+         (uses structure.js already created). The stylesheet is layout.css
+         (create next). This HTML strictly separates content from style.
+
+  HOW TO USE: Save as layout.html and open in browser with layout.css and structure.js
+  nearby. Hover elements to see before/after demos; click "Show code" to reveal examples.
+
+  DECISION: This document implements BOTH approaches (A + B) —
+            a detailed per-technique section AND a full sample layout rebuilt
+            using different techniques so you can compare outcomes side-by-side.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Layout Lab — Block, Float, Flex, Grid & Positioning — Deep Dive</title>
+
+  <!-- Link to external CSS for this page (create layout.css next) -->
+  <link rel="stylesheet" href="layout.css">
+
+  <!-- Reuse the educational JS from Pair 1 for hover/tooltips/reveals -->
+  <script src="structure.js" defer></script>
+</head>
+<body>
+  <!-- TOP SHELL / Header -->
+  <header class="lab-header" data-explain="This is the page header. It is styled by layout.css.">
+    <h1>Layout Lab — Learn how things sit on a page</h1>
+    <p class="subtitle">From old-school floats to modern grid — everything explained step-by-step.</p>
+  </header>
+
+  <main class="lab-main">
+    <!-- ============================================================== -->
+    <!-- PART 1: Conceptual quick-reference cards (tiny, child-level)     -->
+    <!-- ============================================================== -->
+    <section class="quick-ref block" id="quick-ref">
+      <h2>Quick Reference: What each layout mode means</h2>
+      <ul>
+        <li><strong>Block:</strong> takes full width, starts on a new line. Examples: &lt;div&gt;, &lt;p&gt;.</li>
+        <li><strong>Inline:</strong> sits inside text, only as wide as content. Examples: &lt;span&gt;, &lt;a&gt;.</li>
+        <li><strong>Inline-block:</strong> like inline but can have width/height.</li>
+        <li><strong>Floats:</strong> old way to let text wrap around elements. Requires clearing.</li>
+        <li><strong>Flexbox:</strong> 1-dimensional layout for rows or columns — great for toolbars.</li>
+        <li><strong>Grid:</strong> 2-dimensional layout — rows AND columns; powerful for full pages.</li>
+        <li><strong>Positioning:</strong> place elements explicitly (absolute/fixed/sticky/relative).</li>
+      </ul>
+
+      <p class="note">Tip: Use Flex for simple rows, Grid for complex 2D layouts, and avoid floats unless you need text wrapping.</p>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- PART 2: Detailed sections for each technique (A)                 -->
+    <!-- ============================================================== -->
+
+    <!-- BLOCK / INLINE / INLINE-BLOCK -->
+    <section class="block" id="block-inline">
+      <h2>Block vs Inline vs Inline-block</h2>
+      <p>We show how each behaves with example boxes. Hover each box to see the "unstyled" version (JS will remove classes).</p>
+
+      <div class="demo-row">
+        <!-- Block box -->
+        <div class="box block-box" data-explain="Block boxes take full width, so they stack vertically.">
+          <strong>Block box</strong>
+          <p>This is a block element. It stretches horizontally and appears on its own line.</p>
+          <button class="reveal-btn" data-target="code-block">Show code</button>
+          <div class="reveal-panel" id="code-block"><pre>
+/* CSS */
+.block-box { display:block; width:100%; background:#eef; padding:8px }
+</pre></div>
+        </div>
+
+        <!-- Inline box -->
+        <span class="box inline-box" data-explain="Inline elements only as wide as their content; they flow in text.">
+          <strong>Inline box</strong>
+          <button class="reveal-btn" data-target="code-inline">Show code</button>
+          <div class="reveal-panel" id="code-inline"><pre>
+/* HTML */
+<span class="inline-box">Inline content</span>
+/* CSS: inline is default. To set width we need inline-block */
+</pre></div>
+        </span>
+
+        <!-- Inline-block box -->
+        <div class="box inline-block-box" data-explain="Inline-block behaves like inline but accepts width/height.">
+          <strong>Inline-block</strong>
+          <p>It sits in a line but can be sized like a block.</p>
+          <button class="reveal-btn" data-target="code-ib">Show code</button>
+          <div class="reveal-panel" id="code-ib"><pre>
+/* CSS */
+.inline-block-box { display:inline-block; width:220px; }
+</pre></div>
+        </div>
+      </div>
+
+      <div class="explain">Common pitfall: whitespace in HTML can create gaps between inline-block elements. Fix: remove whitespace or set parent font-size:0.</div>
+    </section>
+
+    <!-- FLOATS -->
+    <section class="block" id="floats">
+      <h2>Floats & Clearing</h2>
+      <p>Floats were originally for wrapping text around images. They remove an element from normal inline flow horizontally but keep it in the flow vertically.</p>
+
+      <div class="demo-row">
+        <div class="float-wrap">
+          <img src="https://via.placeholder.com/160" alt="float-thumb" class="float-thumb" data-explain="Image is floated to the right; text wraps around it.">
+          <p>This paragraph wraps around the floated image. If the image is too wide, the text may drop below it on narrow screens.</p>
+          <p>To prevent the parent collapsing you must clear the float using clearfix, <code>overflow:auto</code>, or <code>display:flow-root</code>.</p>
+
+          <button class="reveal-btn" data-target="code-floats">Show float code</button>
+          <div class="reveal-panel" id="code-floats"><pre>
+/* CSS */
+.float-thumb { float:right; width:160px; margin-left:12px }
+.float-wrap::after { content:''; display:block; clear:both }
+/* Alternative: .float-wrap { display:flow-root; } */
+</pre></div>
+        </div>
+      </div>
+
+      <div class="explain">Important: floats can cause layout collapse (parent height 0). Use clearfix or flow-root to create a block formatting context that contains floats.</div>
+    </section>
+
+    <!-- BFC (Block Formatting Context) -->
+    <section class="block" id="bfc">
+      <h2>Block Formatting Context (BFC)</h2>
+      <p>BFC is a concept that controls how boxes interact and clear floats. Creating a new BFC fixes many float bugs.</p>
+
+      <div class="demo-row">
+        <div class="bfc-container" data-explain="This element has overflow:auto and forms a BFC, containing child floats.">
+          <img src="https://via.placeholder.com/120" alt="thumb" class="small-float">
+          <p>Even if the child is floated, the container correctly measures height because it has a BFC.</p>
+          <button class="reveal-btn" data-target="code-bfc">Show code</button>
+          <div class="reveal-panel" id="code-bfc"><pre>
+/* CSS */
+.bfc-container { overflow:auto; }
+/* Other ways: display:flow-root; contain:block; */
+</pre></div>
+        </div>
+      </div>
+
+      <div class="explain">Exam tip: Know at least 2 ways to create a BFC: overflow (not visible), display:flow-root (clean), or float on the container (legacy).</div>
+    </section>
+
+    <!-- POSITIONING -->
+    <section class="block" id="positioning">
+      <h2>Positioning: static, relative, absolute, fixed, sticky</h2>
+      <p>Positioning changes how elements are placed relative to normal flow, parent elements, or the viewport.</p>
+
+      <div class="demo-row">
+        <div class="pos-demo" data-explain="The child below is absolutely positioned; note the parent is relative so the child is positioned inside it.">
+          <div class="pos-parent">
+            <p>Parent (position: relative)</p>
+            <div class="pos-child">Absolutely positioned child (top-right)</div>
+          </div>
+
+          <button class="reveal-btn" data-target="code-pos">Show code</button>
+          <div class="reveal-panel" id="code-pos"><pre>
+/* CSS */
+.pos-parent { position:relative; height:120px; background:#f7f7f7 }
+.pos-child { position:absolute; right:10px; top:10px; background:#4a90e2; color:white; padding:6px }
+</pre></div>
+        </div>
+      </div>
+
+      <div class="explain">Remember: absolute is positioned relative to the nearest positioned ancestor (non-static). fixed is relative to the viewport. sticky toggles between relative and fixed depending on scroll.</div>
+    </section>
+
+    <!-- FLEXBOX -->
+    <section class="block" id="flexbox">
+      <h2>Flexbox — basics & advanced</h2>
+      <p>Flexbox is for 1-dimensional layout. We show a toolbar, flexible cards, ordering, alignment and wrapping.</p>
+
+      <div class="demo-row">
+        <!-- toolbar example -->
+        <div class="flex-demo" data-explain="This toolbar uses display:flex with gap and align-items.">
+          <div class="toolbar">
+            <div class="tool">☰ Menu</div>
+            <div class="tool">Search</div>
+            <div class="tool">Profile</div>
+            <div class="tool grow">Spacer grows</div>
+            <div class="tool">Login</div>
+          </div>
+
+          <button class="reveal-btn" data-target="code-flex1">Show code</button>
+          <div class="reveal-panel" id="code-flex1"><pre>
+/* CSS */
+.toolbar { display:flex; gap:8px; align-items:center }
+.tool.grow { flex:1 } /* grows to take available space */
+</pre></div>
+        </div>
+
+        <!-- flex wrap example -->
+        <div class="flex-wrap-demo" data-explain="Cards will wrap when there isn't enough space thanks to flex-wrap.">
+          <div class="cards">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+          </div>
+
+          <button class="reveal-btn" data-target="code-flex2">Show code</button>
+          <div class="reveal-panel" id="code-flex2"><pre>
+/* CSS */
+.cards { display:flex; gap:10px; flex-wrap:wrap }
+.card { flex:0 0 120px }
+</pre></div>
+        </div>
+      </div>
+
+      <div class="explain">Flex advanced: use align-items for vertical alignment, justify-content for horizontal distribution, order to change visual order, and flex-basis/grow/shrink to control sizing.</div>
+    </section>
+
+    <!-- GRID -->
+    <section class="block" id="grid">
+      <h2>CSS Grid — explicit 2D control</h2>
+      <p>Grid is for two-dimensional layouts. We demonstrate explicit placement, auto rows/columns, fr units, and responsive auto-fit/auto-fill.</p>
+
+      <div class="demo-row">
+        <div class="grid-demo" data-explain="This grid uses grid-template-columns and gap. Resize to see responsive change.">
+          <div class="grid-sample">
+            <div class="g1">A</div>
+            <div class="g2">B</div>
+            <div class="g3">C</div>
+            <div class="g4">D</div>
+            <div class="g5">E</div>
+          </div>
+
+          <button class="reveal-btn" data-target="code-grid">Show code</button>
+          <div class="reveal-panel" id="code-grid"><pre>
+/* CSS */
+.grid-sample { display:grid; grid-template-columns: repeat(3, 1fr); gap:10px }
+@media (max-width:700px) { .grid-sample { grid-template-columns: 1fr } }
+</pre></div>
+        </div>
+      </div>
+
+      <div class="explain">Grid can place items by name or number. Use grid-template-columns with fr units for flexible tracks. For auto-fit/auto-fill use minmax for fluid cards.</div>
+    </section>
+
+    <!-- RESPONSIVE DESIGN -->
+    <section class="block" id="responsive">
+      <h2>Responsive techniques & media queries</h2>
+      <p>Use media queries, fluid units (%, vw, rem), and clamp() for scalable layouts.</p>
+
+      <div class="demo-row">
+        <div class="responsive-demo" data-explain="This example will switch its layout at a breakpoint using a media query.">
+          <p>Resize the window to see layout switch at the breakpoint in layout.css.</p>
+          <button class="reveal-btn" data-target="code-responsive">Show code</button>
+          <div class="reveal-panel" id="code-responsive"><pre>
+/* CSS */
+.container { display:grid; grid-template-columns: 300px 1fr }
+@media (max-width:800px) { .container { grid-template-columns: 1fr } }
+</pre></div>
+        </div>
+      </div>
+
+      <div class="explain">Mobile-first approach: write styles for small screens first, then add min-width media queries to expand layout for larger screens.</div>
+    </section>
+
+    <!-- ALIGNMENT & CENTERING TRICKS -->
+    <section class="block" id="centering">
+      <h2>Centering & Alignment tricks</h2>
+      <p>Centering is a common exam question. We show horizontal centering (margin:auto), vertical centering (flex), and absolute centering (transform translate).</p>
+
+      <div class="demo-row">
+        <div class="center-demo" data-explain="Vertical centering using flex: parent display:flex; align-items:center; justify-content:center;">
+          <div class="center-box">Centered both axes</div>
+          <button class="reveal-btn" data-target="code-center">Show code</button>
+          <div class="reveal-panel" id="code-center"><pre>
+/* CSS */
+.center-parent { display:flex; align-items:center; justify-content:center; height:180px }
+.center-box { width:120px; height:60px }
+</pre></div>
+        </div>
+      </div>
+
+      <div class="explain">Trick answers: use transform:translate(-50%,-50%) with position absolute for precise centering, or flex for simpler cases.</div>
+    </section>
+
+    <!-- LAYOUT SCENARIO (B): Rebuilding a page with different techniques -->
+    <section class="block" id="real-world">
+      <h2>Real-world layout: Header / Sidebar / Content / Footer — rebuilt with different techniques</h2>
+      <p>We show the same layout implemented with floats, flex, and grid so you can compare.</p>
+
+      <!-- Implementation: three tabs showing Layout A (float), Layout B (flex), Layout C (grid) -->
+      <div class="tabs">
+        <button class="tab-btn" data-target="layout-float">Float version</button>
+        <button class="tab-btn" data-target="layout-flex">Flex version</button>
+        <button class="tab-btn" data-target="layout-grid">Grid version</button>
+      </div>
+
+      <!-- FLOAT version -->
+      <div class="layout-panel" id="layout-float">
+        <div class="page-float">
+          <header class="page-header">Header</header>
+          <aside class="page-sidebar">Sidebar (float)</aside>
+          <section class="page-content">Main content — floats need clearing below.
+            <p>Some text content here.</p>
+          </section>
+          <footer class="page-footer">Footer</footer>
+        </div>
+        <button class="reveal-btn" data-target="code-layout-float">Show code</button>
+        <div class="reveal-panel" id="code-layout-float"><pre>
+/* CSS (float) */
+.page-sidebar { float:left; width:240px }
+.page-content { margin-left:260px }
+.page-float::after { content:''; display:block; clear:both }
+</pre></div>
+      </div>
+
+      <!-- FLEX version -->
+      <div class="layout-panel" id="layout-flex" hidden>
+        <div class="page-flex">
+          <header class="page-header">Header</header>
+          <div class="page-body">
+            <aside class="page-sidebar">Sidebar (flex)</aside>
+            <section class="page-content">Main content — Flex handles layout cleanly without floats.</section>
+          </div>
+          <footer class="page-footer">Footer</footer>
+        </div>
+        <button class="reveal-btn" data-target="code-layout-flex">Show code</button>
+        <div class="reveal-panel" id="code-layout-flex"><pre>
+/* CSS (flex) */
+.page-body { display:flex; gap:12px }
+.page-sidebar { flex:0 0 240px }
+.page-content { flex:1 }
+</pre></div>
+      </div>
+
+      <!-- GRID version -->
+      <div class="layout-panel" id="layout-grid" hidden>
+        <div class="page-grid">
+          <header class="page-header">Header</header>
+          <aside class="page-sidebar">Sidebar (grid)</aside>
+          <section class="page-content">Main content — Grid provides explicit slots.</section>
+          <footer class="page-footer">Footer</footer>
+        </div>
+        <button class="reveal-btn" data-target="code-layout-grid">Show code</button>
+        <div class="reveal-panel" id="code-layout-grid"><pre>
+/* CSS (grid) */
+.page-grid { display:grid; grid-template-columns: 240px 1fr; grid-template-rows: auto 1fr auto; grid-template-areas: "sidebar header" "sidebar content" "sidebar footer"; }
+.page-sidebar { grid-area: sidebar }
+.page-header { grid-area: header }
+.page-content { grid-area: content }
+.page-footer { grid-area: footer }
+</pre></div>
+      </div>
+
+      <div class="explain">Switch between tabs to compare tradeoffs: floats require clearfix and margin tricks, flex is simpler for single-axis, grid is most explicit and powerful for complex layouts.</div>
+    </section>
+
+    <!-- COMMON PITFALLS -->
+    <section class="block" id="pitfalls">
+      <h2>Common pitfalls & exam traps</h2>
+      <ul>
+        <li>Using width:100% on children inside padding-heavy containers (box-sizing matters).</li>
+        <li>Forgetting to set box-sizing:border-box leads to confusing width maths.</li>
+        <li>Absolute positioning removes element from flow; it may overlap content unexpectedly.</li>
+        <li>Not using responsive units: avoid fixed px sizes for major layout widths.</li>
+      </ul>
+
+      <div class="explain">Exam tip: mention a fallback for older browsers if the question hints at compatibility (e.g., graceful fallback when grid is not supported).</div>
+    </section>
+
+  </main>
+
+  <!-- PAGE FOOTER -->
+  <footer class="lab-footer" data-explain="Footer: summary and further reading suggestions.">
+    <p>End of Layout Lab. Open layout.css for the full commented stylesheet.</p>
+  </footer>
+
+  <!-- Small inline script to wire the layout tabs (kept tiny and exam-friendly).
+       structure.js handles reveals and hovers; this small code toggles layout panels.
+  -->
+  <script>
+    (function(){
+      document.addEventListener('DOMContentLoaded', function(){
+        var tabs = document.querySelectorAll('.tab-btn');
+        tabs.forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var target = btn.getAttribute('data-target');
+            document.querySelectorAll('.layout-panel').forEach(function(p){ p.hidden = true; });
+            var panel = document.getElementById(target);
+            if(panel) panel.hidden = false;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

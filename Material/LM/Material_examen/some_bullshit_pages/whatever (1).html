@@ -1,0 +1,418 @@
+<!--
+File collection: index.html + styles.css + script.js
+
+Save three files:
+ - index.html  (open in the browser)
+ - styles.css  (linked from index.html)
+ - script.js   (linked from index.html)
+
+This single document contains the full contents of each file, separated by clear markers. Do NOT duplicate these contents in chat — open the files in an editor or copy them into separate files to run locally.
+-->
+
+<!-- ========================= index.html ========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Exam Lab — HTML selectors, CSS patterns & interactive demos</title>
+  <!-- Link to external CSS file. This demonstrates using an external stylesheet (recommended).
+       Alternative: embed CSS inside <style> for critical CSS, or use @import inside CSS (slower).
+  -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Page shell: semantic header & main. Comments embedded to explain why each element is used. -->
+  <header class="page-header" role="banner">
+    <div class="container">
+      <h1>HTML &amp; CSS Exam Lab — selectors, specificity & examples</h1>
+      <p class="lead">Each demo block contains an element, explanations, and a toggle button that unfolds example code (HTML + CSS). Comments are present inside the code files.</p>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <section class="container demo-section" aria-labelledby="p-selectors">
+      <h2 id="p-selectors">Paragraph selectors & specificity playground</h2>
+      <p class="hint">The five paragraphs below are identical in content but targeted by different selectors. Open the code toggles to see what selector is applied and why.</p>
+
+      <!-- Demonstration list: each item contains the rendered paragraph plus controls & hidden code.
+           We intentionally keep the HTML minimal in the rendered area so that the CSS demonstrates the styling power.
+      -->
+      <div class="demo-grid">
+
+        <!-- Basic type selector (styles via element selector `p`) -->
+        <article class="demo-card">
+          <h3>Type selector: <code>p</code></h3>
+          <!-- First paragraph: this will ALSO be matched by :first-child demo below when applicable. We purposely place it as first to show interaction. -->
+          <p class="para" data-demo="type">This is a <strong>basic &lt;p&gt; type selector</strong> demo — styled by the generic <code>p</code> rule in the CSS. It is intentionally simple so you can inspect "element-only" rules and their limitations.</p>
+
+          <div class="controls">
+            <button class="toggle-btn" aria-expanded="false" aria-controls="code-1">Show code</button>
+          </div>
+
+          <pre id="code-1" class="code-snippet" hidden>
+<!-- HTML -->
+<p>This is a basic &lt;p&gt; type selector demo — styled by the generic <code>p</code> rule.</p>
+
+/* CSS */
+p { font-size:16px; line-height:1.6; color:#e6eef8; }
+          </pre>
+
+          <div class="explain">Type selectors are low-specificity. They are useful for base styling but easy to override. Use them for defaults only.</div>
+        </article>
+
+        <!-- ID selector (high specificity) -->
+        <article class="demo-card">
+          <h3>ID selector: <code>#hero</code></h3>
+          <!-- ID is unique — used when an element needs a single, highly specific rule. -->
+          <p id="hero" class="para" data-demo="id">This paragraph has an <code>id="hero"</code> and is targeted by an ID selector. ID selectors carry a higher specificity score than classes and element selectors.</p>
+
+          <div class="controls"><button class="toggle-btn" aria-expanded="false" aria-controls="code-2">Show code</button></div>
+
+          <pre id="code-2" class="code-snippet" hidden>
+<!-- HTML -->
+<p id="hero">This paragraph has an id="hero" and is targeted by an ID selector.</p>
+
+/* CSS */
+#hero { background: linear-gradient(90deg,#0b84ff22,#07a3ff22); padding:10px; border-left:4px solid #0b84ff; }
+          </pre>
+
+          <div class="explain">IDs are powerful but brittle. They increase specificity so much that overrides become harder. Prefer classes for reusable styles; use IDs for unique components or anchor targets.</div>
+        </article>
+
+        <!-- class selector + pseudo-class (first-child) -->
+        <article class="demo-card">
+          <h3>Pseudo-class: <code>p:first-child</code></h3>
+          <!-- This <p> is the first child of its parent only if it's the first element there. We arranged the page so the very first paragraph above is affected too. -->
+          <p class="para special" data-demo="first">This paragraph is highlighted because the stylesheet uses <code>p:first-child</code> to target the first paragraph inside a container. Pseudo-classes express structural or behavioral states.</p>
+
+          <div class="controls"><button class="toggle-btn" aria-expanded="false" aria-controls="code-3">Show code</button></div>
+
+          <pre id="code-3" class="code-snippet" hidden>
+/* CSS */
+/* first-child targets the first child element of a parent. If you need the first paragraph specifically, use p:first-of-type instead. */
+.container p:first-child { font-weight:700; color:#ffd166; }
+          </pre>
+
+          <div class="explain">Pseudo-classes like <code>:first-child</code> select elements by document structure or state. For "first of type" use <code>:first-of-type</code>. For dynamic states use <code>:hover</code>, <code>:focus</code>.</div>
+        </article>
+
+        <!-- last-child + attribute selector example -->
+        <article class="demo-card">
+          <h3>Pseudo-class + attribute: <code>p:last-child</code> & <code>[data-demo]</code></h3>
+          <p class="para" data-demo="last">This paragraph is targeted by <code>p:last-child</code> and an attribute selector <code>[data-demo="last"]</code>. Attribute selectors are very handy for marking semantics in HTML without creating extra classes.</p>
+
+          <div class="controls"><button class="toggle-btn" aria-expanded="false" aria-controls="code-4">Show code</button></div>
+
+          <pre id="code-4" class="code-snippet" hidden>
+/* CSS */
+/* last-child selects the last child of its parent. Attribute selector matches nodes with the attribute. */
+p:last-child { border-top:1px dashed rgba(255,255,255,0.06); padding-top:8px; }
+
+p[data-demo="last"] { font-style:italic; color:#a1e3a1; }
+          </pre>
+
+          <div class="explain">Combining selectors increases specificity and expressiveness. Attribute selectors are great for JS hooks and for when you want semantic flags in markup without extra classes.</div>
+        </article>
+
+        <!-- nth-child / nth-of-type demo + class usage -->
+        <article class="demo-card">
+          <h3>Structural selectors: <code>:nth-child()</code> &amp; classes</h3>
+          <p class="para special-2" data-demo="nth">This paragraph is an example of using <code>:nth-child(3)</code> or <code>:nth-of-type(odd)</code> to select repetitive patterns. Useful for zebra-stripes or alternating styles.</p>
+
+          <div class="controls"><button class="toggle-btn" aria-expanded="false" aria-controls="code-5">Show code</button></div>
+
+          <pre id="code-5" class="code-snippet" hidden>
+/* CSS */
+/* nth-child selects by index inside parent. nth-of-type is safer for selecting by tag type. */
+.container p:nth-child(3) { transform: translateX(2px); }
+.container p:nth-of-type(odd) { background: rgba(255,255,255,0.02); }
+
+/* Classes are the most recommended approach for reusable styling. */
+.para { padding:8px; border-radius:6px; }
+          </pre>
+
+          <div class="explain">Structural selectors are powerful for patterns. They are fragile if document structure changes. Use classes when you want stability.</div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- Layout & alignment mini lab: float / inline-block / flex / grid
+         Each example contains a small reveal that shows the exact CSS and HTML used. -->
+    <section class="container demo-section" aria-labelledby="layout-lab">
+      <h2 id="layout-lab">Alignment & layout mini-lab</h2>
+
+      <!-- Float demo -->
+      <div class="layout-demo">
+        <h3>Float vs Flex vs Grid</h3>
+        <div class="layout-row">
+          <figure class="layout-figure">
+            <img src="https://via.placeholder.com/240x140" alt="thumbnail" class="layout-thumb">
+            <figcaption>Floating image example</figcaption>
+          </figure>
+          <div class="layout-text">
+            <p>Float example: the image is floated to the right while text wraps around it. On narrow screens the text may drop below the image.</p>
+            <div class="controls"><button class="toggle-btn" aria-expanded="false" aria-controls="code-float">Show float code</button></div>
+            <pre id="code-float" class="code-snippet" hidden>
+/* CSS float example */
+.float-thumb { float:right; width:240px; margin-left:12px; }
+.float-wrap::after { content:''; display:block; clear:both; }
+            </pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flex demo -->
+      <div class="layout-demo">
+        <div class="flex-wrap">
+          <img src="https://via.placeholder.com/240x140" alt="thumb" class="flex-thumb">
+          <div class="flex-content">
+            <p>Flex example: reliable horizontal layout. Use <code>flex-wrap</code> and <code>min-width</code> to control wrapping behavior on small viewports.</p>
+            <div class="controls"><button class="toggle-btn" aria-expanded="false" aria-controls="code-flex">Show flex code</button></div>
+            <pre id="code-flex" class="code-snippet" hidden>
+/* CSS flex example */
+.flex-container { display:flex; gap:12px; align-items:flex-start; }
+.flex-thumb { flex:0 0 240px; }
+.flex-content { flex:1; min-width:220px; }
+            </pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid demo -->
+      <div class="layout-demo">
+        <div class="grid-wrap">
+          <img src="https://via.placeholder.com/240x140" alt="thumb" class="grid-thumb">
+          <div class="grid-content">
+            <p>Grid example: explicit columns. Change <code>grid-template-columns</code> based on breakpoints to stack or expand columns.</p>
+            <div class="controls"><button class="toggle-btn" aria-expanded="false" aria-controls="code-grid">Show grid code</button></div>
+            <pre id="code-grid" class="code-snippet" hidden>
+/* CSS grid example */
+.grid { display:grid; grid-template-columns:240px 1fr; gap:12px; }
+@media (max-width:700px) { .grid { grid-template-columns:1fr; } }
+            </pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Small interactive animations & CSS features showcase -->
+    <section class="container demo-section" aria-labelledby="effects">
+      <h2 id="effects">Animations, transitions & pseudo-elements</h2>
+
+      <div class="fx-card">
+        <h3>Hover transition + keyframe demo</h3>
+        <button class="btn pulse">Hover me</button>
+        <div class="controls"><button class="toggle-btn" aria-expanded="false" aria-controls="code-fx">Show code</button></div>
+        <pre id="code-fx" class="code-snippet" hidden>
+/* CSS transition */
+.btn { transition: transform 160ms cubic-bezier(.2,.9,.3,1), box-shadow 160ms; }
+.btn:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(11,132,255,0.12); }
+
+/* keyframes */
+@keyframes pulse { 0% { transform: scale(1) } 50% { transform: scale(1.03) } 100% { transform: scale(1) } }
+.pulse { animation: pulse 2.5s infinite; }
+        </pre>
+        <div class="explain">Transitions are for single-state changes; keyframes for repeating or multi-step animations. Keep animations subtle and provide prefers-reduced-motion alternatives.</div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <p>Files contain abundant comments that explain alternatives and the "why" behind every choice. Use the toggles to reveal example code and copy/paste into your own tests.</p>
+      <p>Open <strong>index.html</strong> in your browser after saving <em>styles.css</em> and <em>script.js</em> next to it.</p>
+    </div>
+  </footer>
+
+  <!-- Link to external JS (small script to toggle code blocks). See script.js for detailed comments. -->
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+<!-- ========================= styles.css ========================= -->
+/* ===============================================================
+   styles.css — Comprehensive, commented CSS
+   Save this as styles.css in the same folder as index.html.
+
+   The sheet includes:
+    - Base & reset rules
+    - Demonstrations for selectors (element, id, class, pseudo-classes, attribute selectors)
+    - Layout samples (float, inline-block, flex, grid)
+    - Animations and transitions
+
+   Every block has comments explaining purpose, alternatives, and typical exam pitfalls.
+   =============================================================== */
+
+/* --- Basic reset & sensible defaults --- */
+/* box-sizing: border-box is recommended throughout modern layouts for predictable sizing */
+*,*::before,*::after{box-sizing:border-box}
+
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg,#071428 0%, #071a2a 100%);
+  color:#e6eef8;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Container utility */
+.container{max-width:980px;margin:20px auto;padding:18px}
+
+/* Headings */
+h1{font-size:1.6rem;margin:0 0 8px 0}
+.lead{color:#9fb6d3;margin:6px 0 0 0}
+
+/* -------------------- Paragraph selector (element) -------------------- */
+/* Low specificity; good for baseline typography. Keep it lightweight to allow overrides with classes or IDs. */
+p{font-size:16px;color:#dbeafe;margin:0 0 10px 0}
+
+/* Utility paragraph class used on all examples to share base visual styles.
+   Note: class selectors have specificity 10, which beats element selectors (1). */
+.para{padding:8px;border-radius:6px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+
+/* -------------------- ID selector example -------------------- */
+/* ID selectors have high specificity. Use sparingly (anchor targets, unique hero components).
+   Exam tip: if you override an ID with a class you'll need an even more specific selector or !important. */
+#hero{background:linear-gradient(90deg,#0b84ff11,#07a3ff11);padding:10px;border-left:4px solid #0b84ff}
+
+/* -------------------- Pseudo-classes & structural selectors -------------------- */
+/* first-child targets the very first child of a parent. If you want the first of a type use :first-of-type */
+.container p:first-child{font-weight:700;color:#ffd166}
+
+/* last-child example: targets the last child element inside .demo-grid
+   Common pitfall: if you insert another sibling later it will change which element is last. */
+.demo-grid p:last-child{border-top:1px dashed rgba(255,255,255,0.04);padding-top:8px}
+
+/* attribute selector: useful for JS hooks and semantics without class clutter */
+[ data-demo="last"]{color:#a1e3a1}
+
+/* nth-child example: pattern based styling (fragile if DOM structure changes) */
+.container p:nth-child(3){transform:translateX(2px)}
+.container p:nth-of-type(odd){background:rgba(255,255,255,0.01)}
+
+/* -------------------- Float example (legacy) -------------------- */
+.float-thumb{float:right;width:240px;margin-left:12px;border-radius:6px}
+.float-wrap::after{content:'';display:block;clear:both}
+/* Alternative: use display:flow-root on parent to create a new block formatting context instead of clearfix. */
+
+/* -------------------- Inline-block caveats (not used extensively but demonstration) -------------------- */
+.ib-left{display:inline-block;vertical-align:top;width:46%}
+.ib-right{display:inline-block;vertical-align:top;width:52%;margin-left:2%}
+/* Inline-block can create small whitespace gaps between elements — use font-size:0 on parent or HTML comments to remove the gap. */
+
+/* -------------------- Flexbox (recommended for 1D layouts) -------------------- */
+.flex-wrap{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.flex-thumb{flex:0 0 240px;max-width:40%;border-radius:6px}
+.flex-content{flex:1;min-width:220px}
+
+/* Example of allowing the image to shrink if necessary: use flex: 1 1 240px */
+/* .flex-thumb{flex:1 1 240px;min-width:120px} */
+
+/* -------------------- Grid (recommended for 2D layouts) -------------------- */
+.grid{display:grid;grid-template-columns:240px 1fr;gap:12px;align-items:start}
+@media (max-width:700px){
+  .grid{grid-template-columns:1fr;}
+}
+
+/* -------------------- Buttons, controls & reveal animation -------------------- */
+.controls{margin-top:8px}
+.toggle-btn{
+  background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dbeafe;padding:6px 8px;border-radius:6px;cursor:pointer
+}
+.toggle-btn:focus{outline:3px solid rgba(11,132,255,0.18)}
+
+/* Code snippet hidden panel: animated max-height collapse/expand
+   Technique: toggle an "open" class via JS that switches height from 0 to a large value.
+   Note: animating max-height is not perfectly smooth with unknown height, but it's easy and exam-friendly. */
+.code-snippet{
+  background:#021226;color:#cfe7ff;padding:12px;border-radius:6px;margin-top:8px;overflow:hidden;max-height:0;transition:max-height 320ms ease,opacity 200ms ease;opacity:0
+}
+.code-snippet.open{max-height:600px;opacity:1}
+
+/* --- demo grid layout for the card list --- */
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.demo-card{background:linear-gradient(180deg,#051628,#071a2a);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+.demo-card h3{margin:0 0 8px 0}
+.explain{color:#9fb6d3;font-size:0.95rem;margin-top:8px}
+
+/* --- Buttons & subtle animations --- */
+.btn{background:linear-gradient(180deg,#0b84ff,#07a3ff);border:0;padding:10px 14px;border-radius:8px;color:#001;cursor:pointer}
+.btn{transition:transform 160ms cubic-bezier(.2,.9,.3,1), box-shadow 160ms}
+.btn:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(11,132,255,0.12)}
+
+/* Keyframes example: a subtle pulse on the demo button */
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+.pulse{animation:pulse 2.8s infinite}
+
+/* Reduced motion users: respect their preferences */
+@media (prefers-reduced-motion: reduce){
+  .code-snippet{transition:none}
+  .btn, .pulse { animation:none; transition:none }
+}
+
+/* Accessibility helper: focus-visible for keyboard users */
+:focus{outline:none}
+:focus-visible{outline:3px solid rgba(11,132,255,0.22);outline-offset:2px}
+
+/* Footer styles */
+.page-footer{border-top:1px solid rgba(255,255,255,0.02);margin-top:28px;padding-top:14px}
+
+/* End of stylesheet */
+
+
+
+<!-- ========================= script.js ========================= -->
+/* Save this file as script.js next to index.html and styles.css.
+   Purpose: small JS to make the toggle buttons expand/collapse code snippets,
+   with accessible aria-expanded attribute updates and a tiny animation.
+
+   Comments explain alternative approaches (e.g., using <details>/<summary> for native disclosure)
+   and why we chose JS: to demonstrate both animation and aria state handling for the exam.
+*/
+
+(function(){
+  'use strict'
+
+  // Alternative: Use <details><summary> which provides native disclosure and accessibility. We use JS
+  // here to demonstrate aria-controls and aria-expanded management which examiners often ask about.
+
+  function toggleHandler(e){
+    var btn = e.currentTarget;
+    var targetId = btn.getAttribute('aria-controls');
+    if(!targetId) return;
+    var panel = document.getElementById(targetId);
+    if(!panel) return;
+
+    var isOpen = panel.classList.contains('open');
+    if(isOpen){
+      panel.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      panel.setAttribute('hidden','');
+    } else {
+      panel.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+      panel.removeAttribute('hidden');
+    }
+  }
+
+  // Attach listeners to all toggle buttons on the page
+  document.addEventListener('DOMContentLoaded', function(){
+    var toggles = document.querySelectorAll('.toggle-btn');
+    toggles.forEach(function(btn){
+      btn.addEventListener('click', toggleHandler);
+    });
+
+    // Optional: keyboard accessibility — toggle with Enter/Space when focused (buttons already handle it natively)
+  });
+
+})();

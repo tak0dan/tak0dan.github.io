@@ -1,0 +1,535 @@
+p
+a
+div
+br
+dashed
+display
+width
+height
+background
+
+
+
+
+
+
+margin-left //that one for the image
+border left (putos cuadraditos)
+
+ margin left x%
+
+display: block
+        margin % or px
+        margin-bottom
+
+text-align right
+
+#img{
+text-align:right;
+}
+
+@media all and (max-width: 500px) {
+    img{
+    border: orange dashed;
+    width: 300px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# HTML & CSS — **Everything** you need for the exam (thorough, no sugar-coating)
+
+Buckle up. Below you get a full explanation — what each element/property does, examples you can copy into the exam, common pitfalls, and a compact cheat-sheet at the end. I’ll be blunt: learn the box model and specificity — everything else is details you can memorize quickly.
+
+---
+
+# 1) Basic HTML structure (skeleton)
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Document title</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <style> /* optional internal CSS */ </style>
+</head>
+<body>
+  <header>Site header / logo / nav</header>
+  <nav>Navigation links</nav>
+  <main>
+    <article>
+      <h1>Heading</h1>
+      <p>Paragraph text <a href="#">link</a>.</p>
+      <img id="hero" src="image.jpg" alt="descriptive text">
+    </article>
+    <aside>Sidebar</aside>
+  </main>
+  <footer>Footer content / copyright</footer>
+  <script src="script.js"></script>
+</body>
+</html>
+```
+
+**Notes**
+
+* `<!doctype html>`: triggers standards mode.
+* `head` contains metadata, CSS links, scripts (preferably at bottom of `body` for performance unless `defer` or `async` used).
+* Use semantic elements (`header`, `main`, `article`, `section`, `aside`, `footer`) for accessibility and SEO.
+
+---
+
+# 2) Core HTML tags you must know (with purpose & quick example)
+
+* **`<p>`** — paragraph
+  `<p>This is a paragraph.</p>`
+
+* **`<a>`** — anchor/link
+  `<a href="https://example.com" target="_blank" rel="noopener">Visit</a>`
+  `rel="noopener"` when opening new tabs for security.
+
+* **`<div>`** — generic block container (non-semantic)
+  `<div class="card">...</div>`
+
+* **`<br>`** — line break (use sparingly; not for spacing layout)
+  `Line one<br>Line two`
+
+* **`<img>`** — image (self-closing in XHTML; HTML uses `<img>`):
+  `<img src="pic.jpg" alt="description" width="300" height="200">`
+  `alt` is mandatory for accessibility.
+
+* **Text formatting**:
+
+  * `<b>` — stylistic bold (use `<strong>` for importance/semantic emphasis).
+  * `<strong>` — semantic importance (screen readers emphasize).
+  * `<i>` — italic style.
+  * `<em>` — semantic emphasis (often rendered as italic).
+  * `<u>` — underline.
+  * `<small>` — smaller text.
+  * `<mark>` — highlighted text.
+  * `<code>`, `<pre>` — code and preformatted text (preserve whitespace).
+  * `<sub>`, `<sup>` — subscript, superscript.
+
+* **Inline vs Block elements**
+
+  * Inline: `<a>`, `<span>`, `<img>`, `<b>`, `<i>` — they flow inside text.
+  * Block: `<div>`, `<p>`, `<header>`, `<section>` — take full width by default and stack vertically.
+
+---
+
+# 3) CSS fundamentals
+
+## 3.1 Selectors (how you target elements)
+
+```css
+/* element selector */ p { ... }
+/* class selector */ .card { ... }
+/* id selector */ #hero { ... }
+/* descendant */ .nav a { ... }
+/* child */ main > article { ... }
+/* attribute */ input[type="text"] { ... }
+/* pseudo-class */ a:hover { ... }
+/* pseudo-element */ p::first-line { ... }
+```
+
+**Specificity (short)**: inline styles > IDs > classes/attributes/pseudo-classes > elements/pseudo-elements.
+Calculate to resolve conflicts — exam favorite.
+
+## 3.2 Box model (must know)
+
+Content —> Padding —> Border —> Margin
+
+* `width`/`height` — size of content box by default.
+* `padding` — inner space (inside border).
+* `border` — line around padding (visible).
+* `margin` — outer spacing to other elements.
+
+**box-sizing**:
+
+```css
+/* recommended */
+* { box-sizing: border-box; }
+```
+
+`border-box` makes `width` include padding & border (easier to reason about).
+
+## 3.3 Display types
+
+* `display: block;` — full-width box, new line. (`div`, `p`)
+* `display: inline;` — flows with text, width/height ignored.
+* `display: inline-block;` — inline but accepts width/height & padding.
+* `display: none;` — element removed from layout (no space).
+* `visibility: hidden;` — hidden but occupies space.
+* `display: flex;` — flex container (powerful layout).
+* `display: grid;` — grid container.
+* `display: table` / `table-cell` etc. — table-like layout.
+
+## 3.4 Common layout properties
+
+* `width`, `height` — can use `px`, `%`, `em`, `rem`, `vh`, `vw`, `auto`.
+* `max-width`, `min-width`, `max-height`.
+* `margin`: `margin: 10px 20px;` (top-bottom left-right shorthand)
+  `margin-left: 10px;` or `margin: 0 auto;` (centers block horizontally when width set)
+* `padding`: like margin.
+* `float` — old layout technique (try to avoid for modern layouts).
+* `position`: `static`, `relative`, `absolute`, `fixed`, `sticky` — controls flow & stacking.
+* `z-index` — stacking order (works when `position` not `static`).
+
+---
+
+# 4) Borders, dashed, border-left, border styles
+
+```css
+/* border shorthand: width style color */
+div {
+  border: 2px solid #000;
+}
+
+/* left border only */
+img {
+  border-left: 4px dashed orange;
+}
+
+/* border shorthand broken out */
+border-width: 4px;
+border-style: dashed; /* solid, dashed, dotted, double, groove, ridge, inset, outset, none */
+border-color: orange;
+
+/* rounded corners */
+border-radius: 8px;
+```
+
+* If the user wrote "putos cuadraditos" — likely they meant dotted/dashed small squares — use `dotted` or `dashed`. `dotted` draws dots; `dashed` draws short lines; `double` makes two parallel lines.
+* Border can be per-side: `border-top`, `border-right`, `border-bottom`, `border-left`.
+
+---
+
+# 5) Background
+
+```css
+/* background shorthand */
+.element {
+  background: #f0f0f0 url("bg.jpg") no-repeat center/cover;
+}
+
+/* broken down */
+background-color: #abcdef;
+background-image: url("image.png");
+background-repeat: repeat | repeat-x | repeat-y | no-repeat;
+background-position: left top | center;
+background-size: auto | cover | contain | 50% 50%;
+background-attachment: scroll | fixed | local;
+```
+
+`cover` fills element cropping as necessary; `contain` ensures full image visible.
+
+---
+
+# 6) Margins & margin-left for images
+
+```css
+img {
+  display: block;        /* makes margin-left affect horizontal placement */
+  margin-left: 10%;      /* percent is relative to containing block's width */
+  margin: 10px 5% 20px;  /* top right bottom (left omitted -> equals right) */
+  margin-bottom: 15px;
+}
+```
+
+**Important**:
+
+* `margin-left: x%` calculates `%` relative to **width of containing block**.
+* If `img` is `display: inline`, horizontal margins may not behave as expected — use `display: block` or `display: inline-block`.
+
+---
+
+# 7) `display:block`, `text-align`, centering text & images
+
+* `display: block;` forces the element to behave like a block-level element (takes full width unless width set).
+* `text-align: right;` (applies to inline content inside a block) — aligns inline children (text, inline elements).
+
+```css
+#img {
+  text-align: right;  /* this affects inline content inside the element with id="img" */
+}
+
+/* to right-align an image using its container */
+figure { text-align: right; }
+figure img { display: inline-block; }
+```
+
+To center a block element horizontally:
+
+```css
+.element { width: 500px; margin: 0 auto; } /* left+right margins auto center it */
+```
+
+---
+
+# 8) Media queries (responsive rules)
+
+You gave an example — explained:
+
+```css
+@media all and (max-width: 500px) {
+  img {
+    border: orange dashed;
+    width: 300px;
+  }
+}
+```
+
+**Meaning**: When the viewport (or device) width is 500px or less, apply these rules. `all` means every media type. `max-width` is the most common for mobile-first or responsive tweaks.
+
+**Mobile-first recommendation**: write base styles for small screens, then use `@media (min-width: ...)` to expand for larger screens.
+
+---
+
+# 9) Text formatting tags and semantics (everything you asked: b, italic, etc.)
+
+```html
+<b>bold but non-semantic</b>
+<strong>strong importance (semantic bold)</strong>
+
+<i>italic visual</i>
+<em>emphasis (semantic italic)</em>
+
+<u>underlined</u>
+<small>small text</small>
+<mark>highlighted</mark>
+<del>deleted / struck-through</del>
+<s>alternate strike</s>
+<ins>inserted text</ins>
+
+<code>inline code</code>
+<pre><code>preformatted block of code</code></pre>
+
+<kbd>keyboard input</kbd>
+<samp>sample output</samp>
+<var>variable</var>
+
+<sub>H<sub>2</sub>O</sub>  <!-- subscript -->
+<sup>x</sup>            <!-- superscript -->
+```
+
+**Best practice**: Prefer semantic tags (`strong`, `em`) instead of purely presentational ones (`b`, `i`) for accessibility.
+
+---
+
+# 10) Useful CSS shorthand & tips
+
+* **Shorthand margin/padding**:
+  `margin: top right bottom left;` (1 value = all sides; 2 = top/bottom right/left; 3 = top right/left bottom; 4 = t r b l)
+* **Border shorthand**: `border: 1px solid #000;`
+* **Font shorthand**: `font: italic small-caps bold 16px/1.5 "Helvetica", sans-serif;`
+* **Transition**: `transition: all 0.2s ease;` (for animations)
+* **Flexbox**:
+
+  ```css
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  ```
+* **Grid**:
+
+  ```css
+  .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
+  ```
+
+---
+
+# 11) CSS specificity quick algorithm (exam gold)
+
+Specificity is represented as (a,b,c,d):
+
+* `a` = inline style (1 if inline `style="..."`, else 0)
+* `b` = number of ID selectors
+* `c` = number of class/attribute/pseudo-class selectors
+* `d` = number of type selectors and pseudo-elements
+
+Examples:
+
+* `#header .nav a:hover` → (0,1,2,1) → ID=1, classes/pseudo-classes=2 (`.nav`, `:hover`), element `a` =1.
+* `style="color: red"` → (1,0,0,0) — beats all external CSS.
+
+If two rules have same specificity, the last one in the stylesheet wins.
+
+---
+
+# 12) Accessibility & best practices (short & sharp)
+
+* Always provide `alt` attributes for `<img>`.
+* Use semantic tags instead of lots of `<div>` where possible.
+* Prefer `button` elements for clickable UI instead of clickable `<div>`.
+* Ensure sufficient color contrast for readability.
+* Use `aria-` attributes only when necessary — semantic HTML often avoids them.
+
+---
+
+# 13) Common exam pitfalls & what they test
+
+* Confusing `display: inline` vs `inline-block` (inline ignores width/height).
+* `%` in `margin-left: x%` relative to containing block width, not element width.
+* `text-align` affects inline content inside a block, not the block itself.
+* `border: dashed` vs `border-style: dotted` — visual difference.
+* Specificity mistakes (IDs beat classes).
+* Box-model: forgetting `box-sizing: border-box` leads to unexpected sizes.
+* Media queries orientation: `min-width` vs `max-width`.
+
+---
+
+# 14) Put your examples together — full sample
+
+```html
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cheatsheet example</title>
+  <style>
+    /* baseline */
+    * { box-sizing: border-box; }
+
+    body { font-family: Arial, sans-serif; margin:0; padding:0; }
+
+    header { background: #222; color:#fff; padding: 1rem; }
+    main { padding: 1rem; }
+
+    /* image rules */
+    #img { text-align: right; } /* container aligns inline content to the right */
+
+    #img img {
+      display: inline-block;      /* allows width/height and respects text-align */
+      margin-left: 10%;           /* 10% of parent element's width */
+      margin-bottom: 1rem;
+      border-left: 6px dashed orange;
+      width: 400px;               /* px example */
+      max-width: 100%;            /* responsive safety */
+    }
+
+    /* text formatting in content */
+    .important { font-weight: bold; } /* similar to <b> or <strong> */
+
+    /* responsive tweak */
+    @media all and (max-width: 500px) {
+      #img img {
+        border: 3px dashed orange;
+        width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header><h1>Cheatsheet Example</h1></header>
+  <main>
+    <p>Here is an image in a right-aligned container:</p>
+    <div id="img">
+      <img src="photo.jpg" alt="Sample photo">
+    </div>
+
+    <p><strong>Bold (semantic)</strong>, <b>bold (visual)</b>, <em>emphasized</em>, <i>italic</i>.</p>
+  </main>
+  <footer>Footer</footer>
+</body>
+</html>
+```
+
+---
+
+# 15) Compact quick-reference cheat-sheet (print this)
+
+**HTML**
+
+* `<!doctype html>`—start file
+* `head, body, header, main, footer, nav, article, section, aside` — semantic tags
+* `<p>`, `<a href="">`, `<img src="" alt="">`, `<div>`, `<span>`, `<br>`, `<ul><li>`, `<ol><li>`, `<table>` etc.
+
+**CSS basics**
+
+* Selector: `element`, `.class`, `#id`, `element.class`, `parent > child`, `a:hover`
+* Box model order: `content` → `padding` → `border` → `margin`
+* `box-sizing: border-box;` recommended
+* Display: `block`, `inline`, `inline-block`, `flex`, `grid`, `none`
+* Position: `static`, `relative`, `absolute`, `fixed`, `sticky`
+* Units: `px`, `%`, `em`, `rem`, `vh`, `vw`, `auto`
+
+**Important properties**
+
+* Spacing: `margin`, `padding`
+* Border: `border`, `border-left`, `border-style: dashed|dotted|solid|double`
+* Background: `background`, `background-size: cover|contain`
+* Text: `text-align: left|center|right|justify`
+* Size: `width`, `height`, `max-width`
+* Responsive: `@media (max-width: 500px) { ... }`
+
+**Specificity**
+
+* `inline styles` > `#id` > `.class, [attr], :pseudo-class` > `element, :pseudo-element`
+* If equal specificity: the latter rule wins.
+
+---
+
+# 16) Final exam strategy (practical, no fluff)
+
+1. **If asked to center horizontally**: set `width` and use `margin: 0 auto;`.
+2. **If asked to right-align inline content inside a block**: use `text-align: right;` on the container.
+3. **If asked about image margins in percent**: remember percent relates to parent width.
+4. **If asked about borders**: name the `border-style` (dashed/dotted) and `border-width`.
+5. **If asked about mobile rules**: use the exact media query they show and explain `max-width` vs `min-width`.
+6. **When in doubt on CSS specificity**: compute (a,b,c,d) and compare.
+
+---
+
+If you want, I can now:
+
+* convert the compact cheat-sheet into a single printable one-page PDF,
+* or make Anki-style flashcards for the specificity and box model rules,
+* or produce a minimal 1-page reference card you can print for the exam.
+
+Pick one and I’ll generate it immediately (no delays).

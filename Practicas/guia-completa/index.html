@@ -29,7 +29,8 @@
                 <li><a href="#float">3. Float: El Antiguo Sistema</a></li>
                 <li><a href="#formularios">4. Formularios HTML</a></li>
                 <li><a href="#graficos">5. Gráficos y Visualización de Datos</a></li>
-                <li><a href="#referencias">6. Referencias a tus Proyectos</a></li>
+                <li><a href="#material-extendido">6. Material Extendido (ZIP + Examen)</a></li>
+                <li><a href="#referencias">7. Referencias a tus Proyectos</a></li>
             </ul>
         </div>
 
@@ -886,9 +887,157 @@ target       /* Dónde abrir la respuesta (_blank, _self, etc.) */</code></pre>
 
         </section>
 
+                <!-- Material Extendido -->
+                <section id="material-extendido">
+                        <h2>🧪 6. Material Extendido (ZIP + Examen)</h2>
+
+                        <p>Se incorporan aqui los conceptos detectados en <code>Material/</code> y en los ZIP extraidos: <code>flexbox.zip</code>, <code>positions.zip</code>, <code>tareas.zip</code>, <code>cesar.zip</code>, <code>p3-youtubers.zip</code>, y los paquetes de <code>LM/Material_examen</code>.</p>
+
+                        <h3>6.1. Layout desde cero: block, inline e inline-block</h3>
+                        <p>En <code>Material/positions/positions</code> se comparan visualmente los modos de caja base. Esta distincion es crucial porque muchos errores de layout vienen de no saber en que flujo vive cada elemento.</p>
+                        <pre><code>/* Block: ocupa toda la linea */
+.box-block { display: block; width: 100%; }
+
+/* Inline: fluye con texto, width/height no aplican como esperas */
+.box-inline { display: inline; }
+
+/* Inline-block: fluye en linea, pero acepta width/height */
+.box-inline-block { display: inline-block; width: 220px; }</code></pre>
+
+                        <h3>6.2. Position completo: static, relative, absolute, fixed, sticky</h3>
+                        <p>Los ejemplos <code>absoluto.html</code>, <code>absolutoPadre.html</code>, <code>fijo.html</code> y <code>relativo.html</code> muestran la regla clave:</p>
+                        <div class="concept-box">
+                                <strong>Regla madre:</strong> un hijo <code>position: absolute</code> se posiciona respecto al ancestro mas cercano con <code>position</code> distinto de <code>static</code>. Si no existe, toma el viewport/documento como referencia.
+                        </div>
+                        <pre><code>.padre {
+    position: relative;
+}
+
+.hijo {
+    position: absolute;
+    top: 20px;
+    left: 500px;
+}</code></pre>
+
+                        <h3>6.3. Float avanzado: clear, colapso y BFC</h3>
+                        <p>En <code>floatLeftClear.html</code> se muestra el patron clasico de envolver texto con imagen flotante y limpiar despues.</p>
+                        <pre><code>.flota {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.limpia {
+    clear: both;
+}</code></pre>
+                        <p>Tambien aparece la alternativa moderna para contener floats sin hacks:</p>
+                        <pre><code>.contenedor {
+    display: flow-root; /* crea un nuevo bloque de formato */
+}</code></pre>
+
+                        <h3>6.4. Flexbox microdetallado (material flexbox.zip)</h3>
+                        <p>Ademas de lo anterior, el material extra incluye demos especificas de <code>align-content</code>, <code>inline-flex</code>, <code>order</code>, <code>flex-basis</code>, <code>flex-shrink</code>, <code>flex-wrap</code> y animaciones por <code>transition</code>.</p>
+                        <pre><code>.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start; /* controla lineas, no items individuales */
+    height: 60vh;              /* necesario para notar align-content */
+}
+
+.item-a { flex-basis: 200px; }
+.item-b { flex-shrink: 0; }
+.item-c { order: 30; }
+
+.animado {
+    transition: all 1s;
+}
+.animado:hover {
+    flex-basis: 400px;
+}</code></pre>
+
+                        <div class="warning-box">
+                                <strong>Matiz critico:</strong> <code>align-items</code> alinea items dentro de cada linea; <code>align-content</code> alinea el conjunto de lineas. Si no hay multiples lineas (<code>wrap</code>) o no hay espacio libre en eje cruzado, <code>align-content</code> parece "no funcionar".
+                        </div>
+
+                        <h3>6.5. Selectores, especificidad y pseudoselectores (material examen)</h3>
+                        <p>En <code>some_bullshit_pages/selectors.html</code> e <code>index.html</code> del material de examen se documentan tipos de selectores y jerarquia de especificidad.</p>
+                        <pre><code>/* Escala tipica de especificidad */
+/* inline (1000) > #id (100) > .class/[attr]/:pseudo-class (10) > element/::pseudo-element (1) */
+
+#unique .spec-demo__text { color: #0b84ff; }
+.spec-demo__text:hover { color: #ffb000; }
+div .spec-demo__text { color: #f8f8f8; }</code></pre>
+                        <p>Tambien se refuerza el uso de:</p>
+                        <ul>
+                                <li><code>[attr]</code> y <code>[attr="valor"]</code></li>
+                                <li>Combinadores: <code>div &gt; p</code>, <code>div p</code>, <code>h2 + p</code>, <code>h2 ~ p</code></li>
+                                <li>Pseudoclases: <code>:hover</code>, <code>:focus</code>, <code>:nth-child()</code></li>
+                                <li>Pseudoelementos: <code>::before</code>, <code>::after</code>, <code>::first-letter</code></li>
+                        </ul>
+
+                        <h3>6.6. Semantica + accesibilidad de estructura</h3>
+                        <p>Los archivos <code>structure.html</code> e <code>index.html</code> del material de examen insisten en landmarks semanticos y accesibilidad basica:</p>
+                        <ul>
+                                <li>Un unico <code>&lt;main&gt;</code> por pagina.</li>
+                                <li><code>header/nav/main/section/article/aside/footer</code> segun significado real, no por apariencia.</li>
+                                <li><code>aria-label</code> para contextos donde el significado visual no basta.</li>
+                                <li><code>alt</code> en imagenes informativas y <code>alt=""</code> en decorativas.</li>
+                        </ul>
+
+                        <h3>6.7. Formularios modernos + validacion nativa</h3>
+                        <p>En <code>tareas/index11.html</code> y ejemplos de examen aparecen formularios con atributos de validacion de navegador:</p>
+                        <pre><code>&lt;input type="text" minlength="1" maxlength="200" required&gt;
+&lt;input type="date" required&gt;
+&lt;select required&gt;...&lt;/select&gt;</code></pre>
+                        <p>El navegador valida estructura minima, pero la validacion real de seguridad debe repetirse en servidor.</p>
+
+                        <h3>6.8. JavaScript aplicado a HTML/CSS: DOM, eventos y estado</h3>
+                        <p>El material <code>tareas/js/tareas08.js</code>, <code>cesar/js/app.js</code> y <code>structure.js</code> añade la capa de comportamiento:</p>
+                        <pre><code>// Esperar a que el DOM exista
+document.addEventListener('DOMContentLoaded', () =&gt; {
+    const form = document.querySelector('#formTarea');
+
+    form.addEventListener('submit', (e) =&gt; {
+        e.preventDefault();
+        // leer datos, actualizar estado y repintar
+    });
+});</code></pre>
+                        <p>Patrones clave observados:</p>
+                        <ul>
+                                <li><strong>Estado en memoria:</strong> arrays de objetos (ej. tareas con id, prioridad, fecha, completada).</li>
+                                <li><strong>Renderizado:</strong> generar DOM/HTML desde estado y volver a pintar tras cada accion.</li>
+                                <li><strong>Delegacion de eventos:</strong> un solo listener en contenedor usando <code>data-id</code> y <code>data-action</code>.</li>
+                                <li><strong>Interaccion incremental:</strong> <code>input</code> event para sincronizar sliders en tiempo real.</li>
+                        </ul>
+
+                        <h3>6.9. Doctype y legado XHTML</h3>
+                        <p>En material heredado aparecen paginas con <code>XHTML 1.0 Transitional</code>. En practicas actuales, usa HTML5:</p>
+                        <pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+                        <p>HTML5 simplifica sintaxis, mejora semantica y evita rigidez XML innecesaria para casos basicos de front-end.</p>
+
+                        <h3>6.10. Inventario de archivos extraidos y usados como referencia</h3>
+                        <ul>
+                                <li><code>Material/flexbox/flexbox/...</code>: laboratorio de propiedades flex.</li>
+                                <li><code>Material/positions/positions/...</code>: laboratorio de position, float, clear y overflow.</li>
+                                <li><code>Material/tareas/tareas/...</code>: formularios + JS DOM/events para CRUD basico.</li>
+                                <li><code>Material/cesar/cesar/...</code>: eventos de rango, actualizacion reactiva simple de UI.</li>
+                                <li><code>Material/LM/Material_examen/some_bullshit_pages/...</code>: guias extendidas de semantica, selectores, layout y forms.</li>
+                                <li><code>Material/p3-youtubers/Ej4/...</code>: estructura multipagina, menu, assets e identidad visual.</li>
+                        </ul>
+
+                        <h3>6.11. Material PDF y chuletas (contenido incorporado en esta guia)</h3>
+                        <p>En <code>Material/</code> y <code>Material/LM/Material_examen/examen/pdfs</code> hay colecciones de referencia rapida (HTML5, CSS3, Flexbox, JS, tablas/bordes/posicionamiento, enlaces, listas e imagenes, Git). Aunque su formato es de consulta, sus ejes ya quedan integrados aqui:</p>
+                        <ul>
+                            <li>HTML semantico, listas, tablas, enlaces, imagenes y formularios.</li>
+                            <li>CSS de layout (float/flex/grid/position), selectores y especificidad.</li>
+                            <li>Responsive design con media queries.</li>
+                            <li>Patrones JS de DOM y eventos para interactividad basica.</li>
+                        </ul>
+                </section>
+
         <!-- Referencias -->
         <section id="referencias">
-            <h2>🔗 6. Referencias a Tus Proyectos</h2>
+                        <h2>🔗 7. Referencias a Tus Proyectos</h2>
 
             <h3>index.html (Principal)</h3>
             <p>Tu página principal usa:</p>
