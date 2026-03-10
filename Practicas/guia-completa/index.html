@@ -68,6 +68,55 @@
                 <li><code>&lt;nav&gt;</code> - Navegación</li>
             </ul>
 
+                        <h3>Listas HTML: ul, ol y li (profundidad de examen)</h3>
+                        <p>Las listas no son "solo bullets". Son estructura semantica y afectan accesibilidad, selectores y layout.</p>
+                        <pre><code>&lt;ul&gt;
+    &lt;li&gt;Elemento sin orden&lt;/li&gt;
+    &lt;li&gt;Elemento sin orden&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;Paso 1&lt;/li&gt;
+    &lt;li&gt;Paso 2&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        <div class="concept-box">
+                                <strong>Matiz clave:</strong> <code>li</code> debe vivir dentro de <code>ul</code> o <code>ol</code>. Si lo sacas fuera, rompes semantica y algunos selectores como <code>ul &gt; li:last-child</code> dejan de funcionar como esperas.
+                        </div>
+                        <pre><code>/* Menu tipico con separadores */
+.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li:not(:last-child) {
+    border-right: 2px solid red;
+}</code></pre>
+
+                        <h3>Tablas HTML: estructura correcta y errores sutiles</h3>
+                        <p>En tareas academicas, un <code>table</code> mal estructurado se detecta rapido aunque "se vea bien". Prioriza estructura correcta antes de estilo.</p>
+                        <pre><code>&lt;table&gt;
+    &lt;caption&gt;Notas&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Alumno&lt;/th&gt;
+            &lt;th&gt;Nota&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Nikita&lt;/td&gt;
+            &lt;td&gt;9&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        <ul>
+                                <li>Usa <code>th</code> para cabeceras, no <code>td</code>.</li>
+                                <li>Evita tablas para maquetar toda la pagina salvo que el ejercicio lo pida explicitamente.</li>
+                                <li>Si el enunciado pide "exactamente como la muestra", respeta orden de filas/columnas y agrupaciones.</li>
+                        </ul>
+
             <h3>¿Qué es CSS?</h3>
             <p>CSS (Cascading Style Sheets) es el lenguaje que define la apariencia y disposición de los elementos HTML. Controla colores, tamaños, espacios, posiciones, etc.</p>
 
@@ -565,6 +614,17 @@ method       /* GET o POST (cómo se envían) */
 name         /* Nombre del formulario */
 target       /* Dónde abrir la respuesta (_blank, _self, etc.) */</code></pre>
 
+                        <h4>Estructura de forma/formulario exacta (tipo examen)</h4>
+                        <p>Cuando piden "formulario de datos" como plantilla fija, el orden estructural suele evaluarse: primero fieldsets principales, luego agrupaciones secundarias, luego acciones.</p>
+                        <pre><code>&lt;form&gt;
+    &lt;fieldset&gt;...datos personales...&lt;/fieldset&gt;
+    &lt;fieldset&gt;...idioma...&lt;/fieldset&gt;
+    &lt;fieldset&gt;...programas...&lt;/fieldset&gt;
+    &lt;fieldset&gt;...sistema operativo...&lt;/fieldset&gt;
+    &lt;input type="reset"&gt;
+&lt;/form&gt;</code></pre>
+                        <p>Un cambio de orden o mover inputs fuera del fieldset puede invalidar la correccion aunque el estilo sea parecido.</p>
+
             <h4>GET vs POST</h4>
             <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
                 <tr style="background: rgba(122, 209, 162, 0.1);">
@@ -614,6 +674,23 @@ target       /* Dónde abrir la respuesta (_blank, _self, etc.) */</code></pre>
                 <label for="textarea-demo">Comentarios:</label>
                 <textarea id="textarea-demo" placeholder="Escribe tus comentarios aquí..."></textarea>
             </div>
+
+                        <h4>Textfields con scroll (textarea scrollers)</h4>
+                        <p>Para textos largos, la tecnica clasica es fijar altura y activar scroll vertical. Esto aparece en practicas tipo tattoo/news cuando el texto debe quedarse dentro de una caja fija.</p>
+                        <pre><code>.text {
+    height: 100%;
+    overflow-y: auto;   /* Scroll vertical cuando excede */
+    overflow-x: hidden; /* Evita scroll horizontal feo */
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;   /* Permite agrandar solo en vertical */
+    overflow-y: auto;
+}</code></pre>
+                        <div class="warning-box">
+                                <strong>Error sutil comun:</strong> poner <code>overflow-y: auto</code> sin una altura concreta en el contenedor. Sin altura limite, no aparece scroll porque el bloque sigue creciendo.
+                        </div>
 
             <h4>5. Radio Buttons (Una opción)</h4>
             <pre><code>&lt;label&gt;Género:&lt;/label&gt;
@@ -1410,6 +1487,19 @@ document.addEventListener('DOMContentLoaded', () =&gt; {
                 <li><strong>Float Sidebar:</strong> <code>.sidebar { float: right; width: 10%; }</code></li>
                 <li>Layout de dos columnas sin flexbox ni grid</li>
             </ul>
+
+            <h3>Practicas Tattoo (referencia de tecnicas usadas)</h3>
+            <p>En <code>Practicas/images/index.html</code> y <code>Practicas/images/css/style.css</code> (version funcional del layout tattoo):</p>
+            <ul>
+                <li><strong>Menu superior fijo:</strong> <code>#menu { position: fixed; top: 0; width: 100%; }</code></li>
+                <li><strong>Footer fijo:</strong> <code>.footer { position: fixed; bottom: 0; }</code></li>
+                <li><strong>Layout principal con floats:</strong> contenido + sidebar en porcentajes.</li>
+                <li><strong>Bloques de texto con imagen flotada:</strong> <code>.image-right .image { float: right; }</code> y <code>.image-left .image { float: left; }</code></li>
+                <li><strong>Clearfix con pseudo-elemento:</strong> <code>.text-block::after { content: ""; clear: both; }</code></li>
+                <li><strong>Scroll interno de texto:</strong> <code>.text { overflow-y: auto; }</code> para mantener altura fija del bloque.</li>
+                <li><strong>Responsive fallback:</strong> en <code>@media (max-width: 700px)</code> se desactivan floats y se pasa a ancho completo.</li>
+            </ul>
+            <p>Tambien existe <code>Practicas/practica5.2/practica5.2/index.html</code> con contenido tattoo y estructura de menu/header/main/submenu/footer, util como referencia de estructura semantica aunque su CSS no este presente en esa carpeta.</p>
 
         </section>
 
