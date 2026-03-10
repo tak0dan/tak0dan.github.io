@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Flexbox, Float, Formularios y más</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="nav-back">
+        <a href="../../index.html">← Volver a Prácticas</a>
+        <span style="color: var(--muted);">Guía Completa</span>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Guía Completa de Desarrollo Web</h1>
+            <p class="subtitle">Flexbox, Float, Formularios, HTML, CSS y Gráficos</p>
+        </header>
+
+        <div class="table-of-contents">
+            <h2>📑 Tabla de Contenidos</h2>
+            <ul class="toc-list">
+                <li><a href="#conceptos-html-css">1. Conceptos Fundamentales: HTML y CSS</a></li>
+                <li><a href="#flexbox">2. Flexbox: Layouts Modernos</a></li>
+                <li><a href="#float">3. Float: El Antiguo Sistema</a></li>
+                <li><a href="#formularios">4. Formularios HTML</a></li>
+                <li><a href="#graficos">5. Gráficos y Visualización de Datos</a></li>
+                <li><a href="#referencias">6. Referencias a tus Proyectos</a></li>
+            </ul>
+        </div>
+
+        <!-- HTML y CSS -->
+        <section id="conceptos-html-css">
+            <h2>📚 1. Conceptos Fundamentales: HTML y CSS</h2>
+
+            <h3>¿Qué es HTML?</h3>
+            <p>HTML (HyperText Markup Language) es el lenguaje de marcado que estructura el contenido de una página web. Define qué elementos hay en la página mediante etiquetas.</p>
+
+            <h4>Estructura Básica de HTML</h4>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mi Página&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Contenido aquí&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <div class="concept-box">
+                <strong>Elemento:</strong> Es la unidad básica de HTML. Consiste en una etiqueta de apertura, contenido y etiqueta de cierre: <code>&lt;etiqueta&gt;contenido&lt;/etiqueta&gt;</code>
+            </div>
+
+            <h4>Elementos Importantes</h4>
+            <ul>
+                <li><code>&lt;div&gt;</code> - Contenedor genérico para agrupar elementos</li>
+                <li><code>&lt;span&gt;</code> - Contenedor inline para texto</li>
+                <li><code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code> - Elementos semánticos</li>
+                <li><code>&lt;section&gt;</code> - Define secciones temáticas</li>
+                <li><code>&lt;article&gt;</code> - Contenido independiente</li>
+                <li><code>&lt;nav&gt;</code> - Navegación</li>
+            </ul>
+
+            <h3>¿Qué es CSS?</h3>
+            <p>CSS (Cascading Style Sheets) es el lenguaje que define la apariencia y disposición de los elementos HTML. Controla colores, tamaños, espacios, posiciones, etc.</p>
+
+            <h4>Formas de Aplicar CSS</h4>
+            <pre><code>/* 1. CSS Inline (dentro del HTML) */
+&lt;h1 style="color: blue;"&gt;Título&lt;/h1&gt;
+
+/* 2. CSS Interno (en &lt;style&gt;) */
+&lt;style&gt;
+  h1 { color: blue; }
+&lt;/style&gt;
+
+/* 3. CSS Externo (archivo .css) */
+&lt;link rel="stylesheet" href="estilos.css"&gt;</code></pre>
+
+            <div class="concept-box">
+                <strong>La Cascada de CSS:</strong> Los estilos se aplican en orden. El CSS externo es sobrescrito por el interno, que es sobrescrito por el inline. Los estilos más específicos sobrescriben los generales.
+            </div>
+
+            <h4>Selectores de CSS</h4>
+            <pre><code>/* Selectores básicos */
+h1 { }              /* Elemento */
+.clase { }          /* Clase */
+#id { }             /* ID */
+div.clase { }       /* Elemento con clase */
+h1, h2, h3 { }      /* Múltiples selectores */
+
+/* Selectores descendentes y hijos */
+div p { }           /* Párrafos dentro de div */
+div > p { }         /* Párrafos hijos directos de div */
+
+/* Pseudoclases */
+a:hover { }         /* Cuando el ratón está sobre el elemento */
+button:active { }   /* Mientras se hace clic */
+input:focus { }     /* Cuando tiene el foco */</code></pre>
+
+            <h4>Propiedades CSS Esenciales</h4>
+            <pre><code>/* Dimensiones */
+width: 100px;
+height: 200px;
+max-width: 500px;
+min-height: 100px;
+
+/* Espacios */
+margin: 20px;           /* Espacio FUERA del elemento */
+padding: 15px;          /* Espacio DENTRO del elemento */
+border: 2px solid #000; /* Borde */
+
+/* Colores y Textos */
+color: #ffffff;         /* Color del texto */
+background-color: blue; /* Color de fondo */
+font-size: 16px;
+font-weight: 600;
+text-align: center;
+
+/* Posicionamiento (sin flexbox ni grid) */
+position: relative;     /* Relativo a su posición normal */
+position: absolute;     /* Relativo al padre posicionado */
+position: fixed;        /* Relativo a la ventana */
+top: 10px;
+left: 20px;</code></pre>
+
+            <h3>El Modelo de Caja (Box Model)</h3>
+            <p>Todo elemento en HTML es una caja rectangular. Entender el modelo de caja es fundamental:</p>
+
+            <div class="demo-container">
+                <div style="background: rgba(122, 209, 162, 0.3); border: 2px dashed var(--primary); padding: 20px; text-align: center; width: 200px;">
+                    <div style="background: var(--primary); color: #000; padding: 10px; margin: 10px; border: 2px solid var(--accent); text-align: center; font-size: 0.9em;">
+                        <div>content</div>
+                        <div style="font-size: 0.8em; color: rgba(0,0,0,0.7);">padding</div>
+                    </div>
+                    <div style="font-size: 0.8em; color: var(--primary); margin-top: 5px;">border</div>
+                    <div style="font-size: 0.8em; color: var(--primary); margin-top: 5px;">margin</div>
+                </div>
+            </div>
+
+            <pre><code>/* De adentro hacia afuera:
+   1. content (contenido real)
+   2. padding (espacio interno)
+   3. border (borde)
+   4. margin (espacio externo)
+*/
+
+.box {
+  width: 200px;           /* Ancho del contenido */
+  padding: 15px;          /* 15px de espacio interno */
+  border: 2px solid;      /* Borde de 2px */
+  margin: 20px;           /* 20px de espacio externo */
+  
+  /* El box-sizing controla si el ancho incluye padding/border */
+  box-sizing: border-box; /* Recomendado: ancho incluye padding y border */
+}</code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Importante:</strong> Por defecto, <code>box-sizing: content-box</code> hace que <code>width</code> sea solo el contenido. Es mejor usar <code>box-sizing: border-box</code> en todos los elementos (muchos developers lo hacen con <code>* { box-sizing: border-box; }</code>).
+            </div>
+
+        </section>
+
+        <!-- Flexbox -->
+        <section id="flexbox">
+            <h2>🎯 2. Flexbox: Layouts Modernos</h2>
+
+            <p>Flexbox (Flexible Box Layout) es el sistema moderno para crear layouts. Es más flexible y potente que float, y es el método recomendado hoy en día.</p>
+
+            <h3>Conceptos Clave de Flexbox</h3>
+
+            <h4>Contenedor Flex vs Items Flex</h4>
+            <div class="concept-box">
+                <strong>Contenedor Flex:</strong> El elemento padre que tiene <code>display: flex</code>. Define cómo se distribuyen los elementos hijos (items).
+                <br><strong>Items Flex:</strong> Los elementos hijos directos del contenedor. Se distribuyen según las propiedades del contenedor.
+            </div>
+
+            <h4>Propiedad: display: flex</h4>
+            <pre><code>/* Convertir un elemento en contenedor flex */
+.container {
+  display: flex;
+  /* Ahora los hijos se distribuyen horizontalmente */
+}</code></pre>
+
+            <div class="reference">
+                <strong>📌 En tus proyectos:</strong> Lo usaste en <code>index.html</code> (línea 43) para centrar contenido, y en <code>Pr_3/5_paginas/css/estilos.css</code> para crear layouts.
+            </div>
+
+            <h3>Propiedades del Contenedor Flex</h3>
+
+            <h4>flex-direction</h4>
+            <p>Define la dirección en que se distribuyen los items (eje principal).</p>
+            <pre><code>.container {
+  display: flex;
+  flex-direction: row;        /* Horizontal (por defecto) */
+  /* flex-direction: column;   */ /* Vertical */
+  /* flex-direction: row-reverse; */ /* Horizontal invertido */
+  /* flex-direction: column-reverse; */ /* Vertical invertido */
+}</code></pre>
+
+            <p><strong>Demo:</strong></p>
+            <div class="demo-container" style="flex-direction: row; margin-bottom: 20px;">
+                <div class="demo-item" style="flex: 1;">Item 1</div>
+                <div class="demo-item" style="flex: 1;">Item 2</div>
+                <div class="demo-item" style="flex: 1;">Item 3</div>
+            </div>
+
+            <h4>justify-content</h4>
+            <p>Distribuye los items a lo largo del eje principal (horizontalmente si flex-direction: row).</p>
+            <pre><code>.container {
+  display: flex;
+  justify-content: flex-start;    /* Pegados al inicio (defecto) */
+  /* justify-content: center; */     /* Centrados */
+  /* justify-content: flex-end; */   /* Pegados al final */
+  /* justify-content: space-between; */ /* Espacio uniforme entre items */
+  /* justify-content: space-around; */ /* Espacio uniforme alrededor */
+  /* justify-content: space-evenly; */ /* Espacio completamente uniforme */
+}</code></pre>
+
+            <p><strong>Demo - space-between:</strong></p>
+            <div class="demo-container flex-demo-justify">
+                <div class="demo-item">Item 1</div>
+                <div class="demo-item">Item 2</div>
+                <div class="demo-item">Item 3</div>
+            </div>
+
+            <h4>align-items</h4>
+            <p>Distribuye los items a lo largo del eje secundario (verticalmente si flex-direction: row).</p>
+            <pre><code>.container {
+  display: flex;
+  height: 200px;
+  align-items: flex-start;    /* Pegados arriba */
+  /* align-items: center; */     /* Centrados verticalmente */
+  /* align-items: flex-end; */   /* Pegados abajo */
+  /* align-items: stretch; */    /* Se expanden para llenar (defecto) */
+  /* align-items: baseline; */   /* Alineados por baseline del texto */
+}</code></pre>
+
+            <p><strong>Demo - center:</strong></p>
+            <div class="demo-container flex-demo-align">
+                <div class="demo-item">Item 1</div>
+                <div class="demo-item">Item 2</div>
+                <div class="demo-item">Item 3</div>
+            </div>
+
+            <div class="reference">
+                <strong>📌 En tus proyectos:</strong> Usaste <code>align-items: center</code> en tu main index.html (línea 43) para centrar verticalmente.
+            </div>
+
+            <h4>flex-wrap</h4>
+            <p>Controla si los items se envuelven a la siguiente línea o se comprimen.</p>
+            <pre><code>.container {
+  display: flex;
+  flex-wrap: nowrap;    /* No envuelve, comprime los items (defecto) */
+  /* flex-wrap: wrap; */       /* Envuelve a la siguiente línea */
+  /* flex-wrap: wrap-reverse; */ /* Envuelve pero invierte el orden */
+}</code></pre>
+
+            <p><strong>Demo - wrap:</strong></p>
+            <div class="demo-container flex-demo-wrap">
+                <div class="demo-item">Item 1</div>
+                <div class="demo-item">Item 2</div>
+                <div class="demo-item">Item 3</div>
+                <div class="demo-item">Item 4</div>
+                <div class="demo-item">Item 5</div>
+            </div>
+
+            <h4>gap</h4>
+            <p>Define el espacio entre items (mucho más simple que usar margin).</p>
+            <pre><code>.container {
+  display: flex;
+  gap: 16px;  /* Espacio de 16px entre todos los items */
+  
+  /* O controlar por separado */
+  row-gap: 16px;    /* Espacio vertical */
+  column-gap: 12px; /* Espacio horizontal */
+}</code></pre>
+
+            <h3>Propiedades de los Items Flex</h3>
+
+            <h4>flex (propiedad abreviada)</h4>
+            <p>Controla cómo se distribuye el espacio disponible entre items.</p>
+            <pre><code>.item {
+  flex: 1;  /* Crece para ocupar espacio disponible (proporción 1) */
+}
+
+/* Equivalente a: */
+flex-grow: 1;      /* Cuánto crece si hay espacio extra */
+flex-shrink: 1;    /* Cuánto se encoge si hay poco espacio */
+flex-basis: auto;  /* Tamaño base antes de crecer/encogerse */</code></pre>
+
+            <div class="concept-box">
+                <strong>Ejemplo práctico:</strong>
+                <pre><code>.container { display: flex; }
+.item-1 { flex: 1; }   /* Ocupa 1/3 del espacio */
+.item-2 { flex: 2; }   /* Ocupa 2/3 del espacio */
+.item-3 { flex: 1; }   /* Ocupa 1/3 del espacio */
+/* Total: 1+2+1 = 4 partes */</code></pre>
+            </div>
+
+            <h4>align-self</h4>
+            <p>Alinea un item específico diferente a los demás.</p>
+            <pre><code>.item-especial {
+  align-self: center;   /* Este item se centra verticalmente */
+  align-self: flex-end; /* Este item va al final */
+}</code></pre>
+
+            <h4>order</h4>
+            <p>Cambia el orden visual de los items sin cambiar el HTML.</p>
+            <pre><code>.item-1 { order: 3; }  /* Aparece tercero */
+.item-2 { order: 1; }  /* Aparece primero */
+.item-3 { order: 2; }  /* Aparece segundo */</code></pre>
+
+            <h3>Nuances Profundas de Flexbox</h3>
+
+            <h4>1. El Eje Principal vs Eje Secundario</h4>
+            <p>Flexbox opera sobre dos ejes:</p>
+            <ul>
+                <li><strong>Eje Principal:</strong> Definido por <code>flex-direction</code>. Si es <code>row</code>, es horizontal.</li>
+                <li><strong>Eje Secundario (Cross Axis):</strong> Perpendicular al principal. Si el principal es horizontal, este es vertical.</li>
+            </ul>
+            <pre><code>/* Si flex-direction: row (horizontal) */
+justify-content: ...;  /* Distribuye en EJE PRINCIPAL (horizontal) */
+align-items: ...;      /* Distribuye en EJE SECUNDARIO (vertical) */
+
+/* Si flex-direction: column (vertical) */
+justify-content: ...;  /* Distribuye en EJE PRINCIPAL (vertical) */
+align-items: ...;      /* Distribuye en EJE SECUNDARIO (horizontal) */</code></pre>
+
+            <h4>2. min-width y min-content</h4>
+            <p>Los items flex no se comprimen por debajo de su <code>min-width</code>. Esto es importante para evitar que el contenido se rompa.</p>
+            <pre><code>.container {
+  display: flex;
+  width: 300px;
+  overflow: hidden; /* Evita que rebase */
+}
+
+.item {
+  flex: 1;
+  min-width: 100px;  /* No se comprimirá menos de 100px */
+  /* Si el contenido es más ancho, rebasará */
+}</code></pre>
+
+            <h4>3. Diferencia entre flex-basis y width</h4>
+            <pre><code>.item {
+  width: 100px;        /* Tamaño fijo, pero flex lo puede cambiar */
+  flex-basis: 100px;   /* Tamaño "base" antes de flexionar */
+  flex: 1;             /* Crece si hay espacio */
+}
+
+/* Con flex, el width se ignora (flex-basis tiene precedencia) */</code></pre>
+
+            <h4>4. Collapsing Margins NO ocurre en Flexbox</h4>
+            <p>En HTML normal, márgenes verticales se colapsan (toman el valor mayor). En flexbox, NO ocurre:</p>
+            <pre><code>/* En display: block */
+.item1 { margin-bottom: 20px; }
+.item2 { margin-top: 30px; }
+/* El espacio es 30px (solo el mayor) */
+
+/* En display: flex */
+.container { display: flex; flex-direction: column; }
+.item1 { margin-bottom: 20px; }
+.item2 { margin-top: 30px; }
+/* El espacio es 50px (20px + 30px, no colapsa) */</code></pre>
+
+            <h4>5. Espacios Negativos (Negative Space)</h4>
+            <pre><code>.container {
+  display: flex;
+  gap: 16px;
+}
+
+.item {
+  flex: 1;
+  margin: -10px;  /* Márgenes negativos reducen el espacio */
+}</code></pre>
+
+        </section>
+
+        <!-- Float -->
+        <section id="float">
+            <h2>🌊 3. Float: El Antiguo Sistema</h2>
+
+            <p>Float es el sistema antiguo de layouts (pre-flexbox). Aunque obsoleto para layouts principales, es importante entenderlo porque:</p>
+            <ul>
+                <li>Aún existe en código heredado</li>
+                <li>Es útil para envolver texto alrededor de imágenes</li>
+                <li>Puede ser más eficiente en algunos casos</li>
+            </ul>
+
+            <div class="reference">
+                <strong>📌 En tus proyectos:</strong> Usaste float en <code>images/css/style.css</code> (líneas 48-56): <code>.content { float: left; width: 88%; }</code> y <code>.sidebar { float: right; width: 10%; }</code>, y en <code>practica5.1</code> con <code>#imageLeft { float: left; }</code> y <code>#imageRight { float: right; }</code>.
+            </div>
+
+            <h3>¿Cómo Funciona Float?</h3>
+            <p>Float saca un elemento del flujo normal y lo coloca a un lado (izquierda o derecha), permitiendo que otros elementos fluyan alrededor de él.</p>
+
+            <pre><code>/* Valores posibles */
+.element {
+  float: left;    /* Se desplaza a la izquierda */
+  float: right;   /* Se desplaza a la derecha */
+  float: none;    /* No flota (valor por defecto) */
+}</code></pre>
+
+            <h4>Demo: Float Left</h4>
+            <div class="demo-container" style="flex-direction: column; align-items: stretch; min-height: auto;">
+                <div class="float-left-demo">
+                    Contenido flotante a la izquierda
+                </div>
+                <div style="text-align: justify;">
+                    Este es el texto normal que fluye alrededor del elemento flotante. Cuando un elemento tiene <code>float: left</code>, se sale del flujo normal y los elementos siguientes lo rodean.
+                </div>
+            </div>
+
+            <h4>Demo: Float Right</h4>
+            <div class="demo-container" style="flex-direction: column; align-items: stretch; min-height: auto;">
+                <div class="float-right-demo">
+                    Contenido flotante a la derecha
+                </div>
+                <div style="text-align: justify;">
+                    Similar al anterior, pero ahora el elemento está a la derecha. El texto fluye alrededor de él desde la izquierda.
+                </div>
+                <div class="clear-demo"></div>
+            </div>
+
+            <h3>Propiedad: clear</h3>
+            <p><code>clear</code> evita que un elemento tenga elementos flotantes a su lado.</p>
+            <pre><code>.no-float {
+  clear: left;    /* No permite flotantes a la izquierda */
+  clear: right;   /* No permite flotantes a la derecha */
+  clear: both;    /* No permite flotantes a ningún lado */
+  clear: none;    /* Valor por defecto */
+}</code></pre>
+
+            <div class="concept-box">
+                <strong>Caso de uso:</strong> Si tienes un <code>&lt;footer&gt;</code> después de elementos flotantes, necesitas <code>clear: both</code> para que no fluya alrededor del contenido flotante.
+            </div>
+
+            <h3>Problema: Collapse del Contenedor</h3>
+            <p>Cuando todos los hijos de un contenedor están flotantes, el contenedor colapsa a altura 0. Soluciones:</p>
+
+            <pre><code>/* Solución 1: overflow */
+.container {
+  overflow: hidden;  /* o auto */
+  /* Esto "contiene" los elementos flotantes */
+}
+
+/* Solución 2: Clearfix (recomendado) */
+.container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Solución 3: Hacer uso de display: flow-root */
+.container {
+  display: flow-root;  /* Solución moderna y limpia */
+}</code></pre>
+
+            <h3>Nuances Profundas de Float</h3>
+
+            <h4>1. Elementos Flotantes No Respetan margin-collapse</h4>
+            <p>Los márgenes verticales de elementos flotantes no colapsan (como en flexbox):</p>
+            <pre><code>.float-left { 
+  float: left; 
+  margin-bottom: 20px;
+}
+.float-left { 
+  margin-top: 30px; 
+}
+/* El espacio es 50px, no 30px */</code></pre>
+
+            <h4>2. Elementos Flotantes No Crean un Contexto de Apilamiento (Stacking Context)</h4>
+            <p>Pero esto ha sido debilitado. Z-index puede funcionar de manera impredecible.</p>
+
+            <h4>3. Float y Text-align</h4>
+            <pre><code>/* text-align NO afecta a elementos flotantes */
+.container {
+  text-align: center;
+}
+
+.container > img {
+  float: left;  /* La imagen seguirá en la izquierda, no se alinea al centro */
+}</code></pre>
+
+            <h4>4. Ancho 100% de Floats</h4>
+            <pre><code>/* Problema: ancho 100% con floats crea overflow */
+.container {
+  width: 400px;
+}
+
+.left {
+  float: left;
+  width: 50%;   /* 200px */
+}
+
+.right {
+  float: left;
+  width: 50%;   /* 200px */
+  /* Total: 400px ✓ Funciona */
+}
+
+/* PERO si añades bordes o padding, rebasan */
+.left {
+  float: left;
+  width: 50%;
+  border: 1px solid;  /* +2px por el borde */
+  /* Total: 402px ✗ Problema */
+}</code></pre>
+
+            <h4>5. Float No Trabaja con Altura (Height)</h4>
+            <pre><code>/* height EN ELEMENTOS FLOTANTES es complicado */
+.sidebar {
+  float: right;
+  width: 30%;
+  height: 100%;  /* ✗ NO hace lo que esperas */
+  /* Para altura 100%, necesitas height del padre */
+}
+
+.container {
+  height: 500px;
+}
+
+.sidebar {
+  float: right;
+  width: 30%;
+  height: 100%; /* ✓ Ahora y si, es 500px */
+}</code></pre>
+
+            <h4>6. Diferencia entre width % y width px</h4>
+            <pre><code>/* Con floats, el % es relativo al padre */
+.container { width: 600px; }
+.sidebar { float: right; width: 50%; }  /* 300px */
+
+/* Con width px, es directo */
+.sidebar { float: right; width: 300px; }</code></pre>
+
+        </section>
+
+        <!-- Formularios -->
+        <section id="formularios">
+            <h2>📋 4. Formularios HTML</h2>
+
+            <p>Los formularios son esenciales para recopilar datos del usuario. HTML proporciona muchos elementos de formulario.</p>
+
+            <div class="reference">
+                <strong>📌 En tus proyectos:</strong> Tienes una práctica completa en <code>Practica_formulario/formulario.html</code> con inputs, textareas, radio buttons, checkboxes y selects.
+            </div>
+
+            <h3>Elemento: &lt;form&gt;</h3>
+            <p>Contenedor que agrupa campos de formulario. Permite enviar datos a un servidor.</p>
+            <pre><code>&lt;form action="procesar.php" method="POST"&gt;
+  &lt;!-- Campos del formulario aquí --&gt;
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+
+/* Atributos importantes */
+action       /* URL a donde se envían los datos */
+method       /* GET o POST (cómo se envían) */
+name         /* Nombre del formulario */
+target       /* Dónde abrir la respuesta (_blank, _self, etc.) */</code></pre>
+
+            <h4>GET vs POST</h4>
+            <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
+                <tr style="background: rgba(122, 209, 162, 0.1);">
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);"><strong>GET</strong></td>
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);">Datos en la URL. Visible. Limitación de tamaño. Inseguro para datos sensibles.</td>
+                </tr>
+                <tr style="background: rgba(255, 106, 0, 0.05);">
+                    <td style="padding: 8px; border: 1px solid rgba(255, 106, 0, 0.2);"><strong>POST</strong></td>
+                    <td style="padding: 8px; border: 1px solid rgba(255, 106, 0, 0.2);">Datos en el cuerpo. Oculto. Sin límite de tamaño. Más seguro.</td>
+                </tr>
+            </table>
+
+            <h3>Elementos de Formulario</h3>
+
+            <h4>1. Input de Texto</h4>
+            <pre><code>&lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+&lt;input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required&gt;</code></pre>
+
+            <div class="form-group">
+                <label for="input-demo">Nombre:</label>
+                <input type="text" id="input-demo" placeholder="Tu nombre aquí">
+            </div>
+
+            <h4>2. Input de Email</h4>
+            <pre><code>&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" name="email" required&gt;</code></pre>
+
+            <div class="form-group">
+                <label for="email-demo">Email:</label>
+                <input type="email" id="email-demo" placeholder="tu@email.com">
+            </div>
+
+            <h4>3. Input de Contraseña</h4>
+            <pre><code>&lt;label for="pass"&gt;Contraseña:&lt;/label&gt;
+&lt;input type="password" id="pass" name="pass" required&gt;</code></pre>
+
+            <div class="form-group">
+                <label for="pass-demo">Contraseña:</label>
+                <input type="password" id="pass-demo" placeholder="••••••••">
+            </div>
+
+            <h4>4. Textarea (Texto Multilinea)</h4>
+            <pre><code>&lt;label for="comentarios"&gt;Comentarios:&lt;/label&gt;
+&lt;textarea id="comentarios" name="comentarios" rows="4" placeholder="Escribe aquí..."&gt;&lt;/textarea&gt;</code></pre>
+
+            <div class="form-group">
+                <label for="textarea-demo">Comentarios:</label>
+                <textarea id="textarea-demo" placeholder="Escribe tus comentarios aquí..."></textarea>
+            </div>
+
+            <h4>5. Radio Buttons (Una opción)</h4>
+            <pre><code>&lt;label&gt;Género:&lt;/label&gt;
+&lt;input type="radio" name="genero" value="masculino" id="m"&gt;
+&lt;label for="m"&gt;Masculino&lt;/label&gt;
+
+&lt;input type="radio" name="genero" value="femenino" id="f"&gt;
+&lt;label for="f"&gt;Femenino&lt;/label&gt;
+
+&lt;input type="radio" name="genero" value="otro" id="o"&gt;
+&lt;label for="o"&gt;Otro&lt;/label&gt;</code></pre>
+
+            <div class="form-group">
+                <label>Género:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="genero" value="masculino" id="m">
+                        <label for="m">Masculino</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="genero" value="femenino" id="f">
+                        <label for="f">Femenino</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="genero" value="otro" id="o">
+                        <label for="o">Otro</label>
+                    </div>
+                </div>
+            </div>
+
+            <h4>6. Checkboxes (Múltiples Opciones)</h4>
+            <pre><code>&lt;label&gt;Intereses:&lt;/label&gt;
+&lt;input type="checkbox" name="deportes" value="futbol" id="futbol"&gt;
+&lt;label for="futbol"&gt;Fútbol&lt;/label&gt;
+
+&lt;input type="checkbox" name="deportes" value="basquet" id="basquet"&gt;
+&lt;label for="basquet"&gt;Basquetbol&lt;/label&gt;</code></pre>
+
+            <div class="form-group">
+                <label>Intereses:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="intereses" value="deportes" id="deportes">
+                        <label for="deportes">Deportes</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="intereses" value="musica" id="musica">
+                        <label for="musica">Música</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="intereses" value="lectura" id="lectura">
+                        <label for="lectura">Lectura</label>
+                    </div>
+                </div>
+            </div>
+
+            <h4>7. Select (Lista Desplegable)</h4>
+            <pre><code>&lt;label for="pais"&gt;País:&lt;/label&gt;
+&lt;select id="pais" name="pais"&gt;
+  &lt;option value=""&gt;Selecciona un país&lt;/option&gt;
+  &lt;option value="spain"&gt;España&lt;/option&gt;
+  &lt;option value="mexico"&gt;México&lt;/option&gt;
+  &lt;option value="argentina"&gt;Argentina&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+            <div class="form-group">
+                <label for="pais-demo">País:</label>
+                <select id="pais-demo">
+                    <option value="">Selecciona un país</option>
+                    <option value="spain">España</option>
+                    <option value="mexico">México</option>
+                    <option value="argentina">Argentina</option>
+                </select>
+            </div>
+
+            <h4>8. Fieldset y Legend</h4>
+            <p>Agrupan campos relacionados visualmente.</p>
+            <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Datos Personales&lt;/legend&gt;
+  &lt;input type="text" placeholder="Nombre"&gt;
+  &lt;input type="email" placeholder="Email"&gt;
+&lt;/fieldset&gt;</code></pre>
+
+            <h3>Atributos Importantes</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
+                <tr style="background: rgba(122, 209, 162, 0.1);">
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);"><code>required</code></td>
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);">Campo obligatorio</td>
+                </tr>
+                <tr style="background: rgba(255, 106, 0, 0.05);">
+                    <td style="padding: 8px; border: 1px solid rgba(255, 106, 0, 0.2);"><code>placeholder</code></td>
+                    <td style="padding: 8px; border: 1px solid rgba(255, 106, 0, 0.2);">Texto de ejemplo que desaparece al escribir</td>
+                </tr>
+                <tr style="background: rgba(122, 209, 162, 0.1);">
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);"><code>disabled</code></td>
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);">Campo deshabilitado (no se puede usar)</td>
+                </tr>
+                <tr style="background: rgba(255, 106, 0, 0.05);">
+                    <td style="padding: 8px; border: 1px solid rgba(255, 106, 0, 0.2);"><code>readonly</code></td>
+                    <td style="padding: 8px; border: 1px solid rgba(255, 106, 0, 0.2);">Campo de solo lectura (se ve pero no se puede editar)</td>
+                </tr>
+                <tr style="background: rgba(122, 209, 162, 0.1);">
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);"><code>maxlength</code></td>
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);">Número máximo de caracteres</td>
+                </tr>
+            </table>
+
+            <h3>Validación HTML5</h3>
+            <p>HTML5 proporciona validación integrada:</p>
+            <pre><code>&lt;input type="email" required&gt;    /* Valida que sea email */
+&lt;input type="number" min="1" max="100"&gt;  /* Solo números entre 1-100 */
+&lt;input type="date"&gt;                     /* Selector de fecha */
+&lt;input type="time"&gt;                     /* Selector de hora */
+&lt;input type="url"&gt;                      /* Valida URL */
+&lt;input type="tel"&gt;                      /* Números de teléfono */</code></pre>
+
+            <h3>Nuances de Formularios</h3>
+
+            <h4>1. El Atributo "for" de Label</h4>
+            <pre><code>/* CORRECTO: El "for" coincide con el "id" del input */
+&lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+&lt;input type="text" id="nombre"&gt;
+
+/* INCORRECTO: No coinciden */
+&lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+&lt;input type="text" id="nombre-input"&gt;</code></pre>
+
+            <h4>2. Radio Buttons: El Atributo "name"</h4>
+            <p>Todos los radio buttons que deben ser exclusivos deben tener el MISMO name:</p>
+            <pre><code>/* CORRECTO: Todos tienen name="color" */
+&lt;input type="radio" name="color" value="red"&gt;
+&lt;input type="radio" name="color" value="blue"&gt;
+/* Solo se puede seleccionar uno */
+
+/* INCORRECTO: Diferentes names */
+&lt;input type="radio" name="color1" value="red"&gt;
+&lt;input type="radio" name="color2" value="blue"&gt;
+/* Se pueden seleccionar ambos (¡no debería pasar!) */</code></pre>
+
+            <h4>3. Checkboxes: Envío de Datos</h4>
+            <pre><code>/* Si un checkbox NO está marcado, NO se envía */
+&lt;form method="POST"&gt;
+  &lt;input type="checkbox" name="terminos"&gt;
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+
+/* Si se marca, se envía como: terminos=on
+   Si NO se marca, NO se envía en el POST */</code></pre>
+
+            <h4>4. Input Type vs Value</h4>
+            <pre><code>/* type define QUÉ es el campo */
+&lt;input type="number"&gt;    /* Solo acepta números */
+&lt;input type="email"&gt;     /* Valida formato email */
+
+/* value es el CONTENIDO inicial */
+&lt;input type="text" value="Hello"&gt;  /* Comienza con "Hello" */</code></pre>
+
+        </section>
+
+        <!-- Gráficos -->
+        <section id="graficos">
+            <h2>📊 5. Gráficos y Visualización de Datos</h2>
+
+            <p>Hay varias formas de crear gráficos en web. Las principales son:</p>
+
+            <h3>1. Canvas (Dibujo Programático)</h3>
+            <p>Canvas permite dibujar gráficos pixel por pixel usando JavaScript.</p>
+
+            <pre><code>&lt;canvas id="miCanvas" width="400" height="300"&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+  const canvas = document.getElementById('miCanvas');
+  const ctx = canvas.getContext('2d');
+  
+  /* Dibujar un rectángulo */
+  ctx.fillStyle = '#7ad1a2';
+  ctx.fillRect(50, 50, 200, 100);
+  
+  /* Dibujar un círculo */
+  ctx.beginPath();
+  ctx.arc(300, 150, 50, 0, Math.PI * 2);
+  ctx.fillStyle = '#ff6a00';
+  ctx.fill();
+  
+  /* Dibujar texto */
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '16px Arial';
+  ctx.fillText('Mi Gráfico', 10, 30);
+&lt;/script&gt;</code></pre>
+
+            <h4>Demo: Gráfico de Barras Simple</h4>
+            <div class="canvas-wrapper">
+                <canvas id="barChart" width="400" height="300"></canvas>
+            </div>
+
+            <h4>Demo: Gráfico Circular (Pie Chart)</h4>
+            <div class="canvas-wrapper">
+                <canvas id="pieChart" width="300" height="300"></canvas>
+            </div>
+
+            <h3>2. SVG (Gráficos Vectoriales)</h3>
+            <p>SVG es ideal para gráficos escalables que no pierden calidad.</p>
+
+            <pre><code>&lt;svg width="200" height="200" viewBox="0 0 200 200"&gt;
+  &lt;!-- Rectángulo --&gt;
+  &lt;rect x="20" y="20" width="100" height="60" fill="#7ad1a2" /&gt;
+  
+  &lt;!-- Círculo --&gt;
+  &lt;circle cx="150" cy="100" r="40" fill="#ff6a00" /&gt;
+  
+  &lt;!-- Línea --&gt;
+  &lt;line x1="10" y1="10" x2="190" y2="190" stroke="#fff" stroke-width="2" /&gt;
+  
+  &lt;!-- Texto --&gt;
+  &lt;text x="50" y="150" font-size="16" fill="#fff"&gt;SVG Gráfico&lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+
+            <h4>Ventajas de SVG</h4>
+            <ul>
+                <li>Escalable sin pérdida de calidad</li>
+                <li>Se puede editar con CSS y JavaScript</li>
+                <li>Más accesible que Canvas (se puede usar con lectores de pantalla)</li>
+                <li>Ideal para iconos y gráficos geométricos</li>
+            </ul>
+
+            <h3>3. Chart.js (Biblioteca)</h3>
+            <p>Hay librerías que facilitan crear gráficos complejos:</p>
+
+            <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+
+&lt;canvas id="myChart"&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+  const ctx = document.getElementById('myChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Enero', 'Febrero', 'Marzo'],
+      datasets: [{
+        label: 'Ventas',
+        data: [12, 19, 3],
+        backgroundColor: '#7ad1a2'
+      }]
+    }
+  });
+&lt;/script&gt;</code></pre>
+
+            <h3>4. CSS Puro (Simple Graphics)</h3>
+            <p>Para gráficos muy simples, CSS es suficiente:</p>
+
+            <pre><code>.bar {
+  width: 50%;
+  height: 20px;
+  background: linear-gradient(90deg, #7ad1a2, #4aa98f);
+  margin: 10px 0;
+}</code></pre>
+
+            <div class="demo-container" style="flex-direction: column; align-items: stretch; gap: 20px;">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="background: linear-gradient(90deg, #7ad1a2, #4aa98f); height: 30px; width: 75%;"></div>
+                    <div style="color: var(--muted); font-size: 0.9em;">75%</div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="background: linear-gradient(90deg, #ff6a00, #ffaa40); height: 30px; width: 45%;"></div>
+                    <div style="color: var(--muted); font-size: 0.9em;">45%</div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="background: linear-gradient(90deg, #a8f7d7, #7ad1a2); height: 30px; width: 92%;"></div>
+                    <div style="color: var(--muted); font-size: 0.9em;">92%</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Referencias -->
+        <section id="referencias">
+            <h2>🔗 6. Referencias a Tus Proyectos</h2>
+
+            <h3>index.html (Principal)</h3>
+            <p>Tu página principal usa:</p>
+            <ul>
+                <li><strong>Flexbox:</strong> <code>display: flex</code>, <code>align-items: center</code>, <code>justify-content: center</code> para centrar el contenido</li>
+                <li><strong>Grid:</strong> <code>grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))</code> para la galería de prácticas</li>
+                <li><strong>Gradientes:</strong> <code>linear-gradient</code> para fondos atractivos</li>
+                <li><strong>Glassmorphism:</strong> <code>backdrop-filter: blur(8px)</code> para el efecto de cristal</li>
+            </ul>
+
+            <h3>Practica 3 - 5 Páginas</h3>
+            <p>En <code>Pr_3/5_paginas/css/estilos.css</code>:</p>
+            <ul>
+                <li><strong>Flexbox:</strong> <code>.container { display: flex; }</code> para maquetación</li>
+                <li>Navegación con flex para distribuir items</li>
+            </ul>
+
+            <h3>Practica 5.1 - Float</h3>
+            <p>En <code>practica5.1/css/estilos.css</code>:</p>
+            <ul>
+                <li><strong>Float Left:</strong> <code>#imageLeft { float: left; }</code> para imágenes a la izquierda</li>
+                <li><strong>Float Right:</strong> <code>#imageRight { float: right; }</code> para imágenes a la derecha</li>
+                <li>Ancho proporcional con <code>width: %</code></li>
+            </ul>
+
+            <h3>Practica Formulario</h3>
+            <p>En <code>Practica_formulario/formulario.html</code>:</p>
+            <ul>
+                <li><strong>Form Element:</strong> Contenedor principal con <code>&lt;form action=""&gt;</code></li>
+                <li><strong>Fieldset:</strong> Grupos de campos con <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code></li>
+                <li><strong>Input Types:</strong> text, textarea, radio, checkbox, select</li>
+                <li><strong>Radio Buttons:</strong> Para idiomas (Inglés, Francés, Alemán) con levels 1-5</li>
+                <li><strong>Checkboxes:</strong> Para programas (Writer, Calc, Base, Impres)</li>
+                <li><strong>Select:</strong> Para Sistema Operativo (Linux, Windows, MacOS)</li>
+                <li><strong>Reset Button:</strong> <code>&lt;input type="reset"&gt;</code></li>
+            </ul>
+
+            <h3>Practica Images (CSS Extra)</h3>
+            <p>En <code>images/css/style.css</code>:</p>
+            <ul>
+                <li><strong>Float Layout:</strong> <code>.content { float: left; width: 88%; }</code></li>
+                <li><strong>Float Sidebar:</strong> <code>.sidebar { float: right; width: 10%; }</code></li>
+                <li>Layout de dos columnas sin flexbox ni grid</li>
+            </ul>
+
+        </section>
+
+        <!-- Conclusión -->
+        <section>
+            <h2>🎓 Resumen Final</h2>
+
+            <h3>¿Cuándo usar cada técnica?</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
+                <tr style="background: rgba(122, 209, 162, 0.1);">
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);"><strong>Flexbox</strong></td>
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);">Layouts modernos, barras de navegación, centrado, distribución de items</td>
+                </tr>
+                <tr style="background: rgba(255, 106, 0, 0.05);">
+                    <td style="padding: 8px; border: 1px solid rgba(255, 106, 0, 0.2);"><strong>Grid</strong></td>
+                    <td style="padding: 8px; border: 1px solid rgba(255, 106, 0, 0.2);">Layouts complejos de dos dimensiones, galerías, dashboards</td>
+                </tr>
+                <tr style="background: rgba(122, 209, 162, 0.1);">
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);"><strong>Float</strong></td>
+                    <td style="padding: 8px; border: 1px solid rgba(122, 209, 162, 0.3);">Envolver texto alrededor de imágenes, código heredado</td>
+                </tr>
+            </table>
+
+            <h3>Buenas Prácticas</h3>
+            <ul>
+                <li>✅ Usa flexbox para layouts lineales y modernos</li>
+                <li>✅ Usa grid para layouts bidimensionales complejos</li>
+                <li>✅ Evita float para layouts principales (usa flexbox/grid)</li>
+                <li>✅ Siempre usa <code>box-sizing: border-box</code> en todos los elementos</li>
+                <li>✅ Semantiza tu HTML con etiquetas apropiadas (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, etc.)</li>
+                <li>✅ Usa formularios nativos de HTML, no divs personalizados</li>
+                <li>✅ Valida inputs en el servidor, no solo en el cliente</li>
+                <li>✅ Usa Canvas para gráficos dinámicos, SVG para estáticos</li>
+            </ul>
+
+            <div class="concept-box">
+                <strong>👨‍💻 Próximos Pasos:</strong> Combina estas técnicas con JavaScript para crear aplicaciones web interactivas. Experimenta con los ejemplos de esta guía y adáptalos a tus proyectos.
+            </div>
+
+        </section>
+
+    </div>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <footer>
+        <p>© 2024 Guía Completa de Desarrollo Web — Created for Learning</p>
+        <p><a href="../../index.html" style="color: var(--primary); text-decoration: none;">← Volver a PracticasHub</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
