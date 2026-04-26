@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DnD Character Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>DnD Character Generator</h1>
+
+    <!-- CLASS -->
+    <label>Class</label>
+    <select id="tipo">
+        <option value="">-- Select Class --</option>
+        <option>Guerrero</option>
+        <option>Mago</option>
+        <option>Bardo</option>
+        <option>Pícaro</option>
+        <option>Paladín</option>
+        <option>Druida</option>
+        <option>Monje</option>
+        <option>Clérigo</option>
+    </select>
+    <input type="text" id="customClass" placeholder="Or write your own class">
+
+    <!-- RACE -->
+    <label>Race</label>
+    <select id="raza">
+        <option value="">-- Select Race --</option>
+        <option>Humano</option>
+        <option>Elfo</option>
+        <option>Enano</option>
+        <option>Orco</option>
+        <option>Mediano</option>
+        <option>Tiefling</option>
+        <option>Dracónido</option>
+    </select>
+    <input type="text" id="customRace" placeholder="Or write your own race">
+
+    <button id="boton">Generate Character</button>
+
+    <pre id="result"></pre>
+
+    <h2>Description</h2>
+    <p id="descripcion"></p>
+
+    <h2>Image</h2>
+    <img id="imagen" />
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

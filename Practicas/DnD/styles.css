@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    background: #1a1a2e;
+    color: #eaeaea;
+    font-family: "Trebuchet MS", sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.container {
+    background: #16213e;
+    padding: 25px;
+    border-radius: 12px;
+    width: 450px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+
+h1 {
+    text-align: center;
+}
+
+select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    background: #0f3460;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1a4d94;
+}
+
+pre {
+    background: #0f0f1a;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+img {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border-radius: 6px;
+    border: none;
+}
