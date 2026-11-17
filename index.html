@@ -80,7 +80,7 @@
       <p class="lede">Linux tinkerer building desktops, package tooling and small web projects. These are the sites and live demos I keep online.</p>
     </header>
 
-    <section class="grid" aria-label="Sites">
+    <section class="grid" id="sites" aria-label="Sites">
       <a class="card" href="https://tak0dan.github.io/sunshineos-site/">
         <span class="tag">In progress</span>
         <h2>Sunshine OS</h2>
@@ -112,5 +112,71 @@
       <a href="https://github.com/tak0dan?tab=repositories">All repositories</a>
     </nav>
   </main>
+  <script>
+    // Sites that appear on their own: any public, non-fork repo of mine with GitHub Pages
+    // turned on gets a card. The cards above are hand-written and keep their own text;
+    // everything the API finds beyond them is added after them.
+    (function () {
+      var OWNER = "tak0dan";
+      // Never get a card: this hub's own repo and the Ingama sites.
+      var HIDDEN = ["tak0dan.github.io", "Ingama_Invoice", "valencia-drapes.github.io"];
+      var CACHE_KEY = "hub-pages-repos-v1";
+      var TTL = 60 * 60 * 1000; // the unauthenticated API allows 60 requests an hour per visitor
+      var grid = document.getElementById("sites");
+      if (!grid || !window.fetch) return;
+
+      function readCache() {
+        try {
+          var c = JSON.parse(localStorage.getItem(CACHE_KEY));
+          return c && Date.now() - c.at < TTL ? c.repos : null;
+        } catch (e) { return null; }
+      }
+      function writeCache(repos) {
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), repos: repos })); } catch (e) {}
+      }
+      function pretty(name) {
+        var t = name.replace(/[-_.]+/g, " ").trim();
+        return t.charAt(0).toUpperCase() + t.slice(1);
+      }
+      function el(tag, cls, text) {
+        var n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text) n.textContent = text; // text only: API data never goes through innerHTML
+        return n;
+      }
+      function card(repo, url) {
+        var a = el("a", "card");
+        a.href = url;
+        a.appendChild(el("span", "tag", "Site"));
+        a.appendChild(el("h2", "", pretty(repo.name)));
+        a.appendChild(el("p", "", repo.description || "A live site from my repositories."));
+        a.appendChild(el("span", "url", OWNER + ".github.io/" + repo.name));
+        return a;
+      }
+      function render(repos) {
+        var have = Array.prototype.map.call(grid.querySelectorAll("a.card"), function (a) { return a.getAttribute("href"); });
+        repos.forEach(function (r) {
+          if (!r.has_pages || r.fork || r.archived || HIDDEN.indexOf(r.name) >= 0) return;
+          var url = "https://" + OWNER + ".github.io/" + r.name + "/";
+          if (have.indexOf(url) >= 0) return;
+          have.push(url);
+          grid.appendChild(card(r, url));
+        });
+      }
+
+      var cached = readCache();
+      if (cached) { render(cached); return; }
+      fetch("https://api.github.com/users/" + OWNER + "/repos?per_page=100&sort=pushed")
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (repos) {
+          var slim = repos.map(function (r) {
+            return { name: r.name, description: r.description, has_pages: r.has_pages, fork: r.fork, archived: r.archived };
+          });
+          writeCache(slim);
+          render(slim);
+        })
+        .catch(function () { /* offline or rate limited: the hand-written cards still work */ });
+    })();
+  </script>
 </body>
 </html>
