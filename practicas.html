@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PracticasHub — Mis prácticas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.06);
+            --accent: #7ad1a2;
+            --accent-2: #4aa98f;
+            --text: #e9f0ef;
+            --muted: rgba(233, 240, 239, 0.7);
+            --radius: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,*{
+
+        }
+        body {
+            height: 100%;
+            margin: 0;
+                        background-color: #15131d;
+
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, lch(0% 0 0 / 0.35), rgba(0, 0, 0, 0.45)), url('leafy.png') center/cover no-repeat;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+                        background-color: #15131d;
+
+        }
+
+        .card {
+            width: 100%;
+            max-width: 920px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px) saturate(120%);
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+
+        /* LOGO */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+
+            width: fit-content;
+            max-width: none;
+
+            /* GLASS EFFECT */
+            background: rgba(255, 255, 255, 0.06);
+            /* semi-transparent */
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+
+
+        .logo-text {
+            background: rgba(0, 0, 0, 0.25);
+            /* semi-transparent black */
+            color: #fff;
+            padding: 0.6rem 1rem;
+            letter-spacing: 0.5px;
+            flex: none;
+        }
+
+        .logo-hub {
+            background: linear-gradient(135deg, rgba(255, 154, 61, 0.8), rgba(255, 106, 0, 0.8));
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0 14px 14px 0;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+            letter-spacing: 0.8px;
+            flex: none;
+        }
+
+
+
+
+
+        h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        main {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: 1fr;
+            align-items: start;
+        }
+
+        /* Practices grid */
+        .practices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .practice {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 84px;
+            justify-content: center;
+            transition: transform .16s ease, box-shadow .16s ease;
+        }
+
+        .practice:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+        }
+
+        .practice a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .practice small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        footer {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a:focus {
+            outline: 3px solid rgba(122, 209, 162, 0.18);
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 18px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-label="PracticasHub">
+                    <div class="logo-text">Practicas</div>
+                    <div class="logo-hub">HUB</div>
+                </div>
+                <div class="title">
+                    <h1>Mis prácticas</h1>
+                    <p class="lead">A small hub to collect your practice pages and links.</p>
+                </div>
+            </div>
+        </header>
+
+
+        <main>
+            <section class="practice" aria-label="Guía Educativa Completa">
+                <article class="practice_0">
+                    <a href="./Practicas/guia-completa/index.html" title="Guía Completa: Flexbox, Float, Formularios, HTML, CSS y Gráficos" style="background: linear-gradient(135deg, rgba(122, 209, 162, 0.2), rgba(255, 106, 0, 0.15)); padding: 8px 12px; border-radius: 6px; display: inline-block;">
+                        📚 Guía Completa: Flexbox & Float
+                    </a>
+                    <small>Aprende sobre flexbox, float, formularios, HTML, CSS y gráficos con ejemplos de tus proyectos</small>
+                </article>
+            </section>
+            <section class="practice" aria-label="List of prácticas">
+                <article class="practice_0">
+                    <a href="./Practicas/Pr_1y2/curriculum.html" title="Practica 2(Practica 1 + imagen + lista)">
+                        Practica 2 (Practica 1 + imagen + lista) — Introduction
+                    </a>
+                    <small>Local file: ./Practicas/Pr_1y2/curriculum.html</small>
+                </article>
+            </section>
+            <section class="practice_1" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/Pr_3-malentendido/index.html" title="(Practica Pr_3-malentendido(CSS))">
+                        Practica 3 (La de CSS malentendida)
+                    </a>
+                    <small>Local file: ./Practicas/Pr_3-malentendido/index.html</small>
+                </article>
+            </section>
+            <section class="practice_2" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/Pr_3/5_paginas/index.html" title="(Practica 3(CSS))">
+                        Practica 3 (La de CSS correcta) 
+                    </a>
+                    <small>Local file: ./Practicas/Pr_3/5_paginas/index.html</small>
+                </article>
+            </section>
+            <section class="practice_x" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/practica2/index.html" title="(Practica 2 (Alguna de las practicas 2))">
+                            LM UD03.2.PRÁCTICA. CSS2
+UD03.2.PRÁCTICA - La practica esa rara que repite cada año y yo aun no puedo hacerla                    </a>
+                </article>
+            </section>
+            <section class="practice_x" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/Practica_formulario/formulario.html" title="(Practica formulario)">
+                                Practica de formulario                    </a>
+                </article>
+            </section>
+            <section class="practice_x" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/practica5.1/index.html" title="(Practica 5.1)">
+                                Practica 5.1                    </a>
+                </article>
+            </section>
+            <section class="practice_x" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/algo-de-js/index.html" title="(JS tests)">
+                                JS Tests                    </a>
+                </article>
+            </section>
+                        <section class="practice_x" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/monedas/index.html" title="(Monedas)">
+                                Monedas                    </a>
+                </article>
+            </section>
+                        <section class="practice_x" aria-label="List of prácticas">
+                <article class="practice">
+                    <a href="./Practicas/DnD/index.html" title="(DnD)">
+                                DnD                    </a>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <div>© Tak0dan</div>
+        </footer>
+    </div>
+</body>
+
+</html>
